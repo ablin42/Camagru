@@ -1,7 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Space6Fic
- * Date: 19/10/2018
- * Time: 22:11
- */
+session_start();
+unset($_SESSION['username']);
+unset($_SESSION['logged']);
+session_destroy();
+header('Location: ../index.php');

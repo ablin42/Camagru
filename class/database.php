@@ -41,4 +41,22 @@ class database
             $data = $req->fetchAll(PDO::FETCH_CLASS, $class_name);
         return $data;
     }
+
+    public function prepare($statement, $attributes, $class_name = null, $one = false)
+    {
+        $req = $this->getPDO()->prepare($statement);
+        $req->execute($attributes);
+        if (strpos($statement, "SELECT") !== false)
+        {
+            if ($class_name === null)
+                $req->setFetchMode(PDO::FETCH_OBJ);
+            else
+                $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+            if ($one)
+                $data = $req->fetch();
+            else
+                $data = $req->fetchAll();
+            return $data;
+        }
+    }
 }

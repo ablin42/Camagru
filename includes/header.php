@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use \ablin42\bootstrapForm;
 use \ablin42\autoloader;
 
@@ -21,18 +21,33 @@ $form->changeSurr('div class="form-group"', 'div');
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav navbar-right ml-auto">
-            <li class="nav-item"><a class="nav-link" href="account.php">Harbinger</a></li>
-            <form class="form-inline my-2 my-lg-0" action="login.php" method="post">
+            <?php
+                if (isset($_SESSION['logged']) && isset($_SESSION['username']))
+                    echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"account.php\">{$_SESSION['username']}</a></li>";
+            ?>
+            <form class="form-inline my-2 my-lg-0" action="utils/login.php" method="post">
                 <?php
-                    echo $form->label('Username', 'username', 'lab mr-2 ml-2');
-                    echo $form->input('username', 'username', "form-control");
-                    echo $form->label('Password', 'password', 'lab mr-2 ml-2');
-                    echo $form->password('password', 'password', "form-control");
-                    echo $form->submit('submit', 'submit', 'btn btn-outline-warning my-2 my-sm-0 ml-2', 'Log in');
+                    if (!isset($_SESSION['logged']))
+                    {
+                        echo $form->label('Username', 'username', 'lab mr-2 ml-2');
+                        echo $form->input('username', 'username', "form-control");
+                        echo $form->label('Password', 'password', 'lab mr-2 ml-2');
+                        echo $form->password('password', 'password', "form-control");
+                        echo $form->submit('submit', 'submit', 'btn btn-outline-warning my-2 my-sm-0 ml-2', 'Log in');
+                    }
                 ?>
             </form>
-            <li class="nav-item"><a class="nav-link" href="register.php">Sign up</a></li>
-            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+            <?php
+                if (!isset($_SESSION['logged']))
+                {
+                    echo '<li class="nav-item"><a class="nav-link" href="register.php">Sign up</a></li>';
+
+                }
+                else
+                {
+                    echo '<li class="nav-item"><a class="nav-link" href="utils/logout.php">Logout</a></li>';
+                }
+                ?>
         </ul>
     </div>
 </div>
