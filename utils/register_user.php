@@ -1,7 +1,7 @@
 <?php
 use \ablin42\database;
 use \ablin42\alertHtml;
-use \ablin42\session;
+require_once("functions.php");
 if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['email']))
 {
     $alertHtml = new alertHtml();
@@ -19,20 +19,23 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
         }
         $attributes['email'] = hash('whirlpool', $_POST['email']);
         $attributes['password'] = hash('whirlpool', $_POST['password']);
-        $req = $db->query("SELECT * FROM `user` WHERE `email` = '". $attributes['email'] ."' AND `confirmed` = 1");
+        $req = $db->query("SELECT * FROM `user` WHERE `email` = '". $attributes['email'] ."' AND `confirmed_token` != NULL");
         if ($req)
         {
             echo $alertHtml->alert("warning" , "The <b>e-mail</b> you entered is already taken by a verified account, <b>please pick another one.</b>", "text-align: center;");
             return ;
         }
-        $db->prepare("INSERT INTO `user` (`username`, `password`, `email`) VALUES (:username, :password, :email)", $attributes);
+        $attributes['mail_token'] = gen_token(128);
+        $token = $attributes['mail_token'];
+        $user_id = $attributes['username'];
+        $db->prepare("INSERT INTO `user` (`username`, `password`, `email`, `mail_token`) VALUES (:username, :password, :email, :mail_token)", $attributes);
+        //if (mail($_POST['email'], "Confirm your account at Camagru","In order to confirm your account, please click this link: \n\nhttp://localhost:63342/Camagru/register.php?id=$user_id&token=$token"))
+          //  echo "SUCCESS";
         $_SESSION['username'] = $attributes['username'];
         $_SESSION['logged'] = 1;
-        $session = session::getInstance();
-        var_dump($session->getInfo());
         echo $alertHtml->alert("success", "<b>Your account has been successfully created!</b> Redirecting you to the main page...", "text-align: center;");
-        header ('Refresh: 3; index.php');
+        //header ('Refresh: 3; /Camagru/');
     }
     else
-        echo $alertHtml->alert("danger", "<b>The passwords you entered didnt match.</b>", "text-align: center;");
+        echo $alertHtml->alert("danger", "<b>The passwords you entered didn't match.</b>", "text-align: center;");
 }

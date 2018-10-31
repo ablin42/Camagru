@@ -12,32 +12,28 @@ class cookie
         $this->info = $_COOKIE;
     }
 
-   /* public function setInfo($name, $value)
+    public function setCookie($name, $value = null, $expire = null, $path = null, $domain = null, $secure = null, $httponly = null)
     {
-        if (array_key_exists($name, $this->info))
+        $set = setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
+        return $set;
+    }
+
+    public function getCookie($name)
+    {
+        if (isset($_COOKIE) && is_array($_COOKIE) && array_key_exists($name, $_COOKIE))
+            return $_COOKIE[$name];
+        return false;
+    }
+
+    public function unsetCookie($name)
+    {
+        if ($this->getCookie($name) != false)
         {
-            $this->info[$name] = $value;
+            setcookie($name, "", time() - 3600);
             return true;
         }
         return false;
     }
-
-    public function addInfo($name, $value)
-    {
-        if (array_key_exists($name, $this->info))
-            return false;
-        $this->info[$name] = $value;
-        return true;
-    }
-
-    public function getInfo($name = null)
-    {
-        if ($name === null)
-            return $this->info;
-        if (array_key_exists($name, $this->info))
-            return $this->info[$name];
-        return null;
-    }*/
 
     public static function getInstance()
     {

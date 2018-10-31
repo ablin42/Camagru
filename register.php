@@ -11,13 +11,13 @@
 <body>
 <?php
 require_once("includes/header.php");
-if ($_SESSION['logged'] === 1)
-    header('Location: index.php');
-require_once("register_user.php");
+if (isset($_SESSION['logged']) && $_SESSION['logged'] === 1)
+    header('Location: /Camagru/');
+require_once("utils/register_user.php");
 ?>
 
 <div class="container mt-5">
-    <div class="register-wrapper col-12 p-2">
+    <div class="wrapper col-12 p-2">
         <h5>A confirmation e-mail will be sent to you</h5>
         <div class="register-form-wrapper container col-6 p-5 mt-3 mb-3">
             <form class="my-2 my-lg-0" action="register.php" method="post">
@@ -35,9 +35,9 @@ require_once("register_user.php");
             </form>
         </div>
     </div>
-    <div class="register-wrapper col-12 p-3 mt-5">
-        <h5>Already have an account? You can log in <a href="login.php">here</a></h5>
-        <h6>Else you can go back to the main page <a href="index.php">here</a></h6>
+    <div class="wrapper col-12 p-3 mt-5">
+        <h5>Already have an account? You can log in at the top right corner of the page!</h5>
+        <h6>Else you can go back to the main page <a href="/Camagru/">here</a></h6>
     </div>
 </div>
 <?php require_once("includes/footer.php");?>

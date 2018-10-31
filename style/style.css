@@ -1,5 +1,10 @@
 body {background-color: #1b1e21;}
 
+@media (max-height: 875px){
+
+    footer {display: none;}
+}
+
 h1, h2, h3, h4, h5, h6
 {
     text-align: center;
@@ -22,10 +27,11 @@ li > a {color: #ffc107 !important;}
 
 span > a {color: #ffc107 !important;}
 
-.register-wrapper
+.wrapper
 {
     border: 1px solid black;
     background-color: #343a40;
+    margin-bottom: 15px;
 }
 
 .register-form-wrapper

@@ -24,6 +24,7 @@ $form->changeSurr('div class="form-group"', 'div');
             <?php
                 if (isset($_SESSION['logged']) && isset($_SESSION['username']))
                     echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"account.php\">{$_SESSION['username']}</a></li>";
+                    echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"take_your_picture.php\">Take pictures !</a></li>";
             ?>
             <form class="form-inline my-2 my-lg-0" action="utils/login.php" method="post">
                 <?php

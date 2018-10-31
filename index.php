@@ -11,7 +11,11 @@
 <body>
 <?php require_once("includes/header.php");?>
 
-
+<div class="container mt-5">
+    <div class="wrapper col-12 p-2">
+        <h1>gallery</h1>
+    </div>
+</div>
 
 <?php require_once("includes/footer.php");?>
 </body>

@@ -23,8 +23,8 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
             $_SESSION['logged'] = 1;
             $_SESSION['username'] = $elem->username;
             $session = session::getInstance();;
-            header('Location: ../index.php');
         }
+        header('Location: /Camagru/');
     }
 
 }
