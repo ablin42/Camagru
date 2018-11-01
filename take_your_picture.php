@@ -25,7 +25,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <script src="js/webcam.js"></script>
     </div>
     <div class="wrapper col-2 p-2 offset-1">
-        <h1>side with precendently taken pictures</h1>
+        <h1>side with precedently taken pictures</h1>
     </div>
 </div>
 

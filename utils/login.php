@@ -11,7 +11,7 @@ autoloader::register();
 if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password']))
 {
     $alertHtml = new alertHtml();
-    $db = new database('camagru', 'localhost', 'root', '');
+    $db = new database('camagru', 'localhost', 'root', 'root42');
 
     $attributes['username'] = $_POST['username'];
     $pwd = hash('whirlpool', $_POST['password']);
