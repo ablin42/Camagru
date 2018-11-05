@@ -7,7 +7,7 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
     $alertHtml = new alertHtml();
     if ($_POST['password'] === $_POST['password2'])
     {
-        $db = new database('camagru', 'localhost', 'root', 'root42');
+        $db = database::getInstance('camagru');
         $attributes = array();
         $attributes['username'] = $_POST['username'];
 
@@ -38,7 +38,7 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
             echo $alertHtml->alert("danger" , "Error!", "text-align: center;");
         //$_SESSION['username'] = $attributes['username'];
        // $_SESSION['logged'] = 1;
-        //echo $alertHtml->alert("success", "<b>Your account has been successfully created!</b> Redirecting you to the main page...", "text-align: center;");
+        echo $alertHtml->alert("success", "<b>Your account has been successfully created!</b> Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");
         //header ('Refresh: 3; /Camagru/');
     }
     else

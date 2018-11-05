@@ -30,24 +30,22 @@ $form->changeSurr('div class="form-group"', 'div');
                 <?php
                     if (!isset($_SESSION['logged']))
                     {
-                        echo $form->label('Username', 'username', 'lab mr-2 ml-2');
-                        echo $form->input('username', 'username', "form-control");
-                        echo $form->label('Password', 'password', 'lab mr-2 ml-2');
-                        echo $form->password('password', 'password', "form-control");
-                        echo $form->submit('submit', 'submit', 'btn btn-outline-warning my-2 my-sm-0 ml-2', 'Log in');
+                        echo $form->label('Username', 'username_l', 'lab mr-2 ml-2');
+                        echo $form->input('username_l', 'username_l', "form-control");
+                        echo $form->label('Password', 'password_l', 'lab mr-2 ml-2');
+                        echo $form->password('password_l', 'password_l', "form-control");
+                        echo $form->submit('submit_l', 'submit_l', 'btn btn-outline-warning my-2 my-sm-0 ml-2', 'Log in');
                     }
                 ?>
             </form>
             <?php
                 if (!isset($_SESSION['logged']))
                 {
+                    echo '<li class="nav-item"><a class="nav-link" href="password.php">Forgot your password?</a></li>';
                     echo '<li class="nav-item"><a class="nav-link" href="register.php">Sign up</a></li>';
-
                 }
                 else
-                {
                     echo '<li class="nav-item"><a class="nav-link" href="utils/logout.php">Logout</a></li>';
-                }
                 ?>
         </ul>
     </div>

@@ -3,7 +3,7 @@ use \ablin42\database;
 use \ablin42\alertHtml;
 
 $alertHtml = new alertHtml();
-$db = new database('camagru', 'localhost', 'root', '');
+$db = database::getInstance('camagru');
 
 if (isset($_POST['submit_account']) && !empty($_POST['username']))
 {
@@ -36,8 +36,13 @@ if (isset($_POST['submit_email']) && !empty($_POST['email']))
     else
     {
         $attributes['username'] = $_SESSION['username'];
-        $req = $db->prepare("UPDATE `user` SET `email` = :newemail WHERE `username` = :username", $attributes);
-        echo $alertHtml->alert("success", "<b>Congratulations !</b> You successfully changed your e-mail!", "text-align: center;");
+        $attributes['mail_token'] = gen_token(128);
+        $token = $attributes['mail_token'];
+        $user_id = $attributes['username'];
+
+        $req = $db->prepare("UPDATE `user` SET `email` = :newemail, `mail_token` = :mail_token, confirmed_token = NULL WHERE `username` = :username", $attributes);
+        mail($_POST['email'], "Confirm your account at Camagru","In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token");
+        echo $alertHtml->alert("success", "<b>Congratulations !</b> You successfully changed your e-mail! Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");
         return ;
     }
 }

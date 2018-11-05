@@ -8,13 +8,13 @@ use \ablin42\autoloader;
 require ("../class/autoloader.php");
 autoloader::register();
 
-if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password']))
+if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['password_l']))
 {
     $alertHtml = new alertHtml();
-    $db = new database('camagru', 'localhost', 'root', 'root42');
+    $db = database::getInstance('camagru');
 
-    $attributes['username'] = $_POST['username'];
-    $pwd = hash('whirlpool', $_POST['password']);
+    $attributes['username'] = $_POST['username_l'];
+    $pwd = hash('whirlpool', $_POST['password_l']);
     $req = $db->prepare("SELECT `password`, `username` FROM `user` WHERE `username` = :username", $attributes);
     foreach ($req as $elem)
     {
@@ -26,5 +26,4 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
         }
         header('Location: /Camagru/');
     }
-
 }

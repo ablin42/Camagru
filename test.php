@@ -1,36 +1,14 @@
 <?php
 
-use \ablin42\session;
+use \ablin42\database;
 use \ablin42\autoloader;
 require ("class/autoloader.php");
 autoloader::register();
 
-$session = session::getInstance();
-$session->login = "harbi";
-$session->setInfo("harbinger");
-
-$session2 = session::getInstance();
-$se = $session2->getSession();
-echo $se['username'];
-var_dump($session2->getInfo());
-/*use \ablin42\app;
-use \ablin42\autoloader;
-require ("class/autoloader.php");
-autoloader::register();
-
-$app = app::getInstance();
-$app->autism = "fuckyou";
-$app->cancer = true;
-
-$app2 = app::getInstance();
-var_dump($app2->autism);
-var_dump($app2->cancer);*/
-
-/*
-$data = app::getInstance()->query("SELECT * FROM user");
-foreach ($data as $elem)
+$db = database::getInstance('camagru');
+$req = $db->query('SELECT * FROM user');
+var_dump($req);
+foreach ($req as $item)
 {
-    echo $elem->username . PHP_EOL;
-    echo $elem->email . PHP_EOL;
+    var_dump($item->username);
 }
-*/

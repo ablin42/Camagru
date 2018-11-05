@@ -7,7 +7,7 @@ autoloader::register();
 
 $attributes['username'] = $_GET['id'];
 
-$db = new database('camagru', 'localhost', 'root', 'root42');
+$db = database::getInstance('camagru');
 $req = $db->prepare("SELECT `mail_token` FROM `user` WHERE `username` = :username", $attributes);
 
 foreach ($req as $item)

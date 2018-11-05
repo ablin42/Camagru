@@ -11,14 +11,22 @@ class database
     private $db_host;
     private $dsn;
     private $pdo;
+    private static $_instance;
 
-    public function __construct($db_name, $db_host = "localhost", $db_user = "root", $db_pass = "root")
+    public function __construct($db_name, $db_host = "localhost", $db_user = "root", $db_pass = "")
     {
         $this->db_name = $db_name;
         $this->db_user = $db_user;
         $this->db_pass = $db_pass;
         $this->db_host = $db_host;
         $this->dsn = "mysql:dbname={$db_name};host={$db_host}";
+    }
+
+    public static function getInstance($db_name)
+    {
+        if (is_null(self::$_instance))
+            self::$_instance = new database($db_name);
+        return self::$_instance;
     }
 
     private function getPDO()
