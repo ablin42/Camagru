@@ -31,15 +31,11 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
         $user_id = $attributes['username'];
 
         $db->prepare("INSERT INTO `user` (`username`, `password`, `email`, `mail_token`) VALUES (:username, :password, :email, :mail_token)", $attributes);
-        echo $_POST['email'];
-        if (mail($_POST['email'], "Confirm your account at Camagru","In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token"))
-            echo $alertHtml->alert("success" , "Success!", "text-align: center;");
-        else
-            echo $alertHtml->alert("danger" , "Error!", "text-align: center;");
-        //$_SESSION['username'] = $attributes['username'];
-       // $_SESSION['logged'] = 1;
+        mail($_POST['email'], "Confirm your account at Camagru","In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token");
+        $_SESSION['username'] = $attributes['username'];
+        $_SESSION['logged'] = 1;
         echo $alertHtml->alert("success", "<b>Your account has been successfully created!</b> Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");
-        //header ('Refresh: 3; /Camagru/');
+        header ('Refresh: 5; /Camagru/');
     }
     else
         echo $alertHtml->alert("danger", "<b>The passwords you entered didn't match.</b>", "text-align: center;");

@@ -13,7 +13,7 @@ class database
     private $pdo;
     private static $_instance;
 
-    public function __construct($db_name, $db_host = "localhost", $db_user = "root", $db_pass = "")
+    public function __construct($db_name, $db_host = "localhost", $db_user = "root", $db_pass = "root42")
     {
         $this->db_name = $db_name;
         $this->db_user = $db_user;
