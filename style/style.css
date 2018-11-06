@@ -40,3 +40,23 @@ span > a {color: #ffc107 !important;}
 }
 
 .btn-sign-in {width: 100%;}
+
+#startbutton {
+    background-color: #ffc107;
+    border:2px solid #242424;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Trebuchet MS;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 12px;
+    text-decoration:none;
+}
+#startbutton:hover {
+    background-color:#f7a311;
+}
+#startbutton:active {
+    position:relative;
+    top:1px;
+}

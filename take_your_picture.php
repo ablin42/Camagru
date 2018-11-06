@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/bootstrap.css">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style.css?v=<?php time(); ?>">
 </head>
 
 <body>
@@ -17,11 +17,10 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 
 <div class="row mt-5" style="max-width: 100%; margin-left: 0px;">
     <div class="wrapper col-7 p-2 offset-1">
-        <h1>main</h1>
-        <video id="video"></video>
-        <button id="startbutton">Prendre une photo</button>
-        <canvas id="canvas"></canvas>
-        <img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
+        <h1>Don't forget to smile!</h1>
+        <video id="video" class="col-12"></video>
+        <button id="startbutton" class="offset-4 col-4 mb-2">Prendre une photo</button>
+        <canvas id="canvas" class="col-12"></canvas>
         <script src="js/webcam.js"></script>
     </div>
     <div class="wrapper col-2 p-2 offset-1">
