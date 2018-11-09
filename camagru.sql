@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 31 Octobre 2018 à 19:08
+-- Généré le :  Ven 09 Novembre 2018 à 04:38
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -39,9 +39,22 @@ CREATE TABLE `comment` (
 CREATE TABLE `image` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL DEFAULT '0' COMMENT 'ID de l''user qui a upload l''image',
+  `path` varchar(255) NOT NULL DEFAULT '/images/',
   `name` varchar(255) DEFAULT NULL,
-  `date` date NOT NULL
+  `date` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `image`
+--
+
+INSERT INTO `image` (`id`, `id_user`, `path`, `name`, `date`) VALUES
+(1, 38, '/images/1.png', 'GIT GUD', '2018-11-08 09:31:35'),
+(2, 39, '/images/2.jpg', 'just readin\'', '2018-11-06 07:21:29'),
+(3, 39, '/images/3.jpg', 'twitter users in a nutshell', '2018-11-30 19:11:36'),
+(4, 39, '/images/4.jpg', 'croc moi la kike', '2018-11-04 04:10:03'),
+(5, 38, '/images/5.png', 'mfw', '2018-11-07 23:43:40'),
+(6, 0, '/images/non.png', 'this isnt supposed to be working', '1971-11-07 04:19:21');
 
 -- --------------------------------------------------------
 
@@ -101,6 +114,11 @@ ALTER TABLE `user`
 --
 ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `image`
+--
+ALTER TABLE `image`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `user`
 --

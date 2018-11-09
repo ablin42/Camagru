@@ -14,6 +14,7 @@
 <div class="container mt-5">
     <div class="wrapper col-12 p-2">
         <h1>gallery</h1>
+        <?php require_once("utils/fetch_gallery.php"); ?>
     </div>
 </div>
 

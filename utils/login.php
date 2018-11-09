@@ -1,7 +1,6 @@
 <?php
 session_start();
 use \ablin42\database;
-use \ablin42\alertHtml;
 use \ablin42\session;
 use \ablin42\autoloader;
 
@@ -10,7 +9,6 @@ autoloader::register();
 
 if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['password_l']))
 {
-    $alertHtml = new alertHtml();
     $db = database::getInstance('camagru');
 
     $attributes['username'] = $_POST['username_l'];

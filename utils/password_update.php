@@ -1,7 +1,6 @@
 <?php
 use \ablin42\database;
 use \ablin42\autoloader;
-use \ablin42\alertHtml;
 
 if (isset($_GET['id']) && isset($_GET['token']))
 {
@@ -9,7 +8,6 @@ if (isset($_GET['id']) && isset($_GET['token']))
     {
         require("../class/autoloader.php");
         autoloader::register();
-        $alertHtml = new alertHtml();
         $attributes['id'] = $_GET['id'];
         $db = database::getInstance('camagru');
 

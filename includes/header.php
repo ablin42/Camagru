@@ -4,6 +4,7 @@ use \ablin42\bootstrapForm;
 use \ablin42\autoloader;
 
 require ("class/autoloader.php");
+require ("utils/functions.php");
 autoloader::register();
 $form = new bootstrapForm();
 $form->changeSurr('div class="form-group"', 'div');

@@ -1,8 +1,6 @@
 <?php
-use \ablin42\alertHtml;
 use \ablin42\database;
 require_once("functions.php");
-$alertHtml = new alertHtml();
 if (isset($_POST['submit']) && !empty($_POST['email']))
 {
 
@@ -18,5 +16,4 @@ if (isset($_POST['submit']) && !empty($_POST['email']))
 
     $db->prepare("UPDATE `user` SET `password_token` = :password_token WHERE `id` = :user_id", $attributes2);
     mail($_POST['email'], "Reset your password at Camagru","In order to set a new password, please click this link: \n\nhttp://localhost:8080/Camagru/new_password.php?id=$user_id&token=$token");
-
 }
