@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6
 
 footer
 {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     height: 60px;
@@ -47,7 +47,7 @@ span > a {color: #ffc107 !important;}
     display:inline-block;
     cursor:pointer;
     color:#ffffff;
-    font-family:Trebuchet MS;
+    font-family: Trebuchet MS;
     font-size:15px;
     font-weight:bold;
     padding:6px 12px;
@@ -59,4 +59,52 @@ span > a {color: #ffc107 !important;}
 #startbutton:active {
     position:relative;
     top:1px;
+}
+
+.img-container
+{
+    border: 1px solid #ffc107;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 15px;
+}
+
+.gallery-img
+{
+    width: 100vw;
+    height: 20.5vw;
+    padding: 0;
+}
+
+.comment
+{
+    border: 2px solid #040300;
+    padding: 10px;
+    background-color: #141414;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+}
+
+.com-username
+{
+    color: #ffc107;
+    text-decoration-line: underline;
+}
+
+.com-content
+{
+    color: white;
+}
+
+.page-item .page-link
+{
+    background-color: #1b1e21;
+    border-color: #ffc107;
+}
+
+.page-item.active .page-link
+{
+    color: black!important;
+    background-color: #ffc107;
+    border-color: #1b1e21;
 }

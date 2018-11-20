@@ -39,6 +39,16 @@ class form
         return $this->surround("<input type=\"password\" name=\"{$name}\" id=\"{$id}\" class=\"{$class}\">");
     }
 
+    public function hidden($name, $value, $id = "")
+    {
+        return $this->surround("<input type=\"hidden\" name=\"{$name}\" id=\"{$id}\" value=\"{$value}\">");
+    }
+
+    public function textarea($name, $id = "", $class = "", $rows = "4", $cols = "50", $placeholder = "")
+    {
+        return $this->surround("<textarea name=\"{$name}\" id=\"{$id}\" class=\"{$class}\" rows=\"{$rows}\" cols=\"{$cols}\" placeholder=\"{$placeholder}\"></textarea>");
+    }
+
     public function submit($name, $id = "", $class = "", $value = "OK")
     {
         return $this->surround("<button type=\"submit\" name=\"{$name}\" id=\"{$id}\" class=\"{$class}\">{$value}</button>");

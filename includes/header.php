@@ -2,12 +2,44 @@
 session_start();
 use \ablin42\bootstrapForm;
 use \ablin42\autoloader;
+use \ablin42\database;
+use \ablin42\session;
 
 require ("class/autoloader.php");
 require ("utils/functions.php");
 autoloader::register();
 $form = new bootstrapForm();
 $form->changeSurr('div class="form-group"', 'div');
+if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['password_l']))
+{
+    $db = database::getInstance('camagru');
+
+    $attributes_h['username'] = $_POST['username_l'];
+    $pwd = hash('whirlpool', $_POST['password_l']);
+    $req = $db->prepare("SELECT `password`, `username` FROM `user` WHERE `username` = :username", $attributes_h);
+    if ($req)
+    {
+        foreach ($req as $elem) {
+            if ($elem->password === $pwd) {
+                $_SESSION['logged'] = 1;
+                $_SESSION['username'] = $elem->username;
+                $session = session::getInstance();
+                echo alert_bootstrap("success", "You've been logged in!", "text-align: center;");
+                header('Refresh: 3;');
+            }
+            else
+            {
+                echo alert_bootstrap("warning", "Invalid credentials", "text-align: center;");
+                header('Refresh: 3;');
+            }
+        }
+    }
+    else
+    {
+        echo alert_bootstrap("warning", "Invalid credentials", "text-align: center;");
+        header('Refresh: 3;');
+    }
+}
 ?>
 
 
@@ -28,7 +60,7 @@ $form->changeSurr('div class="form-group"', 'div');
                     echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"take_your_picture.php\">Take pictures !</a></li>";
                 }
             ?>
-            <form class="form-inline my-2 my-lg-0" action="utils/login.php" method="post">
+            <form class="form-inline my-2 my-lg-0" action="" method="post">
                 <?php
                     if (!isset($_SESSION['logged']))
                     {

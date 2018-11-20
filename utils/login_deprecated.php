@@ -14,14 +14,19 @@ if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['
     $attributes['username'] = $_POST['username_l'];
     $pwd = hash('whirlpool', $_POST['password_l']);
     $req = $db->prepare("SELECT `password`, `username` FROM `user` WHERE `username` = :username", $attributes);
-    foreach ($req as $elem)
+    if ($req)
     {
-        if ($elem->password === $pwd)
-        {
-            $_SESSION['logged'] = 1;
-            $_SESSION['username'] = $elem->username;
-            $session = session::getInstance();;
+        foreach ($req as $elem) {
+            if ($elem->password === $pwd) {
+                $_SESSION['logged'] = 1;
+                $_SESSION['username'] = $elem->username;
+                $session = session::getInstance();;
+            }
+            header('Location: /Camagru/');
         }
-        header('Location: /Camagru/');
     }
+    else
+        header('Location: /Camagru/');
 }
+else
+    header('Location: /Camagru/');
