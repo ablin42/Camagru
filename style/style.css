@@ -5,6 +5,8 @@ body {background-color: #1b1e21;}
     footer {display: none;}
 }
 
+.navbar {border-bottom: 1px solid black!important;}
+
 h1, h2, h3, h4, h5, h6
 {
     text-align: center;
@@ -19,6 +21,8 @@ footer
     height: 60px;
     line-height: 60px;
     background-color: #343a40;
+    border: 1px solid black;
+    border-bottom: none;
 }
 
 .lab {color: #ffc107;}
@@ -76,6 +80,22 @@ span > a {color: #ffc107 !important;}
     padding: 0;
 }
 
+.img-holder
+{
+    border: 1px solid #ffc107;
+    padding: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #1b1e21;
+    transition: 0.7s;
+}
+
+.img-holder:hover
+{
+    background-color: #ffc107;
+}
+
 .comment
 {
     border: 2px solid #040300;
@@ -107,4 +127,28 @@ span > a {color: #ffc107 !important;}
     color: black!important;
     background-color: #ffc107;
     border-color: #1b1e21;
+}
+
+.like
+{
+    /*margin: 10px 0 0 48.9%;*/
+    transition: 0.3s;
+}
+
+.like:hover, .like:active, .liked
+{
+    color: #ffc107;
+    cursor: pointer;
+}
+
+.liked:hover
+{
+    color: black;
+}
+
+.btn-like
+{
+    border: none;
+    background-color: transparent;
+    margin: 10px 0 0 48.3%;
 }

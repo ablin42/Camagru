@@ -22,7 +22,7 @@ foreach($req as $item)
         echo '</div>';
     $i++;
 }
-echo '<nav class="navbar-dark">';
+echo '<div style="width:100%"><nav class="navbar-dark">';
 echo '<ul class="pagination justify-content-center">';
 for ($i = 1; $i <= $nbPage; $i++)
 {
@@ -32,4 +32,4 @@ for ($i = 1; $i <= $nbPage; $i++)
         echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?p={$i}\">{$i}</a></li>";
 }
 echo '</ul>';
-echo '</nav>';
+echo '</nav></div>';

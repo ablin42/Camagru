@@ -42,17 +42,17 @@ if (!$req)
                 echo "<img alt=\"{$item->name}\" class=\"gallery-img col-12\" src=\"{$item->path}\">";
             }?>
         </div>
-        <div>
-            <button <?php if (isset($_SESSION['id'])) {echo "onclick=\"like({$_GET['id']}, {$_SESSION['id']})\"";}?> class="btn-like">
-                <i id="like-fire" class="fas fa-fire fa-2x like<?php if (isset($_SESSION['id'])) {if (has_liked($db, $_GET['id'], $_SESSION['id'])) {echo " liked";}} ?>"></i>
-            </button>
+      <!--  <span class="fas fa-fire fa-2x like"></span>-->
+        <div class="div-like" data-href="" data-img="" data-user="">
+        <form action="utils/like.php?id=<?php echo $_GET['id'];?>&u=<?php echo $_SESSION['id'];?>" method="post">
+            <button type="submit" class="btn-like"><i class="fas fa-fire fa-2x like<?php if (has_liked($db, $_GET['id'], $_SESSION['id'])) {echo " liked";} ?>"></i></button>
+        </form>
         </div>
-        <h6 id="nb_like">
+        <h6>
             <?php foreach($req as $item)
                 echo $item->nb_like;
             ?>
         </h6>
-        <?php if (!isset($_SESSION['id'])) {echo "<h6>You must be logged in to vote!</h6>";} ?>
     </div>
 </div>
 
@@ -80,6 +80,5 @@ if (!$req)
 </div>
 
 <?php require_once("includes/footer.php");?>
-<script src="js/like.js"></script>
 </body>
 </html>
