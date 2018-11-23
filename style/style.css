@@ -152,3 +152,15 @@ span > a {color: #ffc107 !important;}
     background-color: transparent;
     margin: 10px 0 0 48.3%;
 }
+
+#video
+{
+    border: 1px dotted orange;
+}
+
+.your_img
+{
+    border: 1px solid #ffc107;
+    padding: 5px;
+    margin: 10px 0 10px 0;
+}

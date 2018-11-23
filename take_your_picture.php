@@ -22,9 +22,25 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <button id="startbutton" class="offset-4 col-4 mb-2">Prendre une photo</button>
         <canvas id="canvas" class="col-12"></canvas>
         <script src="js/webcam.js"></script>
+        <div>
+            <h1>Upload your photo if you don't have a webcam</h1>
+            <div class="register-form-wrapper col-8 offset-2 p-2">
+            <form action="utils/upload.php" method="post" enctype="multipart/form-data">
+                <?php
+                    $form->setLabel('IMAGE\'S TITLE', 'lab');
+                    echo $form->input("img_name", "img_name", "form-control", "Your title");
+                    echo $form->hidden("id_user", $_SESSION['id']);
+                    echo $form->hidden("MAX_FILE_SIZE", "2000000");
+                    echo $form->file("picture", "picture");
+                    echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in', 'Upload');
+                ?>
+            </form>
+            </div>
+        </div>
     </div>
     <div class="wrapper col-2 p-2 offset-1">
-        <h1>side with precedently taken pictures</h1>
+        <h1>Your pictures</h1>
+        <?php require_once("utils/your_pictures.php"); ?>
     </div>
 </div>
 

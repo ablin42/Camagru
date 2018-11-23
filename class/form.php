@@ -49,6 +49,11 @@ class form
         return $this->surround("<textarea name=\"{$name}\" id=\"{$id}\" class=\"{$class}\" rows=\"{$rows}\" cols=\"{$cols}\" placeholder=\"{$placeholder}\"></textarea>");
     }
 
+    public function file($name, $id = "", $class = "")
+    {
+        return $this->surround("<input type=\"file\" name=\"{$name}\" id=\"{$id}\" class=\"{$class}\">");
+    }
+
     public function submit($name, $id = "", $class = "", $value = "OK")
     {
         return $this->surround("<button type=\"submit\" name=\"{$name}\" id=\"{$id}\" class=\"{$class}\">{$value}</button>");
