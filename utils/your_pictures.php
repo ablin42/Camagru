@@ -3,7 +3,7 @@ use \ablin42\database;
 
 $db = database::getInstance('camagru');
 
-$req = $db->prepare("SELECT * FROM `image` WHERE `id_user` = :id_user", array("id_user" => $_SESSION['id']));
+$req = $db->prepare("SELECT * FROM `image` WHERE `id_user` = :id_user ORDER BY `date` DESC", array("id_user" => $_SESSION['id']));
 foreach($req as $item)
 {
   echo "<div class='your_img'>";

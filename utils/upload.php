@@ -24,10 +24,8 @@ if (isset($_POST['submit']) && !empty($_POST['img_name']) && !empty($_POST['id_u
     $req = $db->query( "SELECT MAX(id) as last_id FROM `image`");
     foreach($req as $item)
         $id_img = $item->last_id + 1;
-
     $path = "../images/{$id_img}.{$extension_upload}";
     move_uploaded_file($_FILES['picture']['tmp_name'], $path);
-
     $path = "/Camagru/images/{$id_img}.{$extension_upload}";
     $attributes['id_user'] = $_POST['id_user'];
     $attributes['path'] = $path;

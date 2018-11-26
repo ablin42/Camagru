@@ -18,7 +18,7 @@ foreach ($req as $item)
     $nb = $item->nb;
     break;
 }
-$perPage = 5;
+$perPage = 4;
 $nbPage = ceil($nb / $perPage);
 if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $nbPage)
     $cPage = $_GET['p'];

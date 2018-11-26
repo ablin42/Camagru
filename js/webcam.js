@@ -2,10 +2,11 @@
 
     var streaming = false,
         video        = document.querySelector('#video'),
-        cover        = document.querySelector('#cover'),
         canvas       = document.querySelector('#canvas'),
         photo        = document.querySelector('#photo'),
         startbutton  = document.querySelector('#startbutton'),
+        xhttp = new XMLHttpRequest(),
+        filter = "pourpre.png";
         width = 320,
         height = 0;
 
@@ -49,7 +50,11 @@
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
         var data = canvas.toDataURL('image/png');
+        xhttp.open("POST", "utils/merge_img.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(`img_url=${data}&filter=${filter}`);
         photo.setAttribute('src', data);
+        document.getElementById('img_url').value = data;
     }
 
     startbutton.addEventListener('click', function(ev){
