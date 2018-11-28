@@ -81,5 +81,6 @@ if (!$req)
 
 <?php require_once("includes/footer.php");?>
 <script src="js/like.js"></script>
+<script src="js/alert.js"></script>
 </body>
 </html>

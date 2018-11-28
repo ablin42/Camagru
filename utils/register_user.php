@@ -1,6 +1,7 @@
 <?php
 use \ablin42\database;
 require_once("functions.php");
+
 if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['email']))
 {
     if ($_POST['password'] === $_POST['password2'])
@@ -15,10 +16,10 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
             echo alert_bootstrap("warning", "The <b>username</b> you entered is already taken, <b>please pick another one.</b>", "text-align: center;");
             return ;
         }
-        $attributes['email'] = hash('whirlpool', $_POST['email']);
+        $attributes['email'] = $_POST['email'];
         $attributes['password'] = hash('whirlpool', $_POST['password']);
 
-        $req = $db->query("SELECT * FROM `user` WHERE `email` = '". $attributes['email'] ."' AND `confirmed_token` != NULL");
+        $req = $db->prepare("SELECT * FROM `user` WHERE `email` = :email AND `confirmed_token` != 'NULL'", array('email' => $attributes['email']));
         if ($req)
         {
             echo alert_bootstrap("warning" , "The <b>e-mail</b> you entered is already taken by a verified account, <b>please pick another one.</b>", "text-align: center;");
@@ -32,6 +33,10 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
         mail($_POST['email'], "Confirm your account at Camagru","In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token");
         $_SESSION['username'] = $attributes['username'];
         $_SESSION['logged'] = 1;
+        $req = $db->prepare("SELECT `id` FROM `user` WHERE `username` = :username", array('username' => $_POST['username']));
+        if ($req)
+            foreach ($req as $item)
+                $_SESSION['id'] = $item->id;
         echo alert_bootstrap("success", "<b>Your account has been successfully created!</b> Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");
         header ('Refresh: 5; /Camagru/');
     }

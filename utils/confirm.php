@@ -13,6 +13,7 @@ $req = $db->prepare("SELECT `mail_token` FROM `user` WHERE `username` = :usernam
 foreach ($req as $item)
 {
     if ($item->mail_token === $_GET['token'])
-        $db->prepare("UPDATE `user` SET `mail_token` = NULL, `confirmed_token` = NOW() WHERE `username` = :username", $attributes);
+        $db->prepare("UPDATE `user` SET `mail_token` = 'NULL', `confirmed_token` = NOW() WHERE `username` = :username", $attributes);
+
 }
 header('Location: /Camagru/');

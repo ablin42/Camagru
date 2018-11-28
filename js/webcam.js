@@ -10,6 +10,8 @@ function getCheckedFilter()
     var brak = document.getElementById('brak');
     var bonta = document.getElementById('bonta');
     var solomonk = document.getElementById('solomonk');
+    var rdv = document.getElementById('rdv');
+    var comte = document.getElementById('comte');
 
     if (emeraude.checked)
         return "emeraude.png";
@@ -31,6 +33,10 @@ function getCheckedFilter()
         return "bonta.png";
     else if (solomonk.checked)
         return "solomonk.png";
+    else if (rdv.checked)
+        return "rdv.png";
+    else if (comte.checked)
+        return "comte.png";
     else
         return null;
 }
@@ -102,6 +108,7 @@ function getCheckedFilter()
         //photo.setAttribute('src', xhttp.responseText);
         //photo.setAttribute('src', data);
         document.getElementById('img_url').value = data;
+        document.getElementById('tmp_img').value = document.getElementById('photo').getAttribute('src');
         document.getElementById('filter').value = filter;
     }
 

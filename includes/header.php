@@ -10,40 +10,7 @@ require ("utils/functions.php");
 autoloader::register();
 $form = new bootstrapForm();
 $form->changeSurr('div class="form-group"', 'div');
-if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['password_l']))
-{
-    $db = database::getInstance('camagru');
-
-    $attributes_h['username'] = $_POST['username_l'];
-    $pwd = hash('whirlpool', $_POST['password_l']);
-    $req = $db->prepare("SELECT `id`, `password`, `username` FROM `user` WHERE `username` = :username", $attributes_h);
-    if ($req)
-    {
-        foreach ($req as $elem) {
-            if ($elem->password === $pwd) {
-                $_SESSION['logged'] = 1;
-                $_SESSION['username'] = $elem->username;
-                $_SESSION['id'] = $elem->id;
-                $session = session::getInstance();
-                echo alert_bootstrap("success", "You've been logged in!", "text-align: center;");
-                header('Refresh: 3;');
-            }
-            else
-            {
-                echo alert_bootstrap("warning", "Invalid credentials", "text-align: center;");
-                header('Refresh: 3;');
-            }
-        }
-    }
-    else
-    {
-        echo alert_bootstrap("warning", "Invalid credentials", "text-align: center;");
-        header('Refresh: 3;');
-    }
-}
 ?>
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <div class="container-fluid">
     <a class="navbar-brand" href="/Camagru">Home</a>
@@ -86,3 +53,34 @@ if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['
     </div>
 </div>
 </nav>
+<?php
+if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['password_l']))
+{
+    $db = database::getInstance('camagru');
+
+    $attributes_h['username'] = $_POST['username_l'];
+    $pwd = hash('whirlpool', $_POST['password_l']);
+    $req = $db->prepare("SELECT `id`, `password`, `username` FROM `user` WHERE `username` = :username", $attributes_h);
+    if ($req)
+    {
+        foreach ($req as $elem) {
+            if ($elem->password === $pwd) {
+                $_SESSION['username'] = $elem->username;
+                $_SESSION['logged'] = 1;
+                $_SESSION['id'] = $elem->id;
+                $session = session::getInstance();
+                echo alert_bootstrap("success", "You've been logged in!", "text-align: center;");
+                header ('Refresh: 3;');
+            }
+            else
+            {
+                echo alert_bootstrap("warning", "Invalid credentials", "text-align: center;");
+            }
+        }
+    }
+    else
+    {
+        echo alert_bootstrap("warning", "Invalid credentials", "text-align: center;");
+    }
+}
+?>
