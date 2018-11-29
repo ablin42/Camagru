@@ -20,7 +20,7 @@ require_once("utils/register_user.php");
     <div class="wrapper col-12 p-2">
         <h5>A confirmation e-mail will be sent to you</h5>
         <div class="register-form-wrapper container col-6 p-5 mt-3 mb-3">
-            <form class="my-2 my-lg-0" action="register.php" method="post">
+            <form onsubmit="return validate();" class="my-2 my-lg-0" action="register.php" method="post">
                 <?php
                 $form->setLabel('Username', 'lab');
                 echo $form->input('username', 'username', "form-control", "Username");
@@ -41,5 +41,18 @@ require_once("utils/register_user.php");
     </div>
 </div>
 <?php require_once("includes/footer.php");?>
+<script>
+    function validate() {
+        var password = document.getElementById('password').value;
+        var password2 = document.getElementById('password2').value;
+        if (password.length < 8 || password2.length < 8) {
+            alert("Password should be at least 8 characters long!");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<script src="js/alert.js"></script>
 </body>
 </html>

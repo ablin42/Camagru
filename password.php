@@ -30,5 +30,6 @@ require_once("utils/reset_password.php");
 
 
 <?php require_once("includes/footer.php");?>
+<script src="js/alert.js"></script>
 </body>
 </html>

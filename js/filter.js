@@ -10,6 +10,8 @@ function applyFilter(filter)
     var brak = document.getElementById('brak');
     var bonta = document.getElementById('bonta');
     var solomonk = document.getElementById('solomonk');
+    var rdv = document.getElementById('rdv');
+    var comte = document.getElementById('comte');
 
     //uncheck the previously checked box if you check another box
     if (emeraude.checked && filter !== "emeraude.png")
@@ -32,10 +34,14 @@ function applyFilter(filter)
         bonta.checked = false;
     else if (solomonk.checked && filter !== "solomonk.png")
         solomonk.checked = false;
+    else if (rdv.checked && filter !== "rdv.png")
+        rdv.checked = false;
+    else if (comte.checked && filter !== "comte.png")
+        comte.checked = false;
 
     //check if a box is checked to allow taking picture
     if (emeraude.checked || turquoise.checked || pourpre.checked || ocre.checked || ivoire.checked || ebene.checked ||
-        brak.checked || bonta.checked|| solomonk.checked)
+        sixdofus.checked || brak.checked || bonta.checked|| solomonk.checked || rdv.checked || comte.checked)
         document.getElementById('startbutton').removeAttribute('disabled');
     else
         document.getElementById('startbutton').setAttribute('disabled', '');

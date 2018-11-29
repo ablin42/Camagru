@@ -35,5 +35,6 @@ $startLimit = (($cPage - 1) * $perPage);
 </div>
 
 <?php require_once("includes/footer.php");?>
+<script src="js/alert.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@
 <body>
 <?php
 require_once("includes/header.php");
+require_once("utils/upload.php");
 if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
     header('Location: /Camagru/');
 ?>
@@ -30,6 +31,8 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <input type="checkbox" id="brak" onclick="applyFilter('brak.png')"><img alt="brak wings" src="filters/brak.png" class="filter"/>
         <input type="checkbox" id="bonta" onclick="applyFilter('bonta.png')"><img alt="bonta wings" src="filters/bonta.png" class="filter"/>
         <input type="checkbox" id="solomonk" onclick="applyFilter('solomonk.png')"><img alt="solomonk" src="filters/solomonk.png" class="filter"/>
+        <input type="checkbox" id="rdv" onclick="applyFilter('rdv.png')"><img alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
+        <input type="checkbox" id="comte" onclick="applyFilter('comte.png')"><img alt="coiffe du comte harebourg" src="filters/comte.png" class="filter"/>
 
         <video muted="muted" id="video" class="col-12"></video>
         <button id="startbutton" class="offset-4 col-4 mb-2" disabled>Prendre une photo</button>
@@ -41,6 +44,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             echo $form->hidden("id_user_cam", $_SESSION['id'], "id_user_cam");
             echo $form->hidden("img_url", "", "img_url");
             echo $form->hidden("filter", "", "filter");
+            echo $form->hidden("tmp_img", "", "tmp_img");
             echo $form->submit('submit_cam', 'submit_cam', 'btn btn-outline-warning btn-sign-in', 'Upload');
         ?>
         </form>
@@ -48,7 +52,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <div>
             <h1>Upload your photo if you don't have a webcam</h1>
             <div class="register-form-wrapper col-8 offset-2 p-2">
-            <form action="utils/upload.php" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
                 <?php
                     $form->setLabel('IMAGE\'S TITLE', 'lab');
                     echo $form->input("img_name", "img_name", "form-control", "Your title");
@@ -69,6 +73,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 
 <?php require_once("includes/footer.php");?>
 <script src="js/upload.js"></script>
+<script src="js/alert.js"></script>
 <script src="js/filter.js?v=<?= time();?>"></script>
 </body>
 </html>

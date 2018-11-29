@@ -1,5 +1,7 @@
 <?php
 use \ablin42\database;
+require_once("functions.php");
+
 if (isset($_POST['submit']) && !empty($_POST['comment']) && !empty($_POST['id_img']))
 {
         $db = database::getInstance('camagru');
@@ -18,6 +20,7 @@ if (isset($_POST['submit']) && !empty($_POST['comment']) && !empty($_POST['id_im
         else
             echo alert_bootstrap("danger", "<b>User</b> does not exist!", "text-align: center;");
         $req = $db->prepare("INSERT INTO `comment` (`id_img`, `id_user`, `content`, `date`) VALUES (:id_img, :id_user, :content, NOW())", $attributesc);
+        mail_on_comment($db, $_POST['id_img']);
         echo alert_bootstrap("success", "Your comment has been posted!", "text-align: center;");
         header ('Refresh: 3;');
 }

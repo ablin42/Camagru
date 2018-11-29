@@ -5,7 +5,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']))
 {
 
     $db = database::getInstance('camagru');
-    $attributes1['email'] = hash("whirlpool", $_POST['email']);
+    $attributes1['email'] = $_POST['email'];
 
     $req = $db->prepare("SELECT `id` FROM `user` WHERE `email` = :email", $attributes1);
     foreach ($req as $item)
