@@ -10,6 +10,8 @@
 
 <body>
 <?php require_once("includes/header.php");
+if (isset($_GET['e']))
+    redirection_handler($_GET['e']);
 use ablin42\database;
 $db = database::getInstance('camagru');
 $req = $db->query("SELECT COUNT(id) AS nb FROM `image`");
@@ -18,7 +20,7 @@ foreach ($req as $item)
     $nb = $item->nb;
     break;
 }
-$perPage = 4;
+$perPage = 6;
 $nbPage = ceil($nb / $perPage);
 if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $nbPage)
     $cPage = $_GET['p'];

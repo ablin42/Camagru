@@ -45,5 +45,4 @@ function applyFilter(filter)
         document.getElementById('startbutton').removeAttribute('disabled');
     else
         document.getElementById('startbutton').setAttribute('disabled', '');
-
 }

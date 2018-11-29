@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/bootstrap.css">
     <link rel="stylesheet" href="style/style.css?v=<?= time(); ?>">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body>
 <?php
 require_once("includes/header.php");
 require_once("utils/upload.php");
+require_once("utils/delete_picture.php");
+require_once("utils/upload_webcam.php");
 if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
-    header('Location: /Camagru/');
+    header('Location: /Camagru?e=take');
 ?>
 
 <div class="row mt-5" style="max-width: 100%; margin-left: 0px;">
@@ -35,9 +38,9 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <input type="checkbox" id="comte" onclick="applyFilter('comte.png')"><img alt="coiffe du comte harebourg" src="filters/comte.png" class="filter"/>
 
         <video muted="muted" id="video" class="col-12"></video>
-        <button id="startbutton" class="offset-4 col-4 mb-2" disabled>Prendre une photo</button>
+        <button onclick="cooldown(this);" id="startbutton" class="offset-4 col-4 mb-2" disabled>MAKE ME GLORIOUS!</button>
         <canvas id="canvas" class="col-12" style="display: none;"></canvas>
-        <form action="utils/upload_webcam.php" method="post" enctype="multipart/form-data" style="text-align: center;">
+        <form action="take_your_picture.php" method="post" enctype="multipart/form-data" style="text-align: center;">
         <?php
             $form->setLabel('IMAGE\'S TITLE', 'lab');
             echo $form->input("img_name_cam", "img_name_cam", "form-control", "Your title");
@@ -48,11 +51,11 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             echo $form->submit('submit_cam', 'submit_cam', 'btn btn-outline-warning btn-sign-in', 'Upload');
         ?>
         </form>
-        <script src="js/webcam.js?v=<?= time();?>"></script>
+        <script src="js/webcam.js"></script>
         <div>
             <h1>Upload your photo if you don't have a webcam</h1>
             <div class="register-form-wrapper col-8 offset-2 p-2">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="take_your_picture.php" method="post" enctype="multipart/form-data">
                 <?php
                     $form->setLabel('IMAGE\'S TITLE', 'lab');
                     echo $form->input("img_name", "img_name", "form-control", "Your title");
@@ -72,8 +75,9 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 </div>
 
 <?php require_once("includes/footer.php");?>
+<script src="js/cooldown.js"></script>
 <script src="js/upload.js"></script>
 <script src="js/alert.js"></script>
-<script src="js/filter.js?v=<?= time();?>"></script>
+<script src="js/filter.js"></script>
 </body>
 </html>

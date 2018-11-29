@@ -16,7 +16,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 require_once("utils/modify_account.php");
 ?>
 
-<div class="container mt-5">
+<div class="container mt-5 small-page-wrapper">
     <div class="wrapper col-12 p-2">
         <h5>Account settings</h5>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">

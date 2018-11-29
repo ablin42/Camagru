@@ -13,6 +13,11 @@ h1, h2, h3, h4, h5, h6
     color: #ffc107 !important;
 }
 
+.small-page-wrapper
+{
+    min-height: calc(100vh - 181px);
+}
+
 footer
 {
     position: relative;
@@ -164,4 +169,9 @@ span > a {color: #ffc107 !important;}
 {
     width: 100px;
     height: 100px;
+}
+
+.rmv-img
+{
+    color: #ffc107;
 }

@@ -16,7 +16,7 @@ foreach($req as $item)
     else
         echo ' col-sm-offset-right-1">';
     echo "<h5>{$item->name}</h5>";
-    echo "<a href=\"/Camagru/images.php?id={$item->id}\"><img alt=\"{$item->name}\" class=\"gallery-img col-12\" src=\"{$item->path}\"></a>";
+    echo "<a href=\"/Camagru/image.php?id={$item->id}\"><img alt=\"{$item->name}\" class=\"gallery-img col-12\" src=\"{$item->path}\"></a>";
     echo '</div>';
     if ($i % 2 !== 0)
         echo '</div>';

@@ -16,7 +16,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === 1)
 require_once("utils/register_user.php");
 ?>
 
-<div class="container mt-5">
+<div class="container mt-5 small-page-wrapper">
     <div class="wrapper col-12 p-2">
         <h5>A confirmation e-mail will be sent to you</h5>
         <div class="register-form-wrapper container col-6 p-5 mt-3 mb-3">
@@ -49,7 +49,6 @@ require_once("utils/register_user.php");
             alert("Password should be at least 8 characters long!");
             return false;
         }
-
         return true;
     }
 </script>

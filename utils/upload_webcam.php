@@ -1,26 +1,21 @@
 <?php
-
-use \ablin42\autoloader;
 use \ablin42\database;
-
-require ("../class/autoloader.php");
-autoloader::register();
 
 if (isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_POST['id_user_cam'])
     && !empty($_POST['img_name_cam']) && !empty($_POST['filter']) && !empty($_POST['tmp_img']))
 {
-    unlink("../{$_POST['tmp_img']}");
+    unlink("{$_POST['tmp_img']}");
     $db = database::getInstance('camagru');
     $req = $db->query( "SELECT MAX(id) as last_id FROM `image`");
     foreach($req as $item)
         $id_img = $item->last_id + 1;
-    $path = "../images/{$id_img}.png";
+    $path = "images/{$id_img}.png";
 
     $encodedData = substr($_POST['img_url'], 22);
     $encodedData = str_replace(' ','+', $encodedData);
     $data = base64_decode($encodedData);
     $photo = imagecreatefromstring($data);
-    $filter = imagecreatefrompng("../filters/{$_POST['filter']}");
+    $filter = imagecreatefrompng("filters/{$_POST['filter']}");
     imagealphablending($photo, true);
     imagesavealpha($filter, true);
 
@@ -31,8 +26,8 @@ if (isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_POST['i
 
     if ($_POST['filter'] === "brak.png" || $_POST['filter'] === "bonta.png")
     {
-        $src_w = 500;
-        $src_h = 500;
+        $src_w = 600;
+        $src_h = 600;
     }
     else if ($_POST['filter'] === "solomonk.png" || $_POST['filter'] === "rdv.png" || $_POST['filter'] === "comte.png")
     {
@@ -60,5 +55,5 @@ if (isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_POST['i
     $attributes['path'] = $path;
     $attributes['name'] = $_POST['img_name_cam'];
     $req = $db->prepare("INSERT INTO `image` (`id_user`, `path`, `name`, `date`) VALUES (:id_user, :path, :name, NOW())", $attributes);
-    header('Location: /Camagru/take_your_picture.php');
+    echo alert_bootstrap("success", "<b>Congratulations!</b> Your picture has been posted!", "text-align: center;");
 }

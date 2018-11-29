@@ -13,7 +13,7 @@
 require_once("includes/header.php");
 require_once("utils/reset_password.php");
 ?>
-<div class="container mt-5">
+<div class="container mt-5 small-page-wrapper">
     <div class="wrapper col-12 p-2">
         <h5>Account settings</h5>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">

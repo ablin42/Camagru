@@ -50,3 +50,13 @@ function notif_state($db, $id)
             return false;
     }
 }
+
+function redirection_handler($error)
+{
+    switch ($error)
+    {
+        case "take";
+            echo alert_bootstrap("info", "You need to be <b>logged in</b> to take and upload pictures!", "text-align: center;");
+            break;
+    }
+}

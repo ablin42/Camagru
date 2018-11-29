@@ -65,8 +65,7 @@ function getCheckedFilter()
             if (navigator.mozGetUserMedia) {
                 video.mozSrcObject = stream;
             } else {
-                var vendorURL = window.URL || window.webkitURL;
-                video.src = vendorURL.createObjectURL(stream);
+                video.srcObject = stream;
             }
             video.play();
         },
@@ -92,24 +91,23 @@ function getCheckedFilter()
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
         var data = canvas.toDataURL('image/png');
-        xhttp.open("POST", "utils/merge_img.php", false);//false so it is synchronous
+        xhttp.open("POST", "utils/merge_img.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send(`img_url=${data}&filter=${filter}`);
-       // setTimeout(function (){
-       // }, );//500 seems to work
-        if (document.getElementById('photo'))
-            document.removeChild('photo');
-        var img = document.createElement("img");
-        img.setAttribute('src', xhttp.responseText);
-        img.setAttribute('id', 'photo');
-        img.setAttribute('alt', 'your picture');
-        var where = document.getElementById("img_url").parentElement;
-        where.appendChild(img);
-        //photo.setAttribute('src', xhttp.responseText);
-        //photo.setAttribute('src', data);
-        document.getElementById('img_url').value = data;
-        document.getElementById('tmp_img').value = document.getElementById('photo').getAttribute('src');
-        document.getElementById('filter').value = filter;
+        setTimeout(function (){
+            if (document.getElementById('photo'))
+                document.getElementById('photo').remove();
+            var img = document.createElement("img");
+            img.setAttribute('src', xhttp.responseText);
+            img.setAttribute('id', 'photo');
+            img.setAttribute('alt', 'your picture');
+            var where = document.getElementById("img_url").parentElement;
+            where.appendChild(img);
+            document.getElementById('img_url').value = data;
+            document.getElementById('tmp_img').value = document.getElementById('photo').getAttribute('src');
+            document.getElementById('filter').value = filter;
+        }, 500);//500 seems to be a good fit
+
     }
 
     startbutton.addEventListener('click', function(ev){

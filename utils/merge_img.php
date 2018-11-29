@@ -16,8 +16,8 @@ if (!empty($_POST['img_url']) && !empty($_POST['filter']))
 
     if ($_POST['filter'] === "brak.png" || $_POST['filter'] === "bonta.png")
     {
-        $src_w = 500;
-        $src_h = 500;
+        $src_w = 600;
+        $src_h = 600;
     }
     else if ($_POST['filter'] === "solomonk.png" || $_POST['filter'] === "rdv.png" || $_POST['filter'] === "comte.png")
     {
