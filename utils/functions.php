@@ -33,7 +33,7 @@ function mail_on_comment($db, $id_img)
         if ($item->mail_notify == 1)
         {
             $subject = "Camagru - Someone commented one of your picture";
-            $message = "The picture you posted at http://localhost:8080/Camagru/images.php?id={$id_img} got a comment!";
+            $message = "The picture you posted at http://localhost:8080/Camagru/image?id={$id_img} got a comment!";
             mail($item->email, $subject, $message);
         }
     }
@@ -55,8 +55,22 @@ function redirection_handler($error)
 {
     switch ($error)
     {
-        case "take";
+        case "take":
             echo alert_bootstrap("info", "You need to be <b>logged in</b> to take and upload pictures!", "text-align: center;");
             break;
+        case "reset":
+            echo alert_bootstrap("info", "Go to <b>\"Forgot your password?\"</b> to reset your password! We will send you a mail.", "text-align: center;");
+            break;
+        case "acc":
+            echo alert_bootstrap("info", "You need to be <b>logged in</b> to access your account!", "text-align: center;");
+            break;
+        case "pw":
+            echo alert_bootstrap("info", "<b>You are logged in!</b> Click <a href='account'>here<a> to change your password.", "text-align: center;");
+            break;
+        case "reg":
+            echo alert_bootstrap("info", "You cannot create an account while you're <b>logged in!</b>", "text-align: center;");
+            break;
+        default:
+            echo alert_bootstrap("danger", "ERROR!", "text-align: center;");
     }
 }

@@ -3,7 +3,6 @@ use \ablin42\database;
 require_once("functions.php");
 if (isset($_POST['submit']) && !empty($_POST['email']))
 {
-
     $db = database::getInstance('camagru');
     $attributes1['email'] = $_POST['email'];
 
@@ -15,5 +14,6 @@ if (isset($_POST['submit']) && !empty($_POST['email']))
     $token = $attributes2['password_token'];
 
     $db->prepare("UPDATE `user` SET `password_token` = :password_token WHERE `id` = :user_id", $attributes2);
-    mail($_POST['email'], "Reset your password at Camagru","In order to set a new password, please click this link: \n\nhttp://localhost:8080/Camagru/new_password.php?id=$user_id&token=$token");
+    mail($_POST['email'], "Reset your password at Camagru","In order to set a new password, please click this link: \n\nhttp://localhost:8080/Camagru/reset?id=$user_id&token=$token");
+    echo alert_bootstrap("info", "An <b>e-mail</b> was sent to your adress, please follow the instructions we sent you.", "text-align:center;");
 }

@@ -24,23 +24,28 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <h1>Don't forget to smile!</h1>
         <h6>... and to choose a filter!</h6>
 
-        <input type="checkbox" id="emeraude" onclick="applyFilter('emeraude.png')"><img alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
-        <input type="checkbox" id="turquoise" onclick="applyFilter('turquoise.png')"><img alt="dofus turquoise" src="filters/turquoise.png" class="filter"/>
-        <input type="checkbox" id="pourpre" onclick="applyFilter('pourpre.png')"><img alt="dofus pourpre" src="filters/pourpre.png" class="filter"/>
-        <input type="checkbox" id="ocre" onclick="applyFilter('ocre.png')"><img alt="dofus ocre" src="filters/ocre.png" class="filter"/>
-        <input type="checkbox" id="ivoire" onclick="applyFilter('ivoire.png')"><img alt="dofus ivoire" src="filters/ivoire.png" class="filter"/>
-        <input type="checkbox" id="ebene" onclick="applyFilter('ebene.png')"><img alt="dofus ebene" src="filters/ebene.png" class="filter"/>
-        <input type="checkbox" id="6dofus" onclick="applyFilter('6dofus.png')"><img alt="6 dofus and aura" src="filters/6dofus.png" class="filter"/>
-        <input type="checkbox" id="brak" onclick="applyFilter('brak.png')"><img alt="brak wings" src="filters/brak.png" class="filter"/>
-        <input type="checkbox" id="bonta" onclick="applyFilter('bonta.png')"><img alt="bonta wings" src="filters/bonta.png" class="filter"/>
-        <input type="checkbox" id="solomonk" onclick="applyFilter('solomonk.png')"><img alt="solomonk" src="filters/solomonk.png" class="filter"/>
-        <input type="checkbox" id="rdv" onclick="applyFilter('rdv.png')"><img alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
-        <input type="checkbox" id="comte" onclick="applyFilter('comte.png')"><img alt="coiffe du comte harebourg" src="filters/comte.png" class="filter"/>
+        <div class="row pl-5 pr-5">
+            <input type="checkbox" id="emeraude" onclick="applyFilter('emeraude.png')"><img alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
+            <input type="checkbox" id="turquoise" onclick="applyFilter('turquoise.png')"><img alt="dofus turquoise" src="filters/turquoise.png" class="filter"/>
+            <input type="checkbox" id="pourpre" onclick="applyFilter('pourpre.png')"><img alt="dofus pourpre" src="filters/pourpre.png" class="filter"/>
+            <input type="checkbox" id="ocre" onclick="applyFilter('ocre.png')"><img alt="dofus ocre" src="filters/ocre.png" class="filter"/>
+            <input type="checkbox" id="ivoire" onclick="applyFilter('ivoire.png')"><img alt="dofus ivoire" src="filters/ivoire.png" class="filter"/>
+            <input type="checkbox" id="ebene" onclick="applyFilter('ebene.png')"><img alt="dofus ebene" src="filters/ebene.png" class="filter"/>
+        </div>
+
+        <div class="row pl-5 pr-5">
+            <input type="checkbox" id="6dofus" onclick="applyFilter('6dofus.png')"><img alt="6 dofus and aura" src="filters/6dofus.png" class="filter"/>
+            <input type="checkbox" id="brak" onclick="applyFilter('brak.png')"><img alt="brak wings" src="filters/brak.png" class="filter"/>
+            <input type="checkbox" id="bonta" onclick="applyFilter('bonta.png')"><img alt="bonta wings" src="filters/bonta.png" class="filter"/>
+            <input type="checkbox" id="solomonk" onclick="applyFilter('solomonk.png')"><img alt="solomonk" src="filters/solomonk.png" class="filter"/>
+            <input type="checkbox" id="rdv" onclick="applyFilter('rdv.png')"><img alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
+            <input type="checkbox" id="comte" onclick="applyFilter('comte.png')"><img alt="coiffe du comte harebourg" src="filters/comte.png" class="filter"/>
+        </div>
 
         <video muted="muted" id="video" class="col-12"></video>
         <button onclick="cooldown(this);" id="startbutton" class="offset-4 col-4 mb-2" disabled>MAKE ME GLORIOUS!</button>
         <canvas id="canvas" class="col-12" style="display: none;"></canvas>
-        <form action="take_your_picture.php" method="post" enctype="multipart/form-data" style="text-align: center;">
+        <form action="glorify" method="post" enctype="multipart/form-data" style="text-align: center;">
         <?php
             $form->setLabel('IMAGE\'S TITLE', 'lab');
             echo $form->input("img_name_cam", "img_name_cam", "form-control", "Your title");
@@ -55,7 +60,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <div>
             <h1>Upload your photo if you don't have a webcam</h1>
             <div class="register-form-wrapper col-8 offset-2 p-2">
-            <form action="take_your_picture.php" method="post" enctype="multipart/form-data">
+            <form action="glorify" method="post" enctype="multipart/form-data">
                 <?php
                     $form->setLabel('IMAGE\'S TITLE', 'lab');
                     echo $form->input("img_name", "img_name", "form-control", "Your title");

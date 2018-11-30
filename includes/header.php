@@ -3,7 +3,6 @@ session_start();
 use \ablin42\bootstrapForm;
 use \ablin42\autoloader;
 use \ablin42\database;
-use \ablin42\session;
 
 require ("class/autoloader.php");
 require ("utils/functions.php");
@@ -24,8 +23,8 @@ $form->changeSurr('div class="form-group"', 'div');
         <ul class="nav navbar-nav navbar-right ml-auto">
             <?php
                 if (isset($_SESSION['logged']) && isset($_SESSION['username'])) {
-                    echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"account.php\">{$_SESSION['username']}</a></li>";
-                    echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"take_your_picture.php\">Take pictures !</a></li>";
+                    echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"account\">{$_SESSION['username']}</a></li>";
+                    echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"glorify\">Take pictures !</a></li>";
                 }
             ?>
             <form class="form-inline my-2 my-lg-0" action="" method="post">
@@ -43,8 +42,8 @@ $form->changeSurr('div class="form-group"', 'div');
             <?php
                 if (!isset($_SESSION['logged']))
                 {
-                    echo '<li class="nav-item"><a class="nav-link" href="password.php">Forgot your password?</a></li>';
-                    echo '<li class="nav-item"><a class="nav-link" href="register.php">Sign up</a></li>';
+                    echo '<li class="nav-item"><a class="nav-link" href="password">Forgot your password?</a></li>';
+                    echo '<li class="nav-item"><a class="nav-link" href="register">Sign up</a></li>';
                 }
                 else
                     echo '<li class="nav-item"><a class="nav-link" href="utils/logout.php">Logout</a></li>';
@@ -68,9 +67,8 @@ if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['
                 $_SESSION['username'] = $elem->username;
                 $_SESSION['logged'] = 1;
                 $_SESSION['id'] = $elem->id;
-                $session = session::getInstance();
-                echo alert_bootstrap("success", "You've been logged in!", "text-align: center;");
-                header ('Refresh: 3;');
+                echo alert_bootstrap("success", "You've been <b>logged in!</b>", "text-align: center;");
+                header ('Refresh: 2;');
             }
             else
             {

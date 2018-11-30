@@ -1,5 +1,4 @@
 <?php
-
 use \ablin42\database;
 
 if (isset($_POST['submit']) && !empty($_POST['img_name']) && !empty($_POST['id_user']) && !empty($_POST['MAX_FILE_SIZE']))
@@ -43,4 +42,5 @@ if (isset($_POST['submit']) && !empty($_POST['img_name']) && !empty($_POST['id_u
     $attributes['path'] = $path;
     $attributes['name'] = $_POST['img_name'];
     $req = $db->prepare("INSERT INTO `image` (`id_user`, `path`, `name`, `date`) VALUES (:id_user, :path, :name, NOW())", $attributes);
+    echo alert_bootstrap("success", "<b>Congratulations!</b> Your picture has been posted!", "text-align: center;");
 }
