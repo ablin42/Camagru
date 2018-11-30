@@ -74,3 +74,32 @@ function redirection_handler($error)
             echo alert_bootstrap("danger", "ERROR!", "text-align: center;");
     }
 }
+
+function get_filter_position($filtername)
+{
+    $info = array();
+
+    if ($filtername === "solomonk.png" || $filtername === "rdv.png" || $filtername === "comte.png"
+        || $filtername === "gein.png" || $filtername === "ouga.png" || $filtername === "ben.png")
+    {
+        $info['src_w'] = 200;
+        $info['src_h'] = 200;
+        $info['dst_x'] = 200;
+        $info['dst_y'] = 0;
+    }
+    else if ($filtername === "ivoire.png" || $filtername === "ebene.png" || $filtername === "ocre.png")
+    {
+        $info['src_w'] = 200;
+        $info['src_h'] = 200;
+        $info['dst_x'] = 400;
+        $info['dst_y'] = 150;
+    }
+    else if ($filtername === "emeraude.png" || $filtername === "turquoise.png" || $filtername === "pourpre.png")
+    {
+        $info['src_w'] = 200;
+        $info['src_h'] = 200;
+        $info['dst_x'] = 0;
+        $info['dst_y'] = 150;
+    }
+    return $info;
+}

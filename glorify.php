@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/bootstrap.css">
-    <link rel="stylesheet" href="style/style.css?v=<?= time(); ?>">
+    <link rel="stylesheet" href="style/style.css?">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
@@ -25,21 +25,57 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <h6>... and to choose a filter!</h6>
 
         <div class="row pl-5 pr-5">
-            <input type="checkbox" id="emeraude" onclick="applyFilter('emeraude.png')"><img alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
-            <input type="checkbox" id="turquoise" onclick="applyFilter('turquoise.png')"><img alt="dofus turquoise" src="filters/turquoise.png" class="filter"/>
-            <input type="checkbox" id="pourpre" onclick="applyFilter('pourpre.png')"><img alt="dofus pourpre" src="filters/pourpre.png" class="filter"/>
-            <input type="checkbox" id="ocre" onclick="applyFilter('ocre.png')"><img alt="dofus ocre" src="filters/ocre.png" class="filter"/>
-            <input type="checkbox" id="ivoire" onclick="applyFilter('ivoire.png')"><img alt="dofus ivoire" src="filters/ivoire.png" class="filter"/>
-            <input type="checkbox" id="ebene" onclick="applyFilter('ebene.png')"><img alt="dofus ebene" src="filters/ebene.png" class="filter"/>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="emeraude" onclick="applyFilter('emeraude.png')">
+                <img alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="turquoise" onclick="applyFilter('turquoise.png')">
+                <img alt="dofus turquoise" src="filters/turquoise.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="pourpre" onclick="applyFilter('pourpre.png')">
+                <img alt="dofus pourpre" src="filters/pourpre.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="ocre" onclick="applyFilter('ocre.png')">
+                <img alt="dofus ocre" src="filters/ocre.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="ivoire" onclick="applyFilter('ivoire.png')">
+                <img alt="dofus ivoire" src="filters/ivoire.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="ebene" onclick="applyFilter('ebene.png')">
+                <img alt="dofus ebene" src="filters/ebene.png" class="filter"/>
+            </div>
         </div>
 
         <div class="row pl-5 pr-5">
-            <input type="checkbox" id="6dofus" onclick="applyFilter('6dofus.png')"><img alt="6 dofus and aura" src="filters/6dofus.png" class="filter"/>
-            <input type="checkbox" id="brak" onclick="applyFilter('brak.png')"><img alt="brak wings" src="filters/brak.png" class="filter"/>
-            <input type="checkbox" id="bonta" onclick="applyFilter('bonta.png')"><img alt="bonta wings" src="filters/bonta.png" class="filter"/>
-            <input type="checkbox" id="solomonk" onclick="applyFilter('solomonk.png')"><img alt="solomonk" src="filters/solomonk.png" class="filter"/>
-            <input type="checkbox" id="rdv" onclick="applyFilter('rdv.png')"><img alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
-            <input type="checkbox" id="comte" onclick="applyFilter('comte.png')"><img alt="coiffe du comte harebourg" src="filters/comte.png" class="filter"/>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="gein" onclick="applyFilter('gein.png')">
+                <img alt="chapeau de gein" src="filters/gein.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="ouga" onclick="applyFilter('ouga.png')">
+                <img alt="coiffe de l'ougah" src="filters/ouga.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="ben" onclick="applyFilter('ben.png')">
+                <img alt="coiffe de ben le ripate" src="filters/ben.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="solomonk" onclick="applyFilter('solomonk.png')">
+                <img alt="solomonk" src="filters/solomonk.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="rdv" onclick="applyFilter('rdv.png')">
+                <img alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
+            </div>
+            <div class="item">
+                <input class="filter-checkbox" type="checkbox" id="comte" onclick="applyFilter('comte.png')">
+                <img alt="coiffe du comte harebourg" src="filters/comte.png" class="filter"/>
+            </div>
         </div>
 
         <video muted="muted" id="video" class="col-12"></video>
@@ -56,7 +92,6 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             echo $form->submit('submit_cam', 'submit_cam', 'btn btn-outline-warning btn-sign-in', 'Upload');
         ?>
         </form>
-        <script src="js/webcam.js"></script>
         <div>
             <h1>Upload your photo if you don't have a webcam</h1>
             <div class="register-form-wrapper col-8 offset-2 p-2">
@@ -80,6 +115,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 </div>
 
 <?php require_once("includes/footer.php");?>
+<script src="js/webcam.js"></script>
 <script src="js/cooldown.js"></script>
 <script src="js/upload.js"></script>
 <script src="js/alert.js"></script>

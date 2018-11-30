@@ -19,33 +19,9 @@ if (isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_POST['i
     imagealphablending($photo, true);
     imagesavealpha($filter, true);
 
-    $src_w = 200;
-    $src_h = 200;
-    $dst_x = 0;
-    $dst_y = 0;
+    $info = get_filter_position($_POST['filter']);
 
-    if ($_POST['filter'] === "brak.png" || $_POST['filter'] === "bonta.png")
-    {
-        $src_w = 600;
-        $src_h = 600;
-    }
-    else if ($_POST['filter'] === "solomonk.png" || $_POST['filter'] === "rdv.png" || $_POST['filter'] === "comte.png")
-    {
-        $dst_x = 200;
-        $dst_y = 0;
-    }
-    else if ($_POST['filter'] === "ivoire.png" || $_POST['filter'] === "ebene.png" || $_POST['filter'] === "ocre.png")
-    {
-        $dst_x = 400;
-        $dst_y = 150;
-    }
-    else if ($_POST['filter'] === "emeraude.png" || $_POST['filter'] === "turquoise.png" || $_POST['filter'] === "pourpre.png")
-    {
-        $dst_x = 0;
-        $dst_y = 150;
-    }
-
-    imagecopy($photo, $filter, $dst_x, $dst_y, 0, 0, $src_w, $src_h);
+    imagecopy($photo, $filter, $info['dst_x'], $info['dst_y'], 0, 0, $info['src_w'], $info['src_h']);
     imagepng($photo, $path);
     imagedestroy($photo);
     imagedestroy($filter);

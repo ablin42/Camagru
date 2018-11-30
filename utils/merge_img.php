@@ -9,35 +9,11 @@ if (!empty($_POST['img_url']) && !empty($_POST['filter']))
     $photo = imagecreatefromstring($data);
     $filter = imagecreatefrompng("../filters/{$_POST['filter']}");
 
-    $src_w = 200;
-    $src_h = 200;
-    $dst_x = 0;
-    $dst_y = 0;
-
-    if ($_POST['filter'] === "brak.png" || $_POST['filter'] === "bonta.png")
-    {
-        $src_w = 600;
-        $src_h = 600;
-    }
-    else if ($_POST['filter'] === "solomonk.png" || $_POST['filter'] === "rdv.png" || $_POST['filter'] === "comte.png")
-    {
-        $dst_x = 200;
-        $dst_y = 0;
-    }
-    else if ($_POST['filter'] === "ivoire.png" || $_POST['filter'] === "ebene.png" || $_POST['filter'] === "ocre.png")
-    {
-        $dst_x = 400;
-        $dst_y = 150;
-    }
-    else if ($_POST['filter'] === "emeraude.png" || $_POST['filter'] === "turquoise.png" || $_POST['filter'] === "pourpre.png")
-    {
-        $dst_x = 0;
-        $dst_y = 150;
-    }
+    $info = get_filter_position($_POST['filter']);
 
     imagealphablending($photo, true);
     imagesavealpha($filter, true);
-    imagecopy($photo, $filter, $dst_x, $dst_y, 0, 0, $src_w, $src_h);
+    imagecopy($photo, $filter, $info['dst_x'], $info['dst_y'], 0, 0, $info['src_w'], $info['src_h']);
 
     $filename = gen_token(40);
     $filename = "../tmp/{$filename}.png";

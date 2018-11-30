@@ -80,8 +80,7 @@ span > a {color: #ffc107 !important;}
 
 .gallery-img
 {
-    width: 100vw;
-    height: 20.5vw;
+    width: 100%;
     padding: 0;
 }
 
@@ -175,3 +174,7 @@ span > a {color: #ffc107 !important;}
 {
     color: #ffc107;
 }
+
+.filter-checkbox {float: left;}
+
+.item {margin: auto;}

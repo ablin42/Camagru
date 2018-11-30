@@ -6,9 +6,9 @@ function getCheckedFilter()
     var ocre = document.getElementById('ocre');
     var ivoire = document.getElementById('ivoire');
     var ebene = document.getElementById('ebene');
-    var sixdofus = document.getElementById('6dofus');
-    var brak = document.getElementById('brak');
-    var bonta = document.getElementById('bonta');
+    var gein = document.getElementById('gein');
+    var ouga = document.getElementById('ouga');
+    var ben = document.getElementById('ben');
     var solomonk = document.getElementById('solomonk');
     var rdv = document.getElementById('rdv');
     var comte = document.getElementById('comte');
@@ -25,12 +25,12 @@ function getCheckedFilter()
         return "ivoire.png";
     else if (ebene.checked)
         return "ebene.png";
-    else if (sixdofus.checked)
-        return "6dofus.png";
-    else if (brak.checked)
-        return "brak.png";
-    else if (bonta.checked)
-        return "bonta.png";
+    else if (gein.checked)
+        return "gein.png";
+    else if (ouga.checked)
+        return "ouga.png";
+    else if (ben.checked)
+        return "ben.png";
     else if (solomonk.checked)
         return "solomonk.png";
     else if (rdv.checked)

@@ -6,9 +6,9 @@ function applyFilter(filter)
     var ocre = document.getElementById('ocre');
     var ivoire = document.getElementById('ivoire');
     var ebene = document.getElementById('ebene');
-    var sixdofus = document.getElementById('6dofus');
-    var brak = document.getElementById('brak');
-    var bonta = document.getElementById('bonta');
+    var gein = document.getElementById('gein');
+    var ouga = document.getElementById('ouga');
+    var ben = document.getElementById('ben');
     var solomonk = document.getElementById('solomonk');
     var rdv = document.getElementById('rdv');
     var comte = document.getElementById('comte');
@@ -26,12 +26,12 @@ function applyFilter(filter)
         ivoire.checked = false;
     else if (ebene.checked && filter !== "ebene.png")
         ebene.checked = false;
-    else if (sixdofus.checked && filter !== "6dofus.png")
-        sixdofus.checked = false;
-    else if (brak.checked && filter !== "brak.png")
-        brak.checked = false;
-    else if (bonta.checked && filter !== "bonta.png")
-        bonta.checked = false;
+    else if (gein.checked && filter !== "gein.png")
+        gein.checked = false;
+    else if (ouga.checked && filter !== "ouga.png")
+        ouga.checked = false;
+    else if (ben.checked && filter !== "ben.png")
+        ben.checked = false;
     else if (solomonk.checked && filter !== "solomonk.png")
         solomonk.checked = false;
     else if (rdv.checked && filter !== "rdv.png")
@@ -41,7 +41,7 @@ function applyFilter(filter)
 
     //check if a box is checked to allow taking picture
     if (emeraude.checked || turquoise.checked || pourpre.checked || ocre.checked || ivoire.checked || ebene.checked ||
-        sixdofus.checked || brak.checked || bonta.checked|| solomonk.checked || rdv.checked || comte.checked)
+        gein.checked || ouga.checked || ben.checked|| solomonk.checked || rdv.checked || comte.checked)
         document.getElementById('startbutton').removeAttribute('disabled');
     else
         document.getElementById('startbutton').setAttribute('disabled', '');
