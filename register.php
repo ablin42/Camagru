@@ -23,12 +23,16 @@ require_once("utils/register_user.php");
             <form onsubmit="return validate();" class="my-2 my-lg-0" action="register.php" method="post">
                 <?php
                 $form->setLabel('Username', 'lab');
+                $form->setInfo('Username must contain between 4 and 30 characters', "form-info", "y");
                 echo $form->input('username', 'username', "form-control", "Username");
                 $form->setLabel('E-mail', 'lab');
+                $form->setInfo('E-mail has to be valid', "form-info", "y");
                 echo $form->email('email', 'email', "form-control");
                 $form->setLabel('Password', 'lab');
+                $form->setInfo('Password must contain between 8 and 255 characters', "form-info", "y");
                 echo $form->password('password', 'password', "form-control");
                 $form->setLabel('Confirm your password', 'lab');
+                $form->setInfo('Password has to be the same as the one you just entered', "form-info", "y");
                 echo $form->password('password2', 'password2', "form-control", "Confirm Password");
                 echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in', 'Sign up');
                 ?>

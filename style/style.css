@@ -178,3 +178,31 @@ span > a {color: #ffc107 !important;}
 .filter-checkbox {float: left;}
 
 .item {margin: auto;}
+
+.form-info
+{
+    font-style: italic;
+    color: #a87906;
+    display: none;
+}
+
+input:focus:invalid
+{
+    border-color: #FF0000;
+    -webkit-box-shadow: 0 0 5px 0 rgba(195, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 5px 0 rgba(195, 0, 0, 0.75);
+    box-shadow: 0 0 5px 0 rgba(195, 0, 0, 0.75);
+}
+
+input:focus:valid, input:valid
+{
+    border-color: #56c93f;
+    -webkit-box-shadow: 0 0 5px 0 rgba(86, 201, 63, 0.75);
+    -moz-box-shadow: 0 0 5px 0 rgba(86, 201, 63, 0.75);
+    box-shadow: 0 0 5px 0 rgba(86, 201, 63, 0.75);
+}
+
+input:focus:invalid + span
+{
+    display: inline;
+}
