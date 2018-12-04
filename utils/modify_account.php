@@ -45,7 +45,7 @@ if (isset($_POST['submit_email']) && !empty($_POST['email']))
     }
 }
 
-if (isset($_POST['submit_password']) && !empty($_POST['currpw']) && !empty($_POST['newpw']) && !empty($_POST['newpw2']))
+if (isset($_POST['submit_password']) && !empty($_POST['currpw']) && !empty($_POST['password']) && !empty($_POST['password2']))
 {
     $attributes['username'] = $_SESSION['username'];
     $req = $db->prepare("SELECT * FROM `user` WHERE `username` = :username", $attributes);
@@ -56,7 +56,7 @@ if (isset($_POST['submit_password']) && !empty($_POST['currpw']) && !empty($_POS
     }
     else
     {
-        if ($_POST['newpw'] === $_POST['newpw2'])
+        if ($_POST['password'] === $_POST['password2'])
         {
             $currpw = hash('whirlpool', $_POST['currpw']);
             foreach ($req as $item)
@@ -67,8 +67,8 @@ if (isset($_POST['submit_password']) && !empty($_POST['currpw']) && !empty($_POS
                     return;
                 }
             }
-            $attributes['newpw'] = hash('whirlpool', $_POST['newpw']);
-            $req = $db->prepare("UPDATE `user` SET `password` = :newpw WHERE `username` = :username", $attributes);
+            $attributes['password'] = hash('whirlpool', $_POST['password']);
+            $req = $db->prepare("UPDATE `user` SET `password` = :password WHERE `username` = :username", $attributes);
             echo alert_bootstrap("success", "<b>Congratulations !</b> You successfully changed your password!", "text-align: center;");
             return;
         }

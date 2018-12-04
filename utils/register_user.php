@@ -10,6 +10,22 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
         $attributes = array();
         $attributes['username'] = $_POST['username'];
 
+        if (!check_length($_POST['username'], 4, 30))
+        {
+            echo alert_bootstrap("warning", "Your <b>username</b> has to be 4 characters minimum and 30 characters maximum!", "text-align: center;");
+            return ;
+        }
+        else if (!check_length($_POST['password'],8, 30) || !check_length($_POST['password2'],8, 30))
+        {
+            echo alert_bootstrap("warning", "Your <b>password</b> has to be 8 characters minimum and 30 characters maximum!", "text-align: center;");
+            return ;
+        }
+        else if (!check_length($_POST['email'], 3, 255))
+        {
+            echo alert_bootstrap("warning", "Your <b>e-mail/b> has to be 3 characters minimum and 255 characters maximum!", "text-align: center;");
+            return ;
+        }
+
         $req = $db->prepare("SELECT * FROM `user` WHERE `username` = :username", $attributes);
         if ($req)
         {

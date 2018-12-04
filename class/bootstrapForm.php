@@ -9,6 +9,7 @@ class bootstrapForm extends form
     private $info_text;
     private $info_class;
     private $info_use;
+    private $info_id;
 
     public function label($name, $for, $class = "")
     {
@@ -21,40 +22,41 @@ class bootstrapForm extends form
         $this->label_class = $label_class;
     }
 
-    public function info($text, $class = "", $use = "no")
+    public function info($text, $id = "", $class = "", $use = "no")
     {
         if ($use === "no")
             return '';
         else
-            return "<span class=\"$class\">$text</span>";
+            return "<span id=\"$id\" class=\"$class\">$text</span>";
     }
 
-    public function setInfo($info_text, $info_class = "", $info_use = "")
+    public function setInfo($info_text, $info_id = "", $info_class = "", $info_use = "")
     {
         $this->info_text = $info_text;
         $this->info_class = $info_class;
         $this->info_use = $info_use;
+        $this->info_id = $info_id;
     }
 
-    public function input($name, $id = "", $class = "", $placeholder = "")
+    public function input($name, $id = "", $class = "", $placeholder = "", $maxlength = "")
     {
         return $this->surround($this->label(ucfirst($this->label_name), $name, $this->label_class)
-                . "<input type=\"text\" name=\"{$name}\" placeholder=\"{$placeholder}\" id=\"{$id}\" class=\"{$class}\" required>"
-                . $this->info($this->info_text, $this->info_class, $this->info_use));
+                . "<input type=\"text\" name=\"{$name}\" placeholder=\"{$placeholder}\" id=\"{$id}\" class=\"{$class}\" maxlength=\"$maxlength\" required>"
+                . $this->info($this->info_text, $this->info_id, $this->info_class, $this->info_use));
     }
 
-    public function email($name, $id = "", $class = "", $placeholder = "Email")
+    public function email($name, $id = "", $class = "", $placeholder = "Email", $maxlength = "")
     {
         return $this->surround($this->label(ucfirst($this->label_name), $name, $this->label_class)
-                . "<input type=\"email\" name=\"{$name}\" placeholder=\"{$placeholder}\" id=\"{$id}\" class=\"{$class}\" required>"
-                . $this->info($this->info_text, $this->info_class, $this->info_use));
+                . "<input type=\"email\" name=\"{$name}\" placeholder=\"{$placeholder}\" id=\"{$id}\" class=\"{$class}\" maxlength=\"$maxlength\" required>"
+                . $this->info($this->info_text, $this->info_id, $this->info_class, $this->info_use));
     }
 
-    public function password($name, $id = "", $class = "", $placeholder = "Password")
+    public function password($name, $id = "", $class = "", $placeholder = "Password", $maxlength = "")
     {
         return $this->surround($this->label(ucfirst($this->label_name), $name, $this->label_class)
-                . "<input type=\"password\" name=\"{$name}\" placeholder=\"{$placeholder}\" id=\"{$id}\" class=\"{$class}\" required>"
-                . $this->info($this->info_text, $this->info_class, $this->info_use));
+                . "<input type=\"password\" name=\"{$name}\" placeholder=\"{$placeholder}\" id=\"{$id}\" class=\"{$class}\" maxlength=\"$maxlength\" required>"
+                . $this->info($this->info_text, $this->info_id, $this->info_class, $this->info_use));
     }
 
 }

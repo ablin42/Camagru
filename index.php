@@ -31,7 +31,7 @@ $startLimit = (($cPage - 1) * $perPage);
 
 <div class="container mt-5">
     <div class="wrapper col-12 p-2">
-        <h1>gallery</h1>
+        <h1>All the awesomes pictures!</h1>
         <?php require_once("utils/fetch_gallery.php"); ?>
     </div>
 </div>

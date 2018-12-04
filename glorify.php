@@ -84,7 +84,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <form action="glorify" method="post" enctype="multipart/form-data" style="text-align: center;">
         <?php
             $form->setLabel('IMAGE\'S TITLE', 'lab');
-            echo $form->input("img_name_cam", "img_name_cam", "form-control", "Your title");
+            echo $form->input("img_name_cam", "img_name_cam", "form-control", "Your title", 64);
             echo $form->hidden("id_user_cam", $_SESSION['id'], "id_user_cam");
             echo $form->hidden("img_url", "", "img_url");
             echo $form->hidden("filter", "", "filter");
@@ -98,7 +98,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             <form action="glorify" method="post" enctype="multipart/form-data">
                 <?php
                     $form->setLabel('IMAGE\'S TITLE', 'lab');
-                    echo $form->input("img_name", "img_name", "form-control", "Your title");
+                    echo $form->input("img_name", "img_name", "form-control", "Your title", 64);
                     echo $form->hidden("id_user", $_SESSION['id'], "id_user");
                     echo $form->hidden("MAX_FILE_SIZE", "2000000");
                     echo $form->file("picture", "picture");

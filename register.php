@@ -20,20 +20,20 @@ require_once("utils/register_user.php");
     <div class="wrapper col-12 p-2">
         <h5>A confirmation e-mail will be sent to you</h5>
         <div class="register-form-wrapper container col-6 p-5 mt-3 mb-3">
-            <form onsubmit="return validate();" class="my-2 my-lg-0" action="register.php" method="post">
+            <form name="register" onkeyup="validate();" class="my-2 my-lg-0" action="register.php" method="post">
                 <?php
                 $form->setLabel('Username', 'lab');
-                $form->setInfo('Username must contain between 4 and 30 characters', "form-info", "y");
-                echo $form->input('username', 'username', "form-control", "Username");
+                $form->setInfo('Username must contain between 4 and 30 characters', "i_username", "form-info", "y");
+                echo $form->input('username', 'username', "form-control", "Username", 30);
                 $form->setLabel('E-mail', 'lab');
-                $form->setInfo('E-mail has to be valid', "form-info", "y");
-                echo $form->email('email', 'email', "form-control");
+                $form->setInfo('E-mail has to be valid', "i_email","form-info", "y");
+                echo $form->email('email', 'email', "form-control", "Email", 255);
                 $form->setLabel('Password', 'lab');
-                $form->setInfo('Password must contain between 8 and 255 characters', "form-info", "y");
-                echo $form->password('password', 'password', "form-control");
+                $form->setInfo('Password must contain between 8 and 30 characters',"i_password", "form-info", "y");
+                echo $form->password('password', 'password', "form-control", "Password", 30);
                 $form->setLabel('Confirm your password', 'lab');
-                $form->setInfo('Password has to be the same as the one you just entered', "form-info", "y");
-                echo $form->password('password2', 'password2', "form-control", "Confirm Password");
+                $form->setInfo('Password has to be the same as the one you just entered', "i_password2","form-info", "y");
+                echo $form->password('password2', 'password2', "form-control", "Confirm Password", 30);
                 echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in', 'Sign up');
                 ?>
             </form>

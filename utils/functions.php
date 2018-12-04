@@ -20,8 +20,7 @@ function has_liked($db, $id_img, $id_user)
     $req = $db->prepare("SELECT * FROM `vote` WHERE `id_img` = :id_img AND `id_user` = :id_user", array("id_img" => $id_img, "id_user" => $id_user));
     if ($req)
         return true;
-    else
-        return false;
+    return false;
 }
 
 function mail_on_comment($db, $id_img)
@@ -102,4 +101,12 @@ function get_filter_position($filtername)
         $info['dst_y'] = 150;
     }
     return $info;
+}
+
+function check_length($str, $min, $max)
+{
+    $len = strlen($str);
+    if ($len < $min || $len > $max)
+        return false;
+    return true;
 }

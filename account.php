@@ -20,37 +20,41 @@ require_once("utils/modify_account.php");
     <div class="wrapper col-12 p-2">
         <h5>Account settings</h5>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form class="my-2 my-lg-0" action="account" method="post">
+            <form name="change_username" onkeyup="validate();" class="my-2 my-lg-0" action="account" method="post">
                 <?php
                 $form->changeSurr('div class="form-group d-inline-block col-8 pl-0"', 'div');
                 $form->setLabel('Username', 'lab');
-                echo $form->input('username', 'username', "form-control forms", "{$_SESSION['username']}");
+                echo $form->input('username', 'username', "form-control forms", "{$_SESSION['username']}", "30");
                 $form->changeSurr('div class="form-group d-inline-block col-4"', 'div');
                 echo $form->submit('submit_account', 'submit_account', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');
+                echo '<span id="i_username" class="form-info">Username must contain between 4 and 30 characters</span>';
                 ?>
             </form>
         </div>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form class="my-2 my-lg-0" action="account" method="post">
+            <form name="change_email" onkeyup="validate();" class="my-2 my-lg-0" action="account" method="post">
                 <?php
                 $form->changeSurr('div class="form-group d-inline-block col-8 pl-0"', 'div');
                 $form->setLabel('E-mail', 'lab');
                 echo $form->email('email', 'email', "form-control forms", "E-mail");
                 $form->changeSurr('div class="form-group d-inline-block col-4"', 'div');
                 echo $form->submit('submit_email', 'submit_email', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');
+                echo '<span id="i_email" class="form-info">E-mail has to be valid</span>';
                 ?>
             </form>
         </div>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form onsubmit="return validate();" class="my-2 my-lg-0" action="account" method="post">
+            <form name="change_password" onkeyup="validate();" class="my-2 my-lg-0" action="account" method="post">
                 <?php
                 $form->changeSurr('div class="form-group"', 'div');
                 $form->setLabel('Current password', 'lab');
                 echo $form->password('currpw', 'currpw', "form-control forms", "Current password");
                 $form->setLabel('New password', 'lab');
-                echo $form->password('newpw', 'newpw', "form-control forms", "New password");
+                $form->setInfo('Password must contain between 8 and 30 characters',"i_password", "form-info", "y");
+                echo $form->password('password', 'password', "form-control forms", "New password");
                 $form->setLabel('Confirm your new password', 'lab');
-                echo $form->password('newpw2', 'newpw2', "form-control forms", "Confirm your new password");
+                $form->setInfo('Password has to be the same as the one you just entered', "i_password2","form-info", "y");
+                echo $form->password('password2', 'password2', "form-control forms", "Confirm your new password");
                 $form->changeSurr('div class="form-group"', 'div');
                 echo $form->submit('submit_password', 'submit_password', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');
                 ?>
@@ -66,18 +70,7 @@ require_once("utils/modify_account.php");
 </div>
 
 <?php require_once("includes/footer.php");?>
-<script>
-    function validate() {
-        var password = document.getElementById('newpw').value;
-        var password2 = document.getElementById('newpw2').value;
-        if (password.length < 8 || password2.length < 8) {
-            alert("Password should be at least 8 characters long!");
-            return false;
-        }
-
-        return true;
-    }
-</script>
+<script src="js/validate.js"></script>
 <script src="js/alert.js"></script>
 </body>
 </html>

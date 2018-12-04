@@ -44,9 +44,9 @@ class form
         return $this->surround("<input type=\"hidden\" name=\"{$name}\" id=\"{$id}\" value=\"{$value}\">");
     }
 
-    public function textarea($name, $id = "", $class = "", $rows = "4", $cols = "50", $placeholder = "")
+    public function textarea($name, $id = "", $class = "", $rows = "4", $cols = "50", $placeholder = "", $maxlength = "")
     {
-        return $this->surround("<textarea name=\"{$name}\" id=\"{$id}\" class=\"{$class}\" rows=\"{$rows}\" cols=\"{$cols}\" placeholder=\"{$placeholder}\"></textarea>");
+        return $this->surround("<textarea name=\"{$name}\" id=\"{$id}\" class=\"{$class}\" rows=\"{$rows}\" cols=\"{$cols}\" placeholder=\"{$placeholder}\" maxlength=\"$maxlength\" required></textarea>");
     }
 
     public function file($name, $id = "", $class = "")
