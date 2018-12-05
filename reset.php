@@ -17,7 +17,7 @@ require_once("utils/password_update.php");
     <div class="wrapper col-12 p-2">
         <h5>Reset your password</h5>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form name="regset_password" onkeyup="validate();" class="my-2 my-lg-0" action="reset?id=<?php echo "{$_GET['id']}&token={$_GET['token']}";?>" method="post">
+            <form name="reset_password" onkeyup="validate();" class="my-2 my-lg-0" action="reset?id=<?php echo "{$_GET['id']}&token={$_GET['token']}";?>" method="post">
                 <?php
                 $form->setLabel('Password', 'lab');
                 $form->setInfo('Password must contain between 8 and 30 characters',"i_password", "form-info", "y");

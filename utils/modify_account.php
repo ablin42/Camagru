@@ -5,7 +5,12 @@ $db = database::getInstance('camagru');
 
 if (isset($_POST['submit_account']) && !empty($_POST['username']))
 {
-    $attributes['newusername'] = $_POST['username'];
+    if (!check_length($_POST['username'], 4, 30))
+    {
+        echo alert_bootstrap("warning", "Your <b>username</b> has to be 4 characters minimum and 30 characters maximum!", "text-align: center;");
+        return ;
+    }
+    $attributes['newusername'] =  htmlspecialchars(trim($_POST['username']));
     $req = $db->prepare("SELECT * FROM `user` WHERE `username` = :newusername", $attributes);
     if ($req)
     {
@@ -24,7 +29,12 @@ if (isset($_POST['submit_account']) && !empty($_POST['username']))
 
 if (isset($_POST['submit_email']) && !empty($_POST['email']))
 {
-    $attributes['newemail'] = $_POST['email'];
+    if (!check_length($_POST['email'], 3, 255))
+    {
+        echo alert_bootstrap("warning", "Your <b>e-mail/b> has to be 3 characters minimum and 255 characters maximum!", "text-align: center;");
+        return ;
+    }
+    $attributes['newemail'] =  htmlspecialchars(trim($_POST['email']));
     $req = $db->prepare("SELECT * FROM `user` WHERE `email` = :newemail AND `confirmed_token` != 'NULL'", $attributes);
     if ($req)
     {
@@ -47,11 +57,16 @@ if (isset($_POST['submit_email']) && !empty($_POST['email']))
 
 if (isset($_POST['submit_password']) && !empty($_POST['currpw']) && !empty($_POST['password']) && !empty($_POST['password2']))
 {
+    if (!check_length($_POST['password'],8, 30) || !check_length($_POST['password2'],8, 30))
+    {
+        echo alert_bootstrap("warning", "Your <b>password</b> has to be 8 characters minimum and 30 characters maximum!", "text-align: center;");
+        return ;
+    }
     $attributes['username'] = $_SESSION['username'];
     $req = $db->prepare("SELECT * FROM `user` WHERE `username` = :username", $attributes);
     if (!$req)
     {
-        echo alert_bootstrap("danger", "Error: Please try again.", "text-align: center;");
+        echo alert_bootstrap("danger", "Error: User not found. Please try again. If the error persist try disconnecting and reconnecting", "text-align: center;");
         return ;
     }
     else

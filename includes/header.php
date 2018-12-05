@@ -57,7 +57,7 @@ if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['
 {
     $db = database::getInstance('camagru');
 
-    $attributes_h['username'] = $_POST['username_l'];
+    $attributes_h['username'] =  htmlspecialchars(trim($_POST['username_l']));
     $pwd = hash('whirlpool', $_POST['password_l']);
     $req = $db->prepare("SELECT `id`, `password`, `username` FROM `user` WHERE `username` = :username", $attributes_h);
     if ($req)

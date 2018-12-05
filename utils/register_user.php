@@ -8,7 +8,7 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
     {
         $db = database::getInstance('camagru');
         $attributes = array();
-        $attributes['username'] = $_POST['username'];
+        $attributes['username'] = htmlspecialchars(trim($_POST['username']));
 
         if (!check_length($_POST['username'], 4, 30))
         {
@@ -32,7 +32,7 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
             echo alert_bootstrap("warning", "The <b>username</b> you entered is already taken, <b>please pick another one.</b>", "text-align: center;");
             return ;
         }
-        $attributes['email'] = $_POST['email'];
+        $attributes['email'] = htmlspecialchars(trim($_POST['email']));
         $attributes['password'] = hash('whirlpool', $_POST['password']);
 
         $req = $db->prepare("SELECT * FROM `user` WHERE `email` = :email AND `confirmed_token` != 'NULL'", array('email' => $attributes['email']));

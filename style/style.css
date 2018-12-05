@@ -169,14 +169,10 @@ span > a {color: #ffc107 !important;}
 {
     width: 100px;
     height: 100px;
+    cursor: pointer;
 }
 
-.rmv-img
-{
-    color: #ffc107;
-}
-
-.filter-checkbox {float: left;}
+.rmv-img {color: #ffc107;}
 
 .item {margin: auto;}
 
@@ -225,3 +221,25 @@ input:focus:invalid + span
 }
 
 #picture{border: none; box-shadow: none;}
+
+.preview
+{
+    display: block;
+    position: absolute;
+    padding: 0;
+    z-index: 3;
+    left: 50%;
+    border: 2px solid red;
+
+}
+
+.applied-filter
+{
+    cursor: pointer;
+    position: absolute;
+}
+
+#video
+{
+    padding: 0;
+}

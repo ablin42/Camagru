@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
-<body>
+<body onresize="resizePreview()">
 <?php
 require_once("includes/header.php");
 require_once("utils/upload.php");
@@ -26,59 +26,49 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 
         <div class="row pl-5 pr-5">
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="emeraude" onclick="applyFilter('emeraude.png')">
-                <img alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
+                <!--<input class="filter-checkbox" type="checkbox" id="emeraude" onclick="applyFilter('emeraude.png')">-->
+                <img onclick="applyFilter('emeraude.png')" alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="turquoise" onclick="applyFilter('turquoise.png')">
-                <img alt="dofus turquoise" src="filters/turquoise.png" class="filter"/>
+                <img onclick="applyFilter('turquoise.png') "alt="dofus turquoise" src="filters/turquoise.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="pourpre" onclick="applyFilter('pourpre.png')">
-                <img alt="dofus pourpre" src="filters/pourpre.png" class="filter"/>
+                <img onclick="applyFilter('pourpre.png')" alt="dofus pourpre" src="filters/pourpre.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="ocre" onclick="applyFilter('ocre.png')">
-                <img alt="dofus ocre" src="filters/ocre.png" class="filter"/>
+                <img onclick="applyFilter('ocre.png')" alt="dofus ocre" src="filters/ocre.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="ivoire" onclick="applyFilter('ivoire.png')">
-                <img alt="dofus ivoire" src="filters/ivoire.png" class="filter"/>
+                <img onclick="applyFilter('ivoire.png')" alt="dofus ivoire" src="filters/ivoire.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="ebene" onclick="applyFilter('ebene.png')">
-                <img alt="dofus ebene" src="filters/ebene.png" class="filter"/>
+                <img onclick="applyFilter('ebene.png')" alt="dofus ebene" src="filters/ebene.png" class="filter"/>
             </div>
         </div>
 
         <div class="row pl-5 pr-5">
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="gein" onclick="applyFilter('gein.png')">
-                <img alt="chapeau de gein" src="filters/gein.png" class="filter"/>
+                <img onclick="applyFilter('gein.png')" alt="chapeau de gein" src="filters/gein.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="ouga" onclick="applyFilter('ouga.png')">
-                <img alt="coiffe de l'ougah" src="filters/ouga.png" class="filter"/>
+                <img onclick="applyFilter('ouga.png')" alt="coiffe de l'ougah" src="filters/ouga.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="ben" onclick="applyFilter('ben.png')">
-                <img alt="coiffe de ben le ripate" src="filters/ben.png" class="filter"/>
+                <img onclick="applyFilter('ben.png')" alt="coiffe de ben le ripate" src="filters/ben.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="solomonk" onclick="applyFilter('solomonk.png')">
-                <img alt="solomonk" src="filters/solomonk.png" class="filter"/>
+                <img onclick="applyFilter('solomonk.png')" alt="solomonk" src="filters/solomonk.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="rdv" onclick="applyFilter('rdv.png')">
-                <img alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
+                <img onclick="applyFilter('rdv.png')" alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
             </div>
             <div class="item">
-                <input class="filter-checkbox" type="checkbox" id="comte" onclick="applyFilter('comte.png')">
-                <img alt="coiffe du comte harebourg" src="filters/comte.png" class="filter"/>
+                <img onclick="applyFilter('comte.png')" alt="coiffe du comte harebourg" src="filters/comte.png" class="filter"/>
             </div>
         </div>
 
-        <video muted="muted" id="video" class="col-12"></video>
+        <div onresize="resizePreview()" id="preview" class="preview"></div>
+        <video muted="muted" id="video" class="col-10 offset-1"></video>
         <button onclick="cooldown(this);" id="startbutton" class="offset-4 col-4 mb-2" disabled>MAKE ME GLORIOUS!</button>
         <canvas id="canvas" class="col-12" style="display: none;"></canvas>
         <form action="glorify" method="post" enctype="multipart/form-data" style="text-align: center;">
@@ -115,10 +105,15 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 </div>
 
 <?php require_once("includes/footer.php");?>
+<script src="js/filter.js"></script>
 <script src="js/webcam.js"></script>
 <script src="js/cooldown.js"></script>
 <script src="js/upload.js"></script>
 <script src="js/alert.js"></script>
-<script src="js/filter.js"></script>
+<script>
+    setTimeout(function (){
+       resizePreview();
+    }, 2750);
+</script>
 </body>
 </html>

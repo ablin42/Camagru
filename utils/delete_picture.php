@@ -5,7 +5,7 @@ if (isset($_GET['id']) && isset($_GET['r']) && $_GET['r'] === 'd' && !empty($_SE
 {
     $db = database::getInstance('camagru');
 
-    $attributes['id'] = $_GET['id'];
+    $attributes['id'] = htmlspecialchars(trim($_GET['id']));
     $attributes['id_user'] = $_SESSION['id'];
     $req = $db->prepare("SELECT * FROM `image` WHERE `id` = :id AND `id_user` = :id_user", $attributes);
     if ($req)

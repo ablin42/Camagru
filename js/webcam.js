@@ -1,44 +1,11 @@
-function getCheckedFilter()
+function getActiveFilter()
 {
-    var emeraude = document.getElementById('emeraude');
-    var turquoise = document.getElementById('turquoise');
-    var pourpre = document.getElementById('pourpre');
-    var ocre = document.getElementById('ocre');
-    var ivoire = document.getElementById('ivoire');
-    var ebene = document.getElementById('ebene');
-    var gein = document.getElementById('gein');
-    var ouga = document.getElementById('ouga');
-    var ben = document.getElementById('ben');
-    var solomonk = document.getElementById('solomonk');
-    var rdv = document.getElementById('rdv');
-    var comte = document.getElementById('comte');
-
-    if (emeraude.checked)
-        return "emeraude.png";
-    else if (turquoise.checked)
-        return "turquoise.png";
-    else if (pourpre.checked)
-        return "pourpre.png";
-    else if (ocre.checked)
-        return "ocre.png";
-    else if (ivoire.checked)
-        return "ivoire.png";
-    else if (ebene.checked)
-        return "ebene.png";
-    else if (gein.checked)
-        return "gein.png";
-    else if (ouga.checked)
-        return "ouga.png";
-    else if (ben.checked)
-        return "ben.png";
-    else if (solomonk.checked)
-        return "solomonk.png";
-    else if (rdv.checked)
-        return "rdv.png";
-    else if (comte.checked)
-        return "comte.png";
-    else
-        return null;
+    var nbFilter = countFilters(0);
+    var filter = [];
+    for (i = 1; i <= nbFilter; i++)
+        filter.push( document.getElementById(`filter_${i}`).getAttribute('alt'));
+    console.log(filter);
+    return (filter);
 }
 
 (function() {
@@ -77,8 +44,8 @@ function getCheckedFilter()
     video.addEventListener('canplay', function(ev){
         if (!streaming) {
             height = video.videoHeight / (video.videoWidth/width);
-            video.setAttribute('width', width);
-            video.setAttribute('height', height);
+            //video.setAttribute('width', width);
+            //video.setAttribute('height', height);
             canvas.setAttribute('width', width);
             canvas.setAttribute('height', height);
             streaming = true;
@@ -86,7 +53,7 @@ function getCheckedFilter()
     }, false);
 
     function takepicture() {
-        var filter = getCheckedFilter();
+        var filter = getActiveFilter();
         canvas.width = width;
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);

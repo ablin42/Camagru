@@ -4,13 +4,17 @@ require_once("functions.php");
 
 if (isset($_POST['submit']) && !empty($_POST['comment']) && !empty($_POST['id_img']))
 {
+        if (!check_length($_POST['comment'], 1, 255))
+        {
+            echo alert_bootstrap("warning", "Your <b>comment</b> has to be 1 character minimum and 255 characters maximum!", "text-align: center;");
+            return ;
+        }
         $db = database::getInstance('camagru');
         $attributesc = array();
-        $attributesc['content'] = $_POST['comment'];
-        $attributesc['id_img'] = $_POST['id_img'];
+        $attributesc['content'] = htmlspecialchars(trim($_POST['comment']));
+        $attributesc['id_img'] = htmlspecialchars(trim($_POST['id_img']));
         $attributes2['username'] = $_SESSION['username'];
 
-        //fetch id_user with query or session + fetch id img with prefilled form
         $req = $db->prepare("SELECT * FROM `user` WHERE `username` = :username", $attributes2);
         if ($req)
         {

@@ -3,8 +3,13 @@ use \ablin42\database;
 require_once("functions.php");
 if (isset($_POST['submit']) && !empty($_POST['email']))
 {
+    if (!check_length($_POST['email'], 3, 255))
+    {
+        echo alert_bootstrap("warning", "Your <b>e-mail/b> has to be 3 characters minimum and 255 characters maximum!", "text-align: center;");
+        return ;
+    }
     $db = database::getInstance('camagru');
-    $attributes1['email'] = $_POST['email'];
+    $attributes1['email'] = htmlspecialchars(trim($_POST['email']));
 
     $req = $db->prepare("SELECT `id` FROM `user` WHERE `email` = :email", $attributes1);
     foreach ($req as $item)

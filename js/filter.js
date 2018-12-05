@@ -1,48 +1,60 @@
+function applyPreview(filter, id_nb)
+{
+    var path = `filters/${filter}`;
+    var id = `filter_${id_nb}`;
+    var img = document.createElement("img");
+    img.setAttribute('src', path);
+    img.setAttribute('class', "applied-filter");
+    img.setAttribute('id', id);
+    img.setAttribute('alt', filter);
+    img.setAttribute('ondblclick', "removeFilter(this)");
+
+    var where = document.getElementById("preview");
+    console.log(where, img);
+    where.appendChild(img);
+}
+
+function countFilters(amount)
+{
+    if (typeof countFilters.counter === 'undefined' ) {
+        countFilters.counter = 0;
+    }
+    countFilters.counter += amount;
+    return countFilters.counter;
+}
+
 function applyFilter(filter)
 {
-    var emeraude = document.getElementById('emeraude');
-    var turquoise = document.getElementById('turquoise');
-    var pourpre = document.getElementById('pourpre');
-    var ocre = document.getElementById('ocre');
-    var ivoire = document.getElementById('ivoire');
-    var ebene = document.getElementById('ebene');
-    var gein = document.getElementById('gein');
-    var ouga = document.getElementById('ouga');
-    var ben = document.getElementById('ben');
-    var solomonk = document.getElementById('solomonk');
-    var rdv = document.getElementById('rdv');
-    var comte = document.getElementById('comte');
+    var count = countFilters(1);
 
-    //uncheck the previously checked box if you check another box
-    if (emeraude.checked && filter !== "emeraude.png")
-        emeraude.checked = false;
-    else if (turquoise.checked && filter !== "turquoise.png")
-        turquoise.checked = false;
-    else if (pourpre.checked && filter !== "pourpre.png")
-        pourpre.checked = false;
-    else if (ocre.checked && filter !== "ocre.png")
-        ocre.checked = false;
-    else if (ivoire.checked && filter !== "ivoire.png")
-        ivoire.checked = false;
-    else if (ebene.checked && filter !== "ebene.png")
-        ebene.checked = false;
-    else if (gein.checked && filter !== "gein.png")
-        gein.checked = false;
-    else if (ouga.checked && filter !== "ouga.png")
-        ouga.checked = false;
-    else if (ben.checked && filter !== "ben.png")
-        ben.checked = false;
-    else if (solomonk.checked && filter !== "solomonk.png")
-        solomonk.checked = false;
-    else if (rdv.checked && filter !== "rdv.png")
-        rdv.checked = false;
-    else if (comte.checked && filter !== "comte.png")
-        comte.checked = false;
-
-    //check if a box is checked to allow taking picture
-    if (emeraude.checked || turquoise.checked || pourpre.checked || ocre.checked || ivoire.checked || ebene.checked ||
-        gein.checked || ouga.checked || ben.checked|| solomonk.checked || rdv.checked || comte.checked)
+    if (count > 0)
         document.getElementById('startbutton').removeAttribute('disabled');
     else
         document.getElementById('startbutton').setAttribute('disabled', '');
+
+    applyPreview(filter, count);
+}
+
+function removeFilter(filter)
+{
+    var count = countFilters(-1);
+    if (count > 0)
+        document.getElementById('startbutton').removeAttribute('disabled');
+    else
+        document.getElementById('startbutton').setAttribute('disabled', '');
+
+    filter.remove();
+}
+
+function resizePreview()
+{
+    var video = document.getElementById("video");
+    var preview = document.getElementById("preview");
+    var vidInfo = video.getBoundingClientRect();
+    var height = vidInfo.height;
+    var width = vidInfo.width;
+    var halfWidth = width / 2;
+
+    preview.setAttribute("style", `min-width: ${width}px; min-height: ${height}px; max-width: ${width}px; max-height: ${height}px; margin-left: -${halfWidth}px`);
+    preview.setAttribute("height", height);
 }

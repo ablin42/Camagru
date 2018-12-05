@@ -3,7 +3,6 @@ use \ablin42\database;
 
 $db = database::getInstance('camagru');
 
-//$req = $db->query("SELECT * FROM `image` ORDER BY `date` DESC LIMIT 5 ");
 $req = $db->query("SELECT * FROM `image` ORDER BY `date` DESC LIMIT {$startLimit}, {$perPage}");
 $i = 0;
 foreach($req as $item)
