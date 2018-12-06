@@ -39,16 +39,4 @@ function drop(ev) {
     left = left - 100;//half of the filter's width
     top = top - 100;//half of the filter's height
     document.getElementById(CURR_FILTER).setAttribute("style", `left: ${left}px; top: ${top}px;`);
-
-    let filter_id = CURR_FILTER.split("_").pop();
-    /* sauvegarde la position de chaque filter, l'envoie au fonction de rendering */
-    let filterInfo = {
-
-        "id" : filter_id,
-        "id_name" : CURR_FILTER,
-        "left" : left,
-        "top" : top
-
-    };
-    FILTERS_INFO.push(filterInfo);
 }

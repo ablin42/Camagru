@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  ven. 30 nov. 2018 à 11:30
+-- Généré le :  jeu. 06 déc. 2018 à 12:37
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.1.22
 
@@ -60,7 +60,13 @@ INSERT INTO `comment` (`id`, `id_img`, `id_user`, `content`, `date`) VALUES
 (18, 28, 43, 'spam', '2018-11-29 23:00:15'),
 (19, 3, 43, 'tewtwet', '2018-11-29 23:14:27'),
 (20, 39, 43, 'sdfsdfaf', '2018-11-30 20:28:31'),
-(21, 39, 51, 'coucou\r\n', '2018-11-30 20:28:48');
+(21, 39, 51, 'coucou\r\n', '2018-11-30 20:28:48'),
+(22, 3, 43, 'eweeqfaf', '2018-12-04 18:26:59'),
+(23, 3, 43, 'aggd', '2018-12-04 18:27:08'),
+(24, 39, 43, 'afsasfasf', '2018-12-04 18:28:44'),
+(25, 39, 43, '1', '2018-12-04 22:51:01'),
+(26, 39, 43, 'sasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasasasasasassasasa', '2018-12-04 22:51:10'),
+(27, 20, 51, 'my son!!!!1111!!', '2018-12-05 19:50:44');
 
 -- --------------------------------------------------------
 
@@ -72,7 +78,7 @@ CREATE TABLE `image` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL DEFAULT '0' COMMENT 'ID de l''user qui a upload l''image',
   `path` varchar(255) NOT NULL DEFAULT '/Camagru/images/',
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(64) DEFAULT NULL,
   `date` datetime NOT NULL,
   `nb_like` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -84,12 +90,12 @@ CREATE TABLE `image` (
 INSERT INTO `image` (`id`, `id_user`, `path`, `name`, `date`, `nb_like`) VALUES
 (1, 43, '/Camagru/images/1.png', 'GIT GUD', '2018-11-08 09:31:35', 0),
 (2, 39, '/Camagru/images/2.jpg', 'just readin\'', '2018-11-06 07:21:29', 1),
-(3, 39, '/Camagru/images/3.jpg', 'twitter users in a nutshell', '2018-11-30 19:11:36', 1),
+(3, 39, '/Camagru/images/3.jpg', 'twitter users in a nutshell', '2018-11-30 19:11:36', 2),
 (4, 39, '/Camagru/images/4.jpg', 'croc moi la kike', '2018-11-04 04:10:03', 1),
 (5, 38, '/Camagru/images/5.png', 'mfw', '2018-11-07 23:43:40', 1),
 (6, 38, '/Camagru/images/6.jpg', 'time kills', '2018-11-26 00:00:00', 1),
 (27, 43, '/Camagru/images/27.png', 'quand shiva me propose un projet', '2018-11-29 21:47:53', 1),
-(20, 51, '/Camagru/images/15.png', 'end messdads', '2018-11-29 21:24:04', 0),
+(20, 51, '/Camagru/images/15.png', 'end messdads', '2018-11-29 21:24:04', 1),
 (14, 43, '/Camagru/images/14.png', '1 PO XD', '2018-11-28 18:58:58', 0),
 (12, 43, '/Camagru/images/8.png', 'mfw i get 80 pui', '2018-11-27 23:18:30', 0),
 (26, 43, '/Camagru/images/21.png', 'WTF LE DROP TUTU!!!!!!!!', '2018-11-29 21:39:29', 0),
@@ -97,10 +103,15 @@ INSERT INTO `image` (`id`, `id_user`, `path`, `name`, `date`, `nb_like`) VALUES
 (33, 43, '/Camagru/images/29.png', 'putain d\'ougah', '2018-11-30 19:55:23', 0),
 (35, 43, '/Camagru/images/34.png', 'gein', '2018-11-30 20:26:14', 0),
 (36, 43, '/Camagru/images/36.png', 'ben ', '2018-11-30 20:26:25', 0),
-(37, 43, '/Camagru/images/37.png', 'rdv', '2018-11-30 20:26:36', 0),
+(37, 43, '/Camagru/images/37.png', 'rdv', '2018-11-30 20:26:36', 1),
 (38, 43, '/Camagru/images/38.png', 'ch', '2018-11-30 20:26:43', 0),
 (39, 43, '/Camagru/images/39.png', 'ouga', '2018-11-30 20:26:52', 2),
-(40, 43, '/Camagru/images/40.png', 'solo monk', '2018-11-30 20:27:02', 2);
+(63, 43, '/Camagru/images/40.png', 'this will work fo sure', '2018-12-06 17:29:29', 0),
+(64, 43, '/Camagru/images/64.png', 'IT WORKS', '2018-12-06 17:30:36', 0),
+(65, 43, '/Camagru/images/65.png', 'aergaergaerg', '2018-12-06 17:37:17', 0),
+(68, 43, '/Camagru/images/66.png', 'lots of filters at random positions', '2018-12-06 20:43:23', 0),
+(70, 43, '/Camagru/images/69.png', 'now that is AUTISM', '2018-12-06 21:34:18', 0),
+(71, 43, '/Camagru/images/71.png', '6 primordiaux', '2018-12-06 21:35:39', 0);
 
 -- --------------------------------------------------------
 
@@ -129,8 +140,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `password_token`, `ma
 (40, 'AUTISMO', 'ac4152b523ec07d4e8c911e1465e1a7630db2c95420d661a8c813eced9d3a81319e18b877cf1580f4267748b3198753ac25e3b2b1d670bd4f3ed69e37a4a28ef', '7cfc0fcb3a7a251c97838723b8dd0d87cf9dfdf67c9046686c3a490d14f3ffec4988ea6a0f36a339251f363b15e4a3f8191f6c725f08fd0a820ddc6b871b5449', NULL, 'lq5ls7iir025mi2f9dp9kcb066ihoywylr81osjisjd3plh52zjwocnb2e642u3t8zvcqkzd7ca2y9oj4b3fwyzobsaeviqxcpvd4fpfr2zyswi9btvgcom90z00mg78', NULL, 1),
 (41, 'ablin43qsdqsd', 'ac4152b523ec07d4e8c911e1465e1a7630db2c95420d661a8c813eced9d3a81319e18b877cf1580f4267748b3198753ac25e3b2b1d670bd4f3ed69e37a4a28ef', '6efaad539576fba0490bab18a246d8bc27c7c269d73f19ea3ccea836e586845dd6b395f950432efb07fa00f30ce048152087da098d9c84c68b144d25c2273eea', NULL, 'fno5hcg8ckvy1o7gra5c1d4bwqzq57bzci2jumz494sfoohl4bzqb56q4hff8amrj33ls39nqsvt88vyjwdhjbi3dkgn7oc7l3319i0nxmf4dkd5wl8omi3m1tdh97fe', NULL, 1),
 (42, 'ablinazeazeazdzad', 'ac4152b523ec07d4e8c911e1465e1a7630db2c95420d661a8c813eced9d3a81319e18b877cf1580f4267748b3198753ac25e3b2b1d670bd4f3ed69e37a4a28ef', 'e07d5373152e87cf13da3067e49a42b5a34aa54b22d4c7d13eef9fbb51d0c2eb0e9150b1e7a00a834922b8cb6e19baab342810438ca099dabf3cb8ec1e8eefc0', NULL, 'j0372hamjes1448xghwbycsndulfh2twkhwvq4yq8cb1z0fonnknddm92zzte9yt7vrtm2rh9va71ypydn0edq1qnwm774v829yfbebioy6wmaueze3fvorjjilyjuy9', NULL, 1),
-(43, 'Fiendish', '72135fa8697eae1c9002bad98bc07d44abc9180794dfa54ed68a1a23d750e505426b9ed67510e16f778e3cecf74770692498d6b7d964856f041b7cc7c1c96a9d', 'ablin42@byom.de', NULL, 'NULL', '2018-11-28 22:34:04', 1),
-(51, 'christelle', 'cdc55bd87683ed17ee3df6858b216bea11fc10777ce3862481db15bf87baf282f1103edbc007bd729d4b4ff9b207b735476f507e364501cd7ce4eb4eeebbe2d7', 'christelle42@byom.de', NULL, 'y69tj7n165v48b9qdy5uv8okeyforhsn5jt9sfaf9ciw9bde5nlk3oxve0h4nhifl6bwnx2m0rbmcli4y7uqlco3ih973u4kp6le93439vceh1jt65xako85kktbqwjl', NULL, 1);
+(43, 'Fiendish', '72135fa8697eae1c9002bad98bc07d44abc9180794dfa54ed68a1a23d750e505426b9ed67510e16f778e3cecf74770692498d6b7d964856f041b7cc7c1c96a9d', 'ablin42@byom.de', 'wuy1hqqgwcl1l2jk8dkgo9h7d8yllzxo3wu83jwb814gmi93mpwmwb7ab1z4f5cq5umis547e33ru3arwhj7jnkmr739ix0rqzjgny6g6l9j0hk0tu6wwgr6zrkhc58r', 'NULL', '2018-11-28 22:34:04', 1),
+(51, 'Christelle', 'cdc55bd87683ed17ee3df6858b216bea11fc10777ce3862481db15bf87baf282f1103edbc007bd729d4b4ff9b207b735476f507e364501cd7ce4eb4eeebbe2d7', 'christelle42@byom.de', NULL, 'NULL', '2018-12-05 19:48:57', 1);
 
 -- --------------------------------------------------------
 
@@ -160,7 +171,10 @@ INSERT INTO `vote` (`id`, `id_img`, `id_user`) VALUES
 (108, 40, 43),
 (109, 39, 43),
 (110, 40, 51),
-(111, 39, 51);
+(111, 39, 51),
+(116, 3, 43),
+(121, 37, 43),
+(124, 20, 51);
 
 --
 -- Index pour les tables déchargées
@@ -199,25 +213,25 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT pour la table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

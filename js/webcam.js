@@ -3,7 +3,18 @@ function getActiveFilter()
     var nbFilter = countFilters(0);
     var filter = [];
     for (i = 1; i <= nbFilter; i++)
-        filter.push( document.getElementById(`filter_${i}`).getAttribute('alt'));
+    {
+        let elem = document.getElementById(`filter_${i}`);
+        let filterInfo = {
+
+            "id" : i,
+            "left" : elem.style.left,
+            "top" : elem.style.top
+        };
+        FILTERS_INFO.push(filterInfo);
+        filter.push(elem.getAttribute('alt'));
+    }
+    console.log(FILTERS_INFO);
     return (filter);
 }
 
