@@ -4,7 +4,6 @@ function getActiveFilter()
     var filter = [];
     for (i = 1; i <= nbFilter; i++)
         filter.push( document.getElementById(`filter_${i}`).getAttribute('alt'));
-    console.log(filter);
     return (filter);
 }
 
@@ -58,9 +57,10 @@ function getActiveFilter()
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
         var data = canvas.toDataURL('image/png');
+        var infos = JSON.stringify(FILTERS_INFO);
         xhttp.open("POST", "utils/merge_img.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(`img_url=${data}&filter=${filter}`);
+        xhttp.send(`img_url=${data}&filter=${filter}&infos=${infos}`);
         setTimeout(function (){
             if (document.getElementById('photo'))
                 document.getElementById('photo').remove();
@@ -73,6 +73,7 @@ function getActiveFilter()
             document.getElementById('img_url').value = data;
             document.getElementById('tmp_img').value = document.getElementById('photo').getAttribute('src');
             document.getElementById('filter').value = filter;
+            document.getElementById('infos').value = infos;
         }, 500);//500 seems to be a good fit
 
     }

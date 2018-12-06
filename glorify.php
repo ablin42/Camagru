@@ -67,7 +67,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             </div>
         </div>
 
-        <div onresize="resizePreview()" id="preview" class="preview"></div>
+        <div ondrop="drop(event)" ondragover="allowDrop(event)" id="preview" class="preview"></div>
         <video muted="muted" id="video" class="col-10 offset-1"></video>
         <button onclick="cooldown(this);" id="startbutton" class="offset-4 col-4 mb-2" disabled>MAKE ME GLORIOUS!</button>
         <canvas id="canvas" class="col-12" style="display: none;"></canvas>
@@ -78,6 +78,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             echo $form->hidden("id_user_cam", $_SESSION['id'], "id_user_cam");
             echo $form->hidden("img_url", "", "img_url");
             echo $form->hidden("filter", "", "filter");
+            echo $form->hidden("infos", "", "infos");
             echo $form->hidden("tmp_img", "", "tmp_img");
             echo $form->submit('submit_cam', 'submit_cam', 'btn btn-outline-warning btn-sign-in', 'Upload');
         ?>
@@ -106,6 +107,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 
 <?php require_once("includes/footer.php");?>
 <script src="js/filter.js"></script>
+<script src="js/dragandrop.js"></script>
 <script src="js/webcam.js"></script>
 <script src="js/cooldown.js"></script>
 <script src="js/upload.js"></script>

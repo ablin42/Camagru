@@ -1,8 +1,11 @@
 <?php
 require_once("functions.php");
 
-if (!empty($_POST['img_url']) && !empty($_POST['filter']))
+if (!empty($_POST['img_url']) && !empty($_POST['filter']) && !empty($_POST['infos']))
 {
+    /* if decoded info are nul,use 0 for position*/
+    $decodedInfos = json_decode($_POST['infos']);
+
     $encodedData = substr(htmlspecialchars(trim($_POST['img_url'])), 22);
     $encodedData = str_replace(' ','+', $encodedData);
     $data = base64_decode($encodedData);
@@ -24,7 +27,8 @@ if (!empty($_POST['img_url']) && !empty($_POST['filter']))
     foreach ($filters as $filter)
     {
         $info = get_filter_position($filters_name[$i]);
-        imagecopy($photo, $filter, $info['dst_x'], $info['dst_y'], 0, 0, $info['src_w'], $info['src_h']);
+        imagecopy($photo, $filter, $decodedInfos[$i]->left, $decodedInfos[$i]->top, 0, 0, 200, 200);
+        imagedestroy($filter);
         $i++;
     }
 
@@ -34,5 +38,4 @@ if (!empty($_POST['img_url']) && !empty($_POST['filter']))
     $filename = substr($filename, 3);
     echo $filename;
     imagedestroy($photo);
-    imagedestroy($filter);
 }
