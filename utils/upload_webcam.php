@@ -50,7 +50,7 @@ if (isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_POST['i
     $path = "/Camagru/images/{$id_img}.png";
     $attributes['id_user'] = htmlspecialchars(trim($_POST['id_user_cam']));
     $attributes['path'] = $path;
-    $attributes['name'] =  htmlspecialchars(trim($_POST['img_name_cam']));
+    $attributes['name'] =  strtolower(htmlspecialchars(trim($_POST['img_name_cam'])));
     $req = $db->prepare("INSERT INTO `image` (`id_user`, `path`, `name`, `date`) VALUES (:id_user, :path, :name, NOW())", $attributes);
     echo alert_bootstrap("success", "<b>Congratulations!</b> Your picture has been posted!", "text-align: center;");
 }

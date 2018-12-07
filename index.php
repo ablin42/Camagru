@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/bootstrap.css">
     <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </head>
 
 <body>
@@ -31,8 +32,10 @@ $startLimit = (($cPage - 1) * $perPage);
 
 <div class="container mt-5">
     <div class="wrapper col-12 p-2">
-        <h1>All the awesomes pictures!</h1>
-        <?php require_once("utils/fetch_gallery.php"); ?>
+        <h1>all the awesomes pictures!</h1>
+        <div class="gallery-wrapper">
+            <?php require_once("utils/fetch_gallery.php"); ?>
+        </div>
     </div>
 </div>
 

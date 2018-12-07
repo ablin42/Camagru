@@ -47,7 +47,7 @@ if (isset($_POST['submit']) && !empty($_POST['img_name']) && !empty($_POST['id_u
     $path = "/Camagru/images/{$id_img}.{$extension_upload}";
     $attributes['id_user'] = htmlspecialchars(trim($_POST['id_user']));
     $attributes['path'] = $path;
-    $attributes['name'] = htmlspecialchars(trim($_POST['img_name']));
+    $attributes['name'] = strtolower(htmlspecialchars(trim($_POST['img_name'])));
 
     $req = $db->prepare("INSERT INTO `image` (`id_user`, `path`, `name`, `date`) VALUES (:id_user, :path, :name, NOW())", $attributes);
     echo alert_bootstrap("success", "<b>Congratulations!</b> Your picture has been posted!", "text-align: center;");

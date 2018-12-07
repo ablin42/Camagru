@@ -8,14 +8,14 @@ $i = 0;
 foreach($req as $item)
 {
     if ($i % 2 === 0)
-        echo '<div class="row">';
+        echo '<div class="row justify-content-center">';
     echo '<div class="img-container col-5';
     if ($i % 2 === 0)
         echo ' offset-1">';
     else
         echo ' col-sm-offset-right-1">';
-    echo "<h5>{$item->name}</h5>";
-    echo "<a href=\"/Camagru/image.php?id={$item->id}\"><img alt=\"{$item->name}\" class=\"gallery-img col-12\" src=\"{$item->path}\"></a>";
+    echo "<div class='gallery-img-wrapper'><a href=\"/Camagru/image.php?id={$item->id}\"><img alt=\"{$item->name}\" class=\"gallery-img col-12\" src=\"{$item->path}\"><div class='overlay'><div class=\"title-on-img\">{$item->name}</div></div></a></div>";
+
     echo '</div>';
     if ($i % 2 !== 0)
         echo '</div>';

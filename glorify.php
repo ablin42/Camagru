@@ -26,7 +26,6 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 
         <div class="row pl-5 pr-5">
             <div class="item">
-                <!--<input class="filter-checkbox" type="checkbox" id="emeraude" onclick="applyFilter('emeraude.png')">-->
                 <img onclick="applyFilter('emeraude.png')" alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
             </div>
             <div class="item">
@@ -99,7 +98,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             </div>
         </div>
     </div>
-    <div class="wrapper col-2 p-2 offset-1">
+    <div class="wrapper your-pictures col-2 p-2 offset-1">
         <h1>Your pictures</h1>
         <?php require_once("utils/your_pictures.php"); ?>
     </div>

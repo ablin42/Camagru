@@ -18,7 +18,8 @@ require_once("utils/modify_account.php");
 
 <div class="container mt-5 small-page-wrapper">
     <div class="wrapper col-12 p-2">
-        <h5>Account settings</h5>
+        <h1>account settings</h1>
+        <div class="gallery-wrapper">
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
             <form name="change_username" onkeyup="validate();" class="my-2 my-lg-0" action="account" method="post">
                 <?php
@@ -66,6 +67,7 @@ require_once("utils/modify_account.php");
                 <?= $form->submit('submit_notify', 'submit_notify', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');?>
             </form>
         </div>
+    </div>
     </div>
 </div>
 
