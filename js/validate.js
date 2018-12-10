@@ -10,7 +10,7 @@ function validate() {
             document.getElementById("i_username").style.display = "inline-block";
             username.classList.add("invalid");
         }
-        else if (username.value.length !== 0) {
+        else if (username.value.length >= 4 || username.value.length <= 30) {
             document.getElementById("i_username").style.display = "none";
             username.classList.remove("invalid");
             username.classList.add("valid");
@@ -23,14 +23,17 @@ function validate() {
     }
 
     if (email) {
-        if (email.value.length !== 0 && (email.value.length < 3 || email.value.length > 255)) {
+        if (email.value.length !== 0 && (email.value.length < 3 || email.value.length > 255)){
             document.getElementById("i_email").style.display = "inline-block";
             email.classList.add("invalid");
         }
         else if (email.value.length !== 0) {
-            document.getElementById("i_email").style.display = "none";
-            email.classList.remove("invalid");
-            email.classList.add("valid");
+            if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.value))
+            {
+                document.getElementById("i_email").style.display = "none";
+                email.classList.remove("invalid");
+                email.classList.add("valid");
+            }
         }
         else {
             document.getElementById("i_email").style.display = "none";

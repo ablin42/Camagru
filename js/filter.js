@@ -60,3 +60,14 @@ function resizePreview()
     preview.setAttribute("style", `min-width: ${width}px; min-height: ${height}px; max-width: ${width}px; max-height: ${height}px; margin-left: -${halfWidth}px`);
     preview.setAttribute("height", height);
 }
+
+function hoverFilter(filter, state)
+{
+    let sizing = 10;
+    if (state === "out")
+        sizing = -10;
+    width = filter.width + sizing;
+    height = filter.height + sizing;
+
+    filter.setAttribute("style", `width: ${width}px; height: ${height}px;`);
+}

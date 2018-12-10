@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style/bootstrap.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </head>
 
 <body>
@@ -28,36 +29,44 @@ if (!$req)
 ?>
 
 <div class="container mt-5 small-page-wrapper">
-    <div class="wrapper col-12 p-2">
+    <div class="wrapper col-12 p-2" style="text-align: center;">
         <?php
         foreach($req as $item)
         {
             echo "<h1>$item->name</h1>";
-            echo "<h4>Uploaded by $item->username</h4>";
+            echo "<h6>Uploaded by $item->username</h6>";
         }?>
 
-        <div class="col-6 offset-3 img-holder">
+        <div class="img-page-wrapper col-6 offset-3">
             <?php foreach($req as $item)
             {
-                echo "<img alt=\"{$item->name}\" class=\"gallery-img col-12\" src=\"{$item->path}\">";
+                echo "<img alt=\"{$item->name}\" class=\"img-page col-12\" src=\"{$item->path}\">";
+                echo "<div class='overlay'>";
+                echo "<div class=\"title-on-img\">";
+                echo "<button ";
+                if (isset($_SESSION['id']))
+                    echo "onclick=\"like({$_GET['id']}, {$_SESSION['id']})\" ";
+                echo "class=\"btn-like\">";
+                echo "<i id=\"like-fire\" class=\"fas fa-fire fa-4x like";
+                if (isset($_SESSION['id']))
+                    if (has_liked($db, $_GET['id'], $_SESSION['id']))
+                        echo " liked";
+                echo '"></i></button></div></div>';
             }?>
         </div>
-        <div>
-            <button <?php if (isset($_SESSION['id'])) {echo "onclick=\"like({$_GET['id']}, {$_SESSION['id']})\"";}?> class="btn-like">
-                <i id="like-fire" class="fas fa-fire fa-2x like<?php if (isset($_SESSION['id'])) {if (has_liked($db, $_GET['id'], $_SESSION['id'])) {echo " liked";}} ?>"></i>
-            </button>
-        </div>
-        <h6 id="nb_like">
+
+        <i id="like-fire" class="fas fa-fire fa-2x like-count"></i>
+        <h5 id="nb_like">
             <?php foreach($req as $item)
                 echo $item->nb_like;
             ?>
-        </h6>
+        </h5>
         <?php if (!isset($_SESSION['id'])) {echo "<h6>You must be logged in to vote!</h6>";} ?>
     </div>
 
 
     <div class="wrapper col-12 p-2">
-        <h1>Comment section</h1>
+        <h1>comment section</h1>
         <div class="col-6 offset-3">
             <?php
                 if (isset($_SESSION['logged']) && isset($_SESSION['username']))
@@ -69,7 +78,7 @@ if (!$req)
                     echo "</form>";
                 }
                 else
-                    echo "<h5>You must be logged in to comment under pictures.</h5>";
+                    echo "<h6>You must be logged in to comment under pictures.</h6>";
             ?>
         </div>
         <div class="col-6 offset-3">

@@ -32,9 +32,9 @@ $form->changeSurr('div class="form-group"', 'div');
                     if (!isset($_SESSION['logged']))
                     {
                         echo $form->label('Username', 'username_l', 'lab mr-2 ml-2');
-                        echo $form->input('username_l', 'username_l', "form-control");
+                        echo $form->input('username_l', 'username_l', "form-control", "ablin42");
                         echo $form->label('Password', 'password_l', 'lab mr-2 ml-2');
-                        echo $form->password('password_l', 'password_l', "form-control");
+                        echo $form->password('password_l', 'password_l', "form-control", "********");
                         echo $form->submit('submit_l', 'submit_l', 'btn btn-outline-warning my-2 my-sm-0 ml-2', 'Log in');
                     }
                 ?>

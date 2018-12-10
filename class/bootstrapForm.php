@@ -52,7 +52,7 @@ class bootstrapForm extends form
                 . $this->info($this->info_text, $this->info_id, $this->info_class, $this->info_use));
     }
 
-    public function password($name, $id = "", $class = "", $placeholder = "Password", $maxlength = "")
+    public function password($name, $id = "", $class = "", $placeholder = "", $maxlength = "")
     {
         return $this->surround($this->label(ucfirst($this->label_name), $name, $this->label_class)
                 . "<input type=\"password\" name=\"{$name}\" placeholder=\"{$placeholder}\" id=\"{$id}\" class=\"{$class}\" maxlength=\"$maxlength\" required>"
