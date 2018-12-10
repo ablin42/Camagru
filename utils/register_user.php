@@ -46,7 +46,9 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
         $user_id = $attributes['username'];
 
         $db->prepare("INSERT INTO `user` (`username`, `password`, `email`, `mail_token`) VALUES (:username, :password, :email, :mail_token)", $attributes);
-        mail($_POST['email'], "Confirm your account at Camagru","In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token");
+        $subject = "Confirm your account at Camagru";
+        $message = "In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token";
+        mail($_POST['email'], $subject, $message);
         $_SESSION['username'] = $attributes['username'];
         $_SESSION['logged'] = 1;
         $req = $db->prepare("SELECT `id` FROM `user` WHERE `username` = :username", array('username' => $_POST['username']));

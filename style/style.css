@@ -33,6 +33,12 @@ h2
 }
 .small-page-wrapper {min-height: calc(100vh - 166px);}
 
+hr
+{
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 90%;
+}
+
 footer
 {
     position: relative;
@@ -256,8 +262,8 @@ p {color: #AAAAAA;}
 
 .filter
 {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     cursor: pointer;
 }
 
@@ -307,6 +313,7 @@ input:focus:invalid + span {display: inline;}
 {
     padding: 0;
     background-color: #191919;
+    border: 2px solid black;
     -webkit-box-shadow: inset 0 0 5px 1px rgba(4, 3, 0, 0.75);
     -moz-box-shadow: inset 0 0 5px 1px rgba(4, 3, 0, 0.75);
     box-shadow: inset 0 0 5px 1px rgba(4, 3, 0, 0.75);
@@ -376,6 +383,6 @@ input:focus:invalid + span {display: inline;}
 
 .filter-row
 {
-    max-height: 100px;
+    max-height: 90px;
     justify-content: center;
 }

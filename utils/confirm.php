@@ -16,4 +16,5 @@ foreach ($req as $item)
         $db->prepare("UPDATE `user` SET `mail_token` = 'NULL', `confirmed_token` = NOW() WHERE `username` = :username", $attributes);
 
 }
-header('Location: /Camagru/');
+echo "<script>window.close();</script>";
+//header('Location: /Camagru/');

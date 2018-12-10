@@ -1,15 +1,27 @@
 function getActiveFilter()
 {
+    FILTERS_INFO = [];
     var nbFilter = countFilters(0);
     var filter = [];
     for (i = 1; i <= nbFilter; i++)
     {
         let elem = document.getElementById(`filter_${i}`);
+        let left = elem.style.left;
+        let top = elem.style.top;
+        elemInfo = elem.getBoundingClientRect();
+        let width = elemInfo.width;
+        let height = elemInfo.height;
+        if (left === "")
+            left = 0;
+        if (top === "")
+            top = 0;
         let filterInfo = {
 
             "id" : i,
-            "left" : elem.style.left,
-            "top" : elem.style.top
+            "left" : left,
+            "top" : top,//add width, height of filter  vidInfo =  video.getBoundingClientRect();
+            "width" : width,
+            "height" : height
         };
         FILTERS_INFO.push(filterInfo);
         filter.push(elem.getAttribute('alt'));
@@ -26,7 +38,10 @@ function getActiveFilter()
         startbutton  = document.querySelector('#startbutton'),
         xhttp = new XMLHttpRequest(),
         width = 600,
-        height = 0;
+        height = 0,
+        vidInfo =  video.getBoundingClientRect();
+
+    width = vidInfo.width;
 
     navigator.getMedia = ( navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
@@ -79,6 +94,7 @@ function getActiveFilter()
             img.setAttribute('src', xhttp.responseText);
             img.setAttribute('id', 'photo');
             img.setAttribute('alt', 'your picture');
+            img.setAttribute('style', "width:100%;");
             var where = document.getElementById("img_url").parentElement;
             where.appendChild(img);
             document.getElementById('img_url').value = data;

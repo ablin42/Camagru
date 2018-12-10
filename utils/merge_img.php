@@ -27,7 +27,7 @@ if (!empty($_POST['img_url']) && !empty($_POST['filter']) && !empty($_POST['info
     foreach ($filters as $filter)
     {
         $info = get_filter_position($filters_name[$i]);
-        imagecopy($photo, $filter, $decodedInfos[$i]->left, $decodedInfos[$i]->top, 0, 0, 200, 200);
+        imagecopy($photo, $filter, $decodedInfos[$i]->left, $decodedInfos[$i]->top, 0, 0, $decodedInfos[$i]->width, $decodedInfos[$i]->height);
         imagedestroy($filter);
         $i++;
     }
