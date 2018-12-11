@@ -13,7 +13,6 @@
 <body onresize="resizePreview()">
 <?php
 require_once("includes/header.php");
-require_once("utils/upload.php");
 require_once("utils/delete_picture.php");
 require_once("utils/upload_webcam.php");
 if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
@@ -67,9 +66,10 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
                 </div>
             </div>
         </div>
-
-        <div ondrop="drop(event)" ondragover="allowDrop(event)" id="preview" class="preview"></div>
-        <video muted="muted" id="video" class="col-10 offset-1"></video>
+        <div id="video-div">
+            <div ondrop="drop(event)" ondragover="allowDrop(event)" id="preview" class="preview"></div>
+            <video muted="muted" id="video" class="col-10 offset-1"></video>
+        </div>
         <button onclick="cooldown(this);" id="startbutton" class="offset-4 col-4 mb-2" disabled>MAKE ME GLORIOUS!</button>
         <canvas id="canvas" class="col-12" style="display: none;"></canvas>
         <div class="register-form-wrapper col-10 offset-1 p-2 mt-3 mb-4">
@@ -92,7 +92,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             <h2>upload your photo if you don't have a webcam</h2>
             <form action="glorify" method="post" enctype="multipart/form-data">
                 <?php
-                    echo $form->input("img_name", "img_name", "form-control", "Your title", 64);
+                   // echo $form->input("img_name", "img_name", "form-control", "Your title", 64);
                     echo $form->hidden("id_user", $_SESSION['id'], "id_user");
                     echo $form->hidden("MAX_FILE_SIZE", "2000000");
                     echo $form->file("picture", "picture");
@@ -107,7 +107,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
     </div>
 </div>
 
-<?php require_once("includes/footer.php");?>
+<?php require_once("includes/footer.php"); require_once("utils/upload.php");?>
 <script src="js/filter.js"></script>
 <script src="js/dragandrop.js"></script>
 <script src="js/webcam.js"></script>

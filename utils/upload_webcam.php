@@ -9,8 +9,9 @@ if (isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_POST['i
         echo alert_bootstrap("warning", "Your <b>title</b> has to be 1 character minimum and 64 characters maximum!", "text-align: center;");
         return ;
     }
-    $decodedInfos = json_decode($_POST['infos']);
 
+    $img_url = $_POST['img_url'];
+    $decodedInfos = json_decode($_POST['infos']);
     unlink("{$_POST['tmp_img']}");
     $db = database::getInstance('camagru');
     $req = $db->query( "SELECT MAX(id) as last_id FROM `image`");
@@ -18,10 +19,14 @@ if (isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_POST['i
         $id_img = $item->last_id + 1;
     $path = "images/{$id_img}.png";
 
-    $encodedData = substr($_POST['img_url'], 22);
-    $encodedData = str_replace(' ','+', $encodedData);
-    $data = base64_decode($encodedData);
-    $photo = imagecreatefromstring($data);
+    if (strpos($img_url, "data") !== false) {
+        $encodedData = substr(htmlspecialchars(trim($img_url)), 22);
+        $encodedData = str_replace(' ', '+', $encodedData);
+        $data = base64_decode($encodedData);
+        $photo = imagecreatefromstring($data);
+    }
+    else
+        $photo = imagecreatefrompng($img_url);
 
     $filters = explode(',', $_POST['filter']);
     $filters_name = $filters;

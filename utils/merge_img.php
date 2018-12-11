@@ -3,13 +3,20 @@ require_once("functions.php");
 
 if (!empty($_POST['img_url']) && !empty($_POST['filter']) && !empty($_POST['infos']))
 {
-    /* if decoded info are nul,use 0 for position*/
+    $img_url = $_POST['img_url'];
     $decodedInfos = json_decode($_POST['infos']);
 
-    $encodedData = substr(htmlspecialchars(trim($_POST['img_url'])), 22);
-    $encodedData = str_replace(' ','+', $encodedData);
-    $data = base64_decode($encodedData);
-    $photo = imagecreatefromstring($data);
+    if (strpos($img_url, "data") !== false) {
+        $encodedData = substr(htmlspecialchars(trim($img_url)), 22);
+        $encodedData = str_replace(' ', '+', $encodedData);
+        $data = base64_decode($encodedData);
+        $photo = imagecreatefromstring($data);
+    }
+    else
+    {
+        $img_url = "../{$img_url}";
+        $photo = imagecreatefrompng($img_url);
+    }
 
     $filters = explode(',', $_POST['filter']);
     $filters_name = $filters;

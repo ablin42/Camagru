@@ -41,14 +41,15 @@ function getActiveFilter()
         height = 0,
         vidInfo =  video.getBoundingClientRect();
 
-    width = vidInfo.width;
+        if (video.getAttribute('src') === null) {
+            width = vidInfo.width;
 
-    navigator.getMedia = ( navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia ||
-        navigator.msGetUserMedia);
+            navigator.getMedia = (navigator.getUserMedia ||
+                navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia ||
+                navigator.msGetUserMedia);
 
-    navigator.getMedia(
+        navigator.getMedia(
         {
             video: true,
             audio: false
@@ -64,7 +65,7 @@ function getActiveFilter()
         function(err) {
             console.log("An error occured! " + err);
         }
-    );
+    )};
 
     video.addEventListener('canplay', function(ev){
         if (!streaming) {
@@ -79,11 +80,18 @@ function getActiveFilter()
 
     function takepicture() {
         var filter = getActiveFilter();
+        var data;
         canvas.width = width;
         canvas.height = height;
-        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-        var data = canvas.toDataURL('image/png');
+        if (video.getAttribute('src') === null) {
+            canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+            data = canvas.toDataURL('image/png');
+        }
+        else
+            data = video.getAttribute('src');
+
         var infos = JSON.stringify(FILTERS_INFO);
+
         xhttp.open("POST", "utils/merge_img.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send(`img_url=${data}&filter=${filter}&infos=${infos}`);
@@ -109,5 +117,4 @@ function getActiveFilter()
         takepicture();
         ev.preventDefault();
     }, false);
-
 })();
