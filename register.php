@@ -31,7 +31,7 @@ require_once("utils/register_user.php");
                 $form->setInfo('E-mail has to be valid', "i_email","form-info", "y");
                 echo $form->email('email', 'email', "form-control", "ablin42@byom.de", 255);
                 $form->setLabel('Password', 'lab');
-                $form->setInfo('Password must contain between 8 and 30 characters',"i_password", "form-info", "y");
+                $form->setInfo('Password must contain between 8 and 30 characters and has to be atleast alphanumeric',"i_password", "form-info", "y");
                 echo $form->password('password', 'password', "form-control", "********", 30);
                 $form->setLabel('Confirm your password', 'lab');
                 $form->setInfo('Password has to be the same as the one you just entered', "i_password2","form-info", "y");

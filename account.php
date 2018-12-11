@@ -52,7 +52,7 @@ require_once("utils/modify_account.php");
                 $form->setLabel('Current password', 'lab');
                 echo $form->password('currpw', 'currpw', "form-control forms", "Current password");
                 $form->setLabel('New password', 'lab');
-                $form->setInfo('Password must contain between 8 and 30 characters',"i_password", "form-info", "y");
+                $form->setInfo('Password must contain between 8 and 30 characters and has to be atleast alphanumeric',"i_password", "form-info", "y");
                 echo $form->password('password', 'password', "form-control forms", "New password");
                 $form->setLabel('Confirm your new password', 'lab');
                 $form->setInfo('Password has to be the same as the one you just entered', "i_password2","form-info", "y");

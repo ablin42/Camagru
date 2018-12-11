@@ -45,7 +45,7 @@ if (!$req)
                 echo "<div class=\"title-on-img\">";
                 echo "<button ";
                 if (isset($_SESSION['id']))
-                    echo "onclick=\"like({$_GET['id']}, {$_SESSION['id']})\" ";
+                    echo 'onclick="like()"';
                 echo "class=\"btn-like\">";
                 echo "<i id=\"like-fire\" class=\"fas fa-fire fa-4x like";
                 if (isset($_SESSION['id']))
@@ -88,7 +88,33 @@ if (!$req)
 </div>
 
 <?php require_once("includes/footer.php");?>
-<script src="js/like.js"></script>
 <script src="js/alert.js"></script>
+<script>
+    function like()
+    {
+        var xhttp = new XMLHttpRequest();
+        var nb_like = document.getElementById("nb_like");
+        var fire = document.getElementById("like-fire");
+        var vote = 0;
+        var id_img = parseInt("<?php echo $_GET['id'];?>");
+        var id_user = parseInt("<?php echo $_SESSION['id'];?>");
+        
+        if(fire.classList.contains("liked"))
+        {
+            vote = -1;
+            fire.classList.remove("liked");
+        }
+        else {
+            vote = 1;
+            fire.classList.add("liked");
+        }
+
+        xhttp.open("POST", "utils/like.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(`id=${id_img}&u=${id_user}`);
+
+        nb_like.innerText = parseInt(nb_like.innerText) + vote;
+    }
+</script>
 </body>
 </html>

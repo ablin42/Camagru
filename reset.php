@@ -22,7 +22,7 @@ require_once("utils/password_update.php");
             <form name="reset_password" onkeyup="validate();" class="register-form col-10 offset-1 my-2 my-lg-0" action="reset?id=<?php echo "{$_GET['id']}&token={$_GET['token']}";?>" method="post">
                 <?php
                 $form->setLabel('Password', 'lab');
-                $form->setInfo('Password must contain between 8 and 30 characters',"i_password", "form-info", "y");
+                $form->setInfo('Password must contain between 8 and 30 characters and has to be atleast alphanumeric',"i_password", "form-info", "y");
                 echo $form->password('password', 'password', "form-control", "********");
                 $form->setLabel('Confirm your password', 'lab');
                 $form->setInfo('Password has to be the same as the one you just entered', "i_password2","form-info", "y");
@@ -37,6 +37,7 @@ require_once("utils/password_update.php");
     </div>
 </div>
 <script src="js/validate.js"></script>
+<script src="js/alert.js"></script>
 <?php require_once("includes/footer.php");?>
 </body>
 </html>

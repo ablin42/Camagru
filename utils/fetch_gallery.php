@@ -15,9 +15,9 @@ foreach($req as $item)
     else
         echo ' col-sm-offset-right-1">';
     echo "<div class='gallery-img-wrapper'>
-        <a href=\"/Camagru/image?id={$item->id}\">
-        <img alt=\"{$item->name}\" class=\"gallery-img col-12\" src=\"{$item->path}\">
-        <div class='overlay'><div class=\"title-on-img\">{$item->name}</div></div></a></div>";
+          <a href=\"/Camagru/image?id={$item->id}\">
+          <img alt=\"{$item->name}\" class=\"gallery-img col-12\" src=\"{$item->path}\">
+          <div class='overlay'><div class=\"title-on-img\">{$item->name}</div></div></a></div>";
 
     echo '</div>';
     if ($i % 2 !== 0)

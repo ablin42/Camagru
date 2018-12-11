@@ -29,9 +29,10 @@ if (isset($_POST['submit_account']) && !empty($_POST['username']))
 
 if (isset($_POST['submit_email']) && !empty($_POST['email']))
 {
-    if (!check_length($_POST['email'], 3, 255))
+    $pattern_email = "/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
+    if (!check_length($_POST['email'], 3, 255) || !preg_match($pattern_email, $_POST['email']))
     {
-        echo alert_bootstrap("warning", "Your <b>e-mail/b> has to be 3 characters minimum and 255 characters maximum!", "text-align: center;");
+        echo alert_bootstrap("warning", "Your <b>e-mail</b> has to be 3 characters minimum and 255 characters maximum! (and valid!)", "text-align: center;");
         return ;
     }
     $attributes['newemail'] =  htmlspecialchars(trim($_POST['email']));
@@ -57,9 +58,10 @@ if (isset($_POST['submit_email']) && !empty($_POST['email']))
 
 if (isset($_POST['submit_password']) && !empty($_POST['currpw']) && !empty($_POST['password']) && !empty($_POST['password2']))
 {
-    if (!check_length($_POST['password'],8, 30) || !check_length($_POST['password2'],8, 30))
+    $pattern_pw = "/^(((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(.{8,})/";
+    if (!check_length($_POST['password'],8, 30) || !check_length($_POST['password2'],8, 30) || (!preg_match($pattern_pw, $_POST['password'])))
     {
-        echo alert_bootstrap("warning", "Your <b>password</b> has to be 8 characters minimum and 30 characters maximum!", "text-align: center;");
+        echo alert_bootstrap("warning", "Your <b>password</b> has to be 8 characters, 30 characters maximum and has to be atleast alphanumeric!", "text-align: center;");
         return ;
     }
     $attributes['username'] = $_SESSION['username'];

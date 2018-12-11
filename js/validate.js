@@ -43,7 +43,7 @@ function validate() {
     }
 
     if (password) {
-        if (password.value.length !== 0 && (password.value.length < 8 || password.value.length > 30)) {
+        if (password.value.length > 0 && (password.value.length > 30 || !/^(((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(.{8,})/.test(password.value))) {
             document.getElementById("i_password").style.display = "inline-block";
             password.classList.add("invalid");
         }

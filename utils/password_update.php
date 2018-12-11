@@ -5,13 +5,14 @@ if (isset($_GET['id']) && isset($_GET['token']))
 {
     if (isset($_POST['submit']) && !empty($_POST['password']) && !empty($_POST['password2']))
     {
-        if (!check_length($_POST['password'],8, 30) || !check_length($_POST['password2'],8, 30))
-        {
-            echo alert_bootstrap("warning", "Your <b>password</b> has to be 8 characters minimum and 30 characters maximum!", "text-align: center;");
-            return ;
-        }
         if ($_POST['password'] === $_POST['password2'])
         {
+            $pattern_pw = "/^(((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(.{8,})/";
+            if (!check_length($_POST['password'],8, 30) || !check_length($_POST['password2'],8, 30) || (!preg_match($pattern_pw, $_POST['password'])))
+            {
+                echo alert_bootstrap("warning", "Your <b>password</b> has to be 8 characters, 30 characters maximum and has to be atleast alphanumeric!", "text-align: center;");
+                return ;
+            }
             $attributes['id'] = htmlspecialchars(trim($_GET['id']));
             $db = database::getInstance('camagru');
             $req = $db->prepare("SELECT `password_token` FROM `user` WHERE `id` = :id", $attributes);

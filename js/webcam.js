@@ -101,7 +101,7 @@ function getActiveFilter()
             document.getElementById('tmp_img').value = document.getElementById('photo').getAttribute('src');
             document.getElementById('filter').value = filter;
             document.getElementById('infos').value = infos;
-        }, 500);//500 seems to be a good fit
+        }, 1350);//500 seems to be a good fit < 600px width, 1350 is for fullscreen
 
     }
 
