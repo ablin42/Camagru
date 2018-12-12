@@ -4,25 +4,29 @@ require_once("functions.php");
 
 if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['email']))
 {
-    if ($_POST['password'] === $_POST['password2'])
+    $username = secure_input($_POST['username']);
+    $email = secure_input($_POST['email']);
+    $password = $_POST['password'];
+    $password2 = $_POST['password2'];
+    if ($password === $password2)
     {
         $db = database::getInstance('camagru');
         $attributes = array();
-        $attributes['username'] = htmlspecialchars(trim($_POST['username']));
+        $attributes['username'] = $username;
 
         $pattern_pw = "/^(((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(.{8,})/";
         $pattern_email = "/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
-        if (!check_length($_POST['username'], 4, 30))
+        if (!check_length($username, 4, 30))
         {
             echo alert_bootstrap("warning", "Your <b>username</b> has to be 4 characters minimum and 30 characters maximum!", "text-align: center;");
             return ;
         }
-        else if (!check_length($_POST['password'],8, 30) || !check_length($_POST['password2'],8, 30) || (!preg_match($pattern_pw, $_POST['password'])))
+        else if (!check_length($password,8, 30) || !check_length($password2,8, 30) || (!preg_match($pattern_pw, $password)))
         {
             echo alert_bootstrap("warning", "Your <b>password</b> has to be 8 characters, 30 characters maximum and has to be atleast alphanumeric!", "text-align: center;");
             return ;
         }
-        else if (!check_length($_POST['email'], 3, 255) || !preg_match($pattern_email, $_POST['email']))
+        else if (!check_length($email, 3, 255) || !preg_match($pattern_email, $email))
         {
             echo alert_bootstrap("warning", "Your <b>e-mail</b> has to be 3 characters minimum and 255 characters maximum! (and valid!)", "text-align: center;");
             return ;
@@ -34,8 +38,8 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
             echo alert_bootstrap("warning", "The <b>username</b> you entered is already taken, <b>please pick another one.</b>", "text-align: center;");
             return ;
         }
-        $attributes['email'] = htmlspecialchars(trim($_POST['email']));
-        $attributes['password'] = hash('whirlpool', $_POST['password']);
+        $attributes['email'] = $email;
+        $attributes['password'] = hash('whirlpool', $password);
 
         $req = $db->prepare("SELECT * FROM `user` WHERE `email` = :email AND `confirmed_token` != 'NULL'", array('email' => $attributes['email']));
         if ($req)
@@ -50,8 +54,8 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
         $db->prepare("INSERT INTO `user` (`username`, `password`, `email`, `mail_token`) VALUES (:username, :password, :email, :mail_token)", $attributes);
         $subject = "Confirm your account at Camagru";
         $message = "In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token";
-        mail($_POST['email'], $subject, $message);
-        $req = $db->prepare("SELECT `id` FROM `user` WHERE `username` = :username", array('username' => $_POST['username']));
+        mail($email, $subject, $message);
+        $req = $db->prepare("SELECT `id` FROM `user` WHERE `username` = :username", array('username' => $username));
         echo alert_bootstrap("success", "<b>Your account has been successfully created!</b> Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");
         header ('Refresh: 3; /Camagru/');
     }

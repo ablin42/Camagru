@@ -21,7 +21,7 @@ try {
                                               `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                               `username` varchar(30) NOT NULL UNIQUE,
                                               `password` varchar(255) NOT NULL,
-                                              `email` varchar(255) NOT NULL,
+                                              `email` varchar(255) NOT NULL UNIQUE,
                                               `password_token` varchar(128) DEFAULT NULL,
                                               `mail_token` varchar(128) DEFAULT NULL,
                                               `confirmed_token` datetime DEFAULT NULL,

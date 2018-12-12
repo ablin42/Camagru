@@ -54,13 +54,15 @@ if (!$req)
                 echo '"></i></button></div></div>';
             }?>
         </div>
+        <div class="polaroid col-6 offset-3">
+            <i id="like-fire" class="fas fa-fire fa-2x like-count"></i>
+            <h5 id="nb_like">
+                <?php foreach($req as $item)
+                    echo $item->nb_like;
+                ?>
+            </h5>
+        </div>
 
-        <i id="like-fire" class="fas fa-fire fa-2x like-count"></i>
-        <h5 id="nb_like">
-            <?php foreach($req as $item)
-                echo $item->nb_like;
-            ?>
-        </h5>
         <?php if (!isset($_SESSION['id'])) {echo "<h6>You must be logged in to vote!</h6>";} ?>
     </div>
 

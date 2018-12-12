@@ -90,11 +90,14 @@ function getActiveFilter()
         else
             data = video.getAttribute('src');
 
+        var vidSize = video.getBoundingClientRect();
+        var vidWidth = Math.round(vidSize.width);
+        var vidHeight = Math.round(vidSize.height);
         var infos = JSON.stringify(FILTERS_INFO);
 
         xhttp.open("POST", "utils/merge_img.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(`img_url=${data}&filter=${filter}&infos=${infos}`);
+        xhttp.send(`img_url=${data}&filter=${filter}&infos=${infos}&width=${vidWidth}&height=${vidHeight}`);
         setTimeout(function (){
             if (document.getElementById('photo'))
                 document.getElementById('photo').remove();
@@ -105,11 +108,12 @@ function getActiveFilter()
             img.setAttribute('style', "width:100%;");
             var where = document.getElementById("img_url").parentElement;
             where.appendChild(img);
-            document.getElementById('img_url').value = data;
+            document.getElementById('img_url').value = xhttp.responseText;//data;
             document.getElementById('tmp_img').value = document.getElementById('photo').getAttribute('src');
             document.getElementById('filter').value = filter;
             document.getElementById('infos').value = infos;
-        }, 1350);//500 seems to be a good fit < 600px width, 1350 is for fullscreen
+            document.getElementById('vidSize').value = vidSize;
+        }, 1500);//500 seems to be a good fit < 600px width, 1350 is for fullscreen
 
     }
 

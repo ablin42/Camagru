@@ -14,7 +14,7 @@ if (isset($_POST['submit']) && !empty($_POST['id_user']) && !empty($_POST['MAX_F
         return ;
     }
 
-    $valid_extensions = array('jpg' , 'jpeg' , 'gif' , 'png');
+    $valid_extensions = array('jpg', 'jpeg', 'png');
     $extension_upload = strtolower(substr(strrchr($_FILES['picture']['name'],'.'),1));
     if (!in_array($extension_upload, $valid_extensions))
     {

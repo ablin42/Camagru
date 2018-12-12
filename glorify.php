@@ -77,11 +77,12 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             <h5>...once you're done taking it</h5>
             <form action="glorify" method="post" enctype="multipart/form-data" style="text-align: center;">
                 <?php
-                    echo $form->input("img_name_cam", "img_name_cam", "form-control", "Your title", 64);
-                    echo $form->hidden("id_user_cam", $_SESSION['id'], "id_user_cam");
+                    echo $form->input("img_name", "img_name", "form-control", "Your title", 64);
+                    //echo $form->hidden("id_user_cam", $_SESSION['id'], "id_user_cam");
                     echo $form->hidden("img_url", "", "img_url");
                     echo $form->hidden("filter", "", "filter");
                     echo $form->hidden("infos", "", "infos");
+                    echo $form->hidden("vidSize", "", "vidSize");
                     echo $form->hidden("tmp_img", "", "tmp_img");
                     echo $form->submit('submit_cam', 'submit_cam', 'btn btn-outline-warning btn-sign-in', 'Upload');
                 ?>
@@ -92,7 +93,6 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             <h2>upload your photo if you don't have a webcam</h2>
             <form action="glorify" method="post" enctype="multipart/form-data">
                 <?php
-                   // echo $form->input("img_name", "img_name", "form-control", "Your title", 64);
                     echo $form->hidden("id_user", $_SESSION['id'], "id_user");
                     echo $form->hidden("MAX_FILE_SIZE", "2000000");
                     echo $form->file("picture", "picture");
@@ -110,7 +110,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
 <?php require_once("includes/footer.php"); require_once("utils/upload.php");?>
 <script src="js/filter.js"></script>
 <script src="js/dragandrop.js"></script>
-<script src="js/webcam.js"></script>
+<script src="js/webcam.js?v=<?= time(); ?>"></script>
 <script src="js/cooldown.js"></script>
 <script src="js/upload.js"></script>
 <script src="js/alert.js"></script>

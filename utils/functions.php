@@ -110,3 +110,11 @@ function check_length($str, $min, $max)
         return false;
     return true;
 }
+
+function secure_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
