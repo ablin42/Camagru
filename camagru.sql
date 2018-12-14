@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  mer. 12 déc. 2018 à 15:43
--- Version du serveur :  5.7.23
--- Version de PHP :  7.1.22
+-- Généré le :  ven. 14 déc. 2018 à 13:35
+-- Version du serveur :  5.7.24
+-- Version de PHP :  7.1.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -69,7 +69,8 @@ INSERT INTO `comment` (`id`, `id_img`, `id_user`, `content`, `date`) VALUES
 (27, 20, 51, 'my son!!!!1111!!', '2018-12-05 19:50:44'),
 (28, 71, 43, 'gdfgdfg', '2018-12-10 22:16:19'),
 (29, 81, 58, 'deathbringer commenting', '2018-12-11 21:41:34'),
-(30, 81, 58, 'safasf', '2018-12-11 21:41:57');
+(30, 81, 58, 'safasf', '2018-12-11 21:41:57'),
+(31, 87, 43, 'ksavjxvd', '2018-12-14 19:03:42');
 
 -- --------------------------------------------------------
 
@@ -118,10 +119,14 @@ INSERT INTO `image` (`id`, `id_user`, `path`, `name`, `date`, `nb_like`) VALUES
 (74, 43, '/Camagru/images/72.png', 'thats pretty cool', '2018-12-11 20:21:09', 0),
 (110, 58, '/Camagru/images/94.png', 'moon is now glorious', '2018-12-12 23:19:02', 0),
 (93, 58, '/Camagru/images/88.png', 'nobigdeal', '2018-12-12 21:33:54', 1),
-(87, 58, '/Camagru/images/82.png', 'added a solomonk from uploading!', '2018-12-11 23:39:58', 1),
-(79, 43, '/Camagru/images/79.png', 'fullscreen test', '2018-12-11 20:32:21', 1),
+(87, 58, '/Camagru/images/82.png', 'added a solomonk from uploading!', '2018-12-11 23:39:58', 2),
+(123, 43, '/Camagru/images/123.png', '/zxvl', '2018-12-14 19:06:14', 0),
 (80, 43, '/Camagru/images/80.png', 'fullscreen works', '2018-12-11 20:34:05', 3),
-(81, 58, '/Camagru/images/81.png', 'deathbringerposting', '2018-12-11 21:41:25', 1);
+(81, 58, '/Camagru/images/81.png', 'deathbringerposting', '2018-12-11 21:41:25', 1),
+(122, 43, '/Camagru/images/111.png', 'xacacsas', '2018-12-14 19:05:06', 1),
+(124, 51, '/Camagru/images/124.png', 'hophop', '2018-12-14 19:08:19', 0),
+(125, 51, '/Camagru/images/125.png', 'avava', '2018-12-14 19:08:42', 0),
+(126, 51, '/Camagru/images/126.png', 'tout est beau', '2018-12-14 19:09:19', 0);
 
 -- --------------------------------------------------------
 
@@ -153,7 +158,9 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `password_token`, `ma
 (43, 'Fiendish', '72135fa8697eae1c9002bad98bc07d44abc9180794dfa54ed68a1a23d750e505426b9ed67510e16f778e3cecf74770692498d6b7d964856f041b7cc7c1c96a9d', 'ablin42@byom.de', '0dvmzgxwp568y6n0389ies4hld135lu7zacbouj71gj8cvmfy1vqi265241dlh5h6gtykowwpoyj3ceftbz014rw68et91xhjomu0fj6hlasgnweubqdq39zvnd09lrv', 'NULL', '2018-12-10 22:15:31', 1),
 (51, 'Christelle', 'cdc55bd87683ed17ee3df6858b216bea11fc10777ce3862481db15bf87baf282f1103edbc007bd729d4b4ff9b207b735476f507e364501cd7ce4eb4eeebbe2d7', 'christelle42@byom.de', NULL, 'NULL', '2018-12-05 19:48:57', 1),
 (58, 'deathbringer', '410c6628072476812f42e4414553bae859ab984667f5250883143ff5380bf8a14552bef191998368eeef1b35e1bb52f05d47301a65c0f620def1d2dd7b6c4de7', 'deathbringer@byom.de', NULL, 'NULL', '2018-12-11 21:40:48', 0),
-(59, 'xaxaxax', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'ablin45@byom.de', NULL, 'NULL', '2018-12-13 00:38:08', 1);
+(59, 'xaxaxax', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'ablin45@byom.de', NULL, 'NULL', '2018-12-13 00:38:08', 1),
+(60, 'sxsacasc', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'ablin99@byom.de', NULL, '0yydyzdz9g446riu3lm6eg1eyq15zj4lkjlouvmb1rl0rskmerdfpdccug3nfn36nefmf9n4bj9nzrmijwmtybezsmvezz4wekuj3kl5216j20n2jwwcvkuf2mm6aybz', NULL, 1),
+(61, 'antoine', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'antoine@byom.de', NULL, 'j7mn8xnmrnw66jpuodcqpiue3ot18gtuic8fd20z1419l2mdc1fhe6shsste6vl5gv7mz1am08ndxoy91rubjexzi5xudq47013cyiczm55r5im55uj0u2d9xmlxl1qb', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +201,9 @@ INSERT INTO `vote` (`id`, `id_img`, `id_user`) VALUES
 (132, 79, 58),
 (133, 77, 58),
 (136, 93, 58),
-(138, 87, 58);
+(138, 87, 58),
+(139, 87, 43),
+(142, 122, 43);
 
 --
 -- Index pour les tables déchargées
@@ -234,25 +243,25 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT pour la table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
