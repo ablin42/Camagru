@@ -55,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_
 
         $subject = "Confirm your account at Camagru";
         $message = "In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token";
-        var_dump($message);
         mail($email, $subject, $message);
         $req = $db->prepare("SELECT `id` FROM `user` WHERE `username` = :username", array('username' => $username));
         echo alert_bootstrap("success", "<b>Your account has been successfully created!</b> Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");

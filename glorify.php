@@ -70,12 +70,12 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
             <div ondrop="drop(event)" ondragover="allowDrop(event)" id="preview" class="preview"></div>
             <video muted="muted" id="video" class="col-10 offset-1"></video>
         </div>
-        <button onclick="cooldown(this);" id="startbutton" class="offset-4 col-4 mb-2" disabled>MAKE ME GLORIOUS!</button>
+        <button onclick="cooldown(this);" id="startbutton" class="offset-4 col-4 mb-2 mt-2" disabled>MAKE ME GLORIOUS!</button>
         <canvas id="canvas" class="col-12" style="display: none;"></canvas>
         <div class="register-form-wrapper col-10 offset-1 p-2 mt-3 mb-4">
             <h2>pick a title and upload your photo!</h2>
             <h5>...once you're done taking it</h5>
-            <form action="" method="post" enctype="multipart/form-data" style="text-align: center;">
+            <form action="glorify" method="post" enctype="multipart/form-data" style="text-align: center;">
                 <?php
                     echo $form->input("img_name", "img_name", "form-control", "Your title", 64);
                     echo $form->hidden("img_url", "", "img_url");
@@ -86,7 +86,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <hr>
         <div class="register-form-wrapper col-10 offset-1 p-2 mb-3 mt-4">
             <h2>upload your photo if you don't have a webcam</h2>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="glorify" method="post" enctype="multipart/form-data">
                 <?php
                     echo $form->file("picture", "picture");
                     echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in', 'Upload');
@@ -95,7 +95,7 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         </div>
     </div>
     <div class="wrapper your-pictures col-2 p-2">
-        <h1>Your pictures</h1>
+        <h1>your pictures</h1>
         <?php require_once("utils/your_pictures.php"); ?>
     </div>
 </div>
