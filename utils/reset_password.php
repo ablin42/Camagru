@@ -2,14 +2,16 @@
 use \ablin42\database;
 require_once("functions.php");
 
-if (isset($_POST['submit']) && !empty($_POST['email']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_POST['email']))
 {
     $email = secure_input($_POST['email']);
-    if (!check_length($email, 3, 255))
+    $pattern_email = "/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
+    if (!check_length($email, 3, 255) || !preg_match($pattern_email, $email))
     {
-        echo alert_bootstrap("warning", "Your <b>e-mail/b> has to be 3 characters minimum and 255 characters maximum!", "text-align: center;");
+        echo alert_bootstrap("warning", "Your <b>e-mail</b> has to be 3 characters minimum and 255 characters maximum! (and valid!)", "text-align: center;");
         return ;
     }
+
     $db = database::getInstance('camagru');
     $attributes1['email'] = $email;
 

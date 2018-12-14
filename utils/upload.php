@@ -1,14 +1,16 @@
 <?php
 
-if (isset($_POST['submit']) && !empty($_POST['id_user']) && !empty($_POST['MAX_FILE_SIZE']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_FILES['picture']))
 {
+    $max_file_size = 2000000;
+    $id = $_SESSION['id'];
     if($_FILES['picture']['error'] > 0)
     {
         echo alert_bootstrap("danger", "An <b>error</b> occured during the upload! Please, try again.", "text-align: center;");
         return ;
     }
 
-    if($_FILES['picture']['size'] > $_POST['MAX_FILE_SIZE'])
+    if($_FILES['picture']['size'] > $max_file_size)
     {
         echo alert_bootstrap("danger", "<b>Error:</b> The file you select is too big (> 2MB).", "text-align: center;");
         return ;
@@ -23,10 +25,9 @@ if (isset($_POST['submit']) && !empty($_POST['id_user']) && !empty($_POST['MAX_F
     }
 
     $image_size = getimagesize($_FILES['picture']['tmp_name']);
-    $maxwidth = 1000;
-    $maxheight = 600;
-    if ($image_size[0] > $maxwidth OR $image_size[1] > $maxheight) {
-        echo alert_bootstrap("danger", "<b>Error:</b> File dimensions aren't valid! <b>(Max width: 1000/Max height: 600)</b>", "text-align: center;");
+    if ($image_size[0] < $image_size[1])
+    {
+        echo alert_bootstrap("danger", "<b>Error:</b> File dimensions aren't valid! <b>(height has to be smaller than width!)</b>", "text-align: center;");
         return ;
     }
 

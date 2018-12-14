@@ -1,7 +1,7 @@
 <?php
 use \ablin42\database;
 
-if (isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_SESSION['id']) && !empty($_POST['img_name']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_SESSION['id']) && !empty($_POST['img_name']))
 {
     $img_name = secure_input($_POST['img_name']);
     $img_url = secure_input($_POST['img_url']);

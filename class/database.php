@@ -40,6 +40,12 @@ class database
         return $this->pdo;
     }
 
+    public function lastInsertedId()
+    {
+        $req = $this->getPDO()->lastInsertId();
+        return $req;
+    }
+
     public function query($statement, $class_name = null)
     {
         $req = $this->getPDO()->query($statement);

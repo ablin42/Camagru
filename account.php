@@ -22,7 +22,7 @@ require_once("utils/modify_account.php");
         <h1>account settings</h1>
         <div class="gallery-wrapper">
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form name="change_username" onkeyup="validate();" class="my-2 my-lg-0" action="account" method="post">
+            <form name="change_username" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
                 <?php
                 $form->changeSurr('div class="form-group d-inline-block col-8 pl-0"', 'div');
                 $form->setLabel('Username', 'lab');
@@ -34,7 +34,7 @@ require_once("utils/modify_account.php");
             </form>
         </div>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form name="change_email" onkeyup="validate();" class="my-2 my-lg-0" action="account" method="post">
+            <form name="change_email" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
                 <?php
                 $form->changeSurr('div class="form-group d-inline-block col-8 pl-0"', 'div');
                 $form->setLabel('E-mail', 'lab');
@@ -46,7 +46,7 @@ require_once("utils/modify_account.php");
             </form>
         </div>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form name="change_password" onkeyup="validate();" class="my-2 my-lg-0" action="account" method="post">
+            <form name="change_password" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
                 <?php
                 $form->changeSurr('div class="form-group"', 'div');
                 $form->setLabel('Current password', 'lab');
@@ -63,7 +63,7 @@ require_once("utils/modify_account.php");
             </form>
         </div>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form class="my-2 my-lg-0" action="account" method="post" style="text-align: center;">
+            <form class="my-2 my-lg-0" action="" method="post" style="text-align: center;">
                 <input type="checkbox" id="notify" name="notify" value="true" <?php if (notif_state($db, $_SESSION['id']) === true){echo "checked";}?>><p>Notify me by mail when someone comments one of my photo</p>
                 <?= $form->submit('submit_notify', 'submit_notify', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');?>
             </form>

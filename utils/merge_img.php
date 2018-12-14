@@ -1,7 +1,7 @@
 <?php
 require_once("functions.php");
 
-if (!empty($_POST['img_url']) && !empty($_POST['filter']) && !empty($_POST['infos']) && !empty($_POST['width']) && !empty($_POST['height']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['img_url']) && !empty($_POST['filter']) && !empty($_POST['infos']) && !empty($_POST['width']) && !empty($_POST['height']))
 {
     $img_url = $_POST['img_url'];
     $width = $_POST['width'];

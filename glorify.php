@@ -75,15 +75,10 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <div class="register-form-wrapper col-10 offset-1 p-2 mt-3 mb-4">
             <h2>pick a title and upload your photo!</h2>
             <h5>...once you're done taking it</h5>
-            <form action="glorify" method="post" enctype="multipart/form-data" style="text-align: center;">
+            <form action="" method="post" enctype="multipart/form-data" style="text-align: center;">
                 <?php
                     echo $form->input("img_name", "img_name", "form-control", "Your title", 64);
-                    //echo $form->hidden("id_user_cam", $_SESSION['id'], "id_user_cam");
                     echo $form->hidden("img_url", "", "img_url");
-                    echo $form->hidden("filter", "", "filter");
-                    echo $form->hidden("infos", "", "infos");
-                    echo $form->hidden("vidSize", "", "vidSize");
-                    echo $form->hidden("tmp_img", "", "tmp_img");
                     echo $form->submit('submit_cam', 'submit_cam', 'btn btn-outline-warning btn-sign-in', 'Upload');
                 ?>
             </form>
@@ -91,10 +86,8 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <hr>
         <div class="register-form-wrapper col-10 offset-1 p-2 mb-3 mt-4">
             <h2>upload your photo if you don't have a webcam</h2>
-            <form action="glorify" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
                 <?php
-                    echo $form->hidden("id_user", $_SESSION['id'], "id_user");
-                    echo $form->hidden("MAX_FILE_SIZE", "2000000");
                     echo $form->file("picture", "picture");
                     echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in', 'Upload');
                 ?>

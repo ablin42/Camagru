@@ -2,7 +2,7 @@
 use \ablin42\database;
 require_once("functions.php");
 
-if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['email']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['email']))
 {
     $username = secure_input($_POST['username']);
     $email = secure_input($_POST['email']);
@@ -41,19 +41,21 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
         $attributes['email'] = $email;
         $attributes['password'] = hash('whirlpool', $password);
 
-        $req = $db->prepare("SELECT * FROM `user` WHERE `email` = :email AND `confirmed_token` != 'NULL'", array('email' => $attributes['email']));
+        $req = $db->prepare("SELECT * FROM `user` WHERE `email` = :email", array('email' => $email));
         if ($req)
         {
-            echo alert_bootstrap("warning" , "The <b>e-mail</b> you entered is already taken by a verified account, <b>please pick another one.</b>", "text-align: center;");
+            echo alert_bootstrap("warning" , "The <b>e-mail</b> you entered is already taken, <b>please pick another one.</b>", "text-align: center;");
             return ;
         }
-        $attributes['mail_token'] = gen_token(128);
-        $token = $attributes['mail_token'];
-        $user_id = $attributes['username'];
+        $token = gen_token(128);
+        $attributes['mail_token'] = $token;
 
         $db->prepare("INSERT INTO `user` (`username`, `password`, `email`, `mail_token`) VALUES (:username, :password, :email, :mail_token)", $attributes);
+        $user_id = $db->lastInsertedId();
+
         $subject = "Confirm your account at Camagru";
         $message = "In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$user_id&token=$token";
+        var_dump($message);
         mail($email, $subject, $message);
         $req = $db->prepare("SELECT `id` FROM `user` WHERE `username` = :username", array('username' => $username));
         echo alert_bootstrap("success", "<b>Your account has been successfully created!</b> Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");

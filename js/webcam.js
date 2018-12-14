@@ -109,10 +109,6 @@ function getActiveFilter()
             var where = document.getElementById("img_url").parentElement;
             where.appendChild(img);
             document.getElementById('img_url').value = xhttp.responseText;//data;
-            document.getElementById('tmp_img').value = document.getElementById('photo').getAttribute('src');
-            document.getElementById('filter').value = filter;
-            document.getElementById('infos').value = infos;
-            document.getElementById('vidSize').value = vidSize;
         }, 1500);//500 seems to be a good fit < 600px width, 1350 is for fullscreen
 
     }

@@ -7,11 +7,11 @@ require ("../class/autoloader.php");
 require ("functions.php");
 autoloader::register();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['id']) && !empty($_POST['u']))
 {
     $db = database::getInstance('camagru');
-    $id = htmlspecialchars(trim($_POST['id']));
-    $u = htmlspecialchars(trim($_POST['u']));
+    $id = secure_input($_POST['id']);
+    $u = secure_input($_POST['u']);
     $req = $db->prepare("SELECT * FROM `image` WHERE `id` = :id", array("id" => $id));
     if ($req)
     {
