@@ -42,7 +42,7 @@ $form->changeSurr('div class="form-group"', 'div');
             <?php
                 if (!isset($_SESSION['logged']))
                 {
-                    echo '<li class="nav-item"><a class="nav-link" href="password">Forgot your password?</a></li>';
+                    echo '<li class="nav-item"><a class="nav-link" href="lost_password">Forgot your password?</a></li>';
                     echo '<li class="nav-item"><a class="nav-link" href="register">Sign up</a></li>';
                 }
                 else

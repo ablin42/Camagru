@@ -14,7 +14,7 @@
 <?php
 require_once("includes/header.php");
 require_once("utils/delete_picture.php");
-require_once("utils/upload_webcam.php");
+require_once("utils/post_picture.php");
 if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
     header('Location: /Camagru?e=take');
 ?>

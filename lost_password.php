@@ -12,7 +12,7 @@
 <body>
 <?php
 require_once("includes/header.php");
-require_once("utils/reset_password.php");
+require_once("utils/mail_password_token.php");
 if (isset($_SESSION['logged']) && $_SESSION['logged'] === 1)
     header('Location: /Camagru?e=pw');
 ?>

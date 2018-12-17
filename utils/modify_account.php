@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
             $req = $db->prepare("UPDATE `user` SET `email` = :newemail, `mail_token` = :mail_token, confirmed_token = NULL WHERE `id` = :user_id", $attributes);
             $subject = "Confirm your account at Camagru";
-            $message = "In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$username&token=$token";
+            $message = "In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm_account.php?id=$username&token=$token";
             mail($email, $subject, $message);
             echo alert_bootstrap("success", "<b>Congratulations !</b> You successfully changed your e-mail! Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");
             return;

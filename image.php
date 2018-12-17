@@ -15,7 +15,7 @@
 require_once("includes/header.php");
 require_once("utils/functions.php");
 use \ablin42\database;
-require_once("utils/comment.php");
+require_once("utils/post_comment.php");
 
 $db = database::getInstance('camagru');
 if (!isset($_GET['id']))
