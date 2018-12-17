@@ -25,7 +25,8 @@ try {
                                               `password_token` varchar(128) DEFAULT NULL,
                                               `mail_token` varchar(128) DEFAULT NULL,
                                               `confirmed_token` datetime DEFAULT NULL,
-                                              `mail_notify` tinyint(1) NOT NULL DEFAULT '1'
+                                              `mail_notify` tinyint(1) NOT NULL DEFAULT '1',
+                                              `infinite_scroll` tinyint(1) NOT NULL DEFAULT '1'
                                               )");
     echo "Successfully created 'USER' table" . PHP_EOL;
     } catch (PDOException $e) {

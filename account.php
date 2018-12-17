@@ -64,6 +64,12 @@ require_once("utils/modify_account.php");
         </div>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
             <form class="my-2 my-lg-0" action="" method="post" style="text-align: center;">
+                <input type="checkbox" id="scrolling" name="scrolling" value="true" <?php if (scrolling_state($db, $_SESSION['id']) === true){echo "checked";}?>><p>Uncheck this box if you want to use regular pagination</p>
+                <?= $form->submit('submit_scrolling', 'submit_scrolling', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');?>
+            </form>
+        </div>
+        <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
+            <form class="my-2 my-lg-0" action="" method="post" style="text-align: center;">
                 <input type="checkbox" id="notify" name="notify" value="true" <?php if (notif_state($db, $_SESSION['id']) === true){echo "checked";}?>><p>Notify me by mail when someone comments one of my photo</p>
                 <?= $form->submit('submit_notify', 'submit_notify', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');?>
             </form>

@@ -86,9 +86,10 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <hr>
         <div class="register-form-wrapper col-10 offset-1 p-2 mb-3 mt-4">
             <h2>upload your photo if you don't have a webcam</h2>
-            <form action="glorify" method="post" enctype="multipart/form-data">
+            <form action="glorify" method="post" enctype="multipart/form-data" class="text-center">
                 <?php
-                    echo $form->file("picture", "picture");
+                    $form->setLabel("pick a file", "lab file-lab");
+                    echo $form->file("picture", "picture", "inputfile");
                     echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in', 'Upload');
                 ?>
             </form>

@@ -59,4 +59,11 @@ class bootstrapForm extends form
                 . $this->info($this->info_text, $this->info_id, $this->info_class, $this->info_use));
     }
 
+    public function file($name, $id = "", $class = "")
+    {
+        return $this->surround($this->label(ucfirst($this->label_name), $name, $this->label_class)
+            . "<input type=\"file\" name=\"{$name}\" id=\"{$id}\" class=\"{$class}\">");
+    }
+
+
 }

@@ -1,5 +1,5 @@
 <?php
-$DB_NAME = "prout";
+$DB_NAME = "camagru";
 $DB_HOST = "localhost";
 $DB_DSN_FULL = "mysql:dbname={$DB_NAME};host={$DB_HOST}";
 $DB_DSN = "mysql:host={$DB_HOST}";

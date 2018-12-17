@@ -96,6 +96,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
     }
 
+    if (isset($_POST['submit_scrolling'])) {
+        if (isset($_POST['scrolling'])) {
+            $req = $db->prepare("UPDATE `user` SET `infinite_scroll` = 1 WHERE `id` = :id", array('id' => $_SESSION['id']));
+            echo alert_bootstrap("info", "You <b>enabled</b> infinite scrolling!", "text-align: center;");
+        } else {
+            $req = $db->prepare("UPDATE `user` SET `infinite_scroll` = 0 WHERE `id` = :id", array('id' => $_SESSION['id']));
+            echo alert_bootstrap("info", "You <b>disabled</b> infinite scrolling!", "text-align: center;");
+        }
+    }
 
     if (isset($_POST['submit_notify'])) {
         if (isset($_POST['notify'])) {

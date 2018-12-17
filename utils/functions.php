@@ -50,6 +50,18 @@ function notif_state($db, $id)
     }
 }
 
+function scrolling_state($db, $id)
+{
+    $req = $db->prepare("SELECT `infinite_scroll` FROM `user` WHERE `id` = :id", array("id" => $id));
+    foreach ($req as $item)
+    {
+        if ($item->infinite_scroll == 1)
+            return true;
+        else
+            return false;
+    }
+}
+
 function redirection_handler($error)
 {
     switch ($error)
