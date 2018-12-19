@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['lastid']))
 
     $db = database::getInstance('camagru');
     $req = $db->query("SELECT * FROM `image` WHERE `id` < {$lastid} ORDER BY `date` DESC LIMIT 0, 6");
+    $i = 0;
     if ($req)
         foreach($req as $item)
         {

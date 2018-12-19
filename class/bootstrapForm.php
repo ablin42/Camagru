@@ -65,5 +65,9 @@ class bootstrapForm extends form
             . "<input type=\"file\" name=\"{$name}\" id=\"{$id}\" class=\"{$class}\">");
     }
 
+    public function submit($name, $id = "", $class = "", $value = "OK")
+    {
+        return $this->surround("<button type=\"submit\" name=\"{$name}\" id=\"{$id}\" class=\"{$class}\">{$value}</button>");
+    }
 
 }

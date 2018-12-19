@@ -1,15 +1,11 @@
 <?php
-session_start();
 use \ablin42\database;
-use \ablin42\autoloader;
-require ("../class/autoloader.php");
 require_once("functions.php");
-autoloader::register();
 $db = database::getInstance('camagru');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['form']))
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    if ($_POST['form'] === "username" && !empty($_POST['username']))
+    if (isset($_POST['submit_account']) && !empty($_POST['username']))
     {
         $username = secure_input($_POST['username']);
         if (!check_length($username, 4, 30)) {
@@ -30,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['form']))
         }
     }
 
-    if ($_POST['form'] === "email" && !empty($_POST['email']))
+    if (isset($_POST['submit_email']) && !empty($_POST['email']))
     {
         $email = secure_input($_POST['email']);
         $pattern_email = "/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
@@ -53,13 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['form']))
             $req = $db->prepare("UPDATE `user` SET `email` = :newemail, `mail_token` = :mail_token, confirmed_token = NULL WHERE `id` = :user_id", $attributes);
             $subject = "Confirm your account at Camagru";
             $message = "In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm_account.php?id=$username&token=$token";
-            //mail($email, $subject, $message);
+            mail($email, $subject, $message);
             echo alert_bootstrap("success", "<b>Congratulations !</b> You successfully changed your e-mail! Please <b>confirm your email</b> by clicking the link we sent at your e-mail address", "text-align: center;");
             return;
         }
     }
 
-    if ($_POST['form'] === "password" && !empty($_POST['currpw']) && !empty($_POST['password']) && !empty($_POST['password2']))
+    if (isset($_POST['submit_password']) && !empty($_POST['currpw']) && !empty($_POST['password']) && !empty($_POST['password2']))
     {
         $currpassword = $_POST['currpw'];
         $password = $_POST['password'];
@@ -100,19 +96,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['form']))
         }
     }
 
-    if ($_POST['form'] === "scrolling" && isset($_POST['state']))
-    {
-        $arr['state'] = (int) secure_input($_POST['state']);
-        $arr['id'] = $_SESSION['id'];
-        if ($arr['state'] === 0 || $arr['state'] === 1)
-            $req = $db->prepare("UPDATE `user` SET `infinite_scroll` = :state WHERE `id` = :id", $arr);
+    if (isset($_POST['submit_scrolling'])) {
+        if (isset($_POST['scrolling'])) {
+            $req = $db->prepare("UPDATE `user` SET `infinite_scroll` = 1 WHERE `id` = :id", array('id' => $_SESSION['id']));
+            echo alert_bootstrap("info", "You <b>enabled</b> infinite scrolling!", "text-align: center;");
+        } else {
+            $req = $db->prepare("UPDATE `user` SET `infinite_scroll` = 0 WHERE `id` = :id", array('id' => $_SESSION['id']));
+            echo alert_bootstrap("info", "You <b>disabled</b> infinite scrolling!", "text-align: center;");
+        }
     }
 
-    if ($_POST['form'] === "notify" && isset($_POST['state']))
-    {
-        $arr['state'] = (int) secure_input($_POST['state']);
-        $arr['id'] = $_SESSION['id'];
-        if ($arr['state'] === 0 || $arr['state'] === 1)
-            $req = $db->prepare("UPDATE `user` SET `mail_notify` = :state WHERE `id` = :id", $arr);
+    if (isset($_POST['submit_notify'])) {
+        if (isset($_POST['notify'])) {
+            $req = $db->prepare("UPDATE `user` SET `mail_notify` = 1 WHERE `id` = :id", array('id' => $_SESSION['id']));
+            echo alert_bootstrap("info", "You <b>enabled</b> mail notifications!", "text-align: center;");
+        } else {
+            $req = $db->prepare("UPDATE `user` SET `mail_notify` = 0 WHERE `id` = :id", array('id' => $_SESSION['id']));
+            echo alert_bootstrap("info", "You <b>disabled</b> mail notifications!", "text-align: center;");
+        }
     }
 }

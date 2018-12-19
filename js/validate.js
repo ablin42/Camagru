@@ -1,8 +1,8 @@
 function validate() {
-    var username = document.getElementById("username");
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
-    var password2 = document.getElementById("password2");
+    var username = document.getElementById("username"),
+        email = document.getElementById("email"),
+        password = document.getElementById("password"),
+        password2 = document.getElementById("password2");
 
 
     if (username) {

@@ -110,7 +110,6 @@ function getActiveFilter()
             where.appendChild(img);
             document.getElementById('img_url').value = xhttp.responseText;//data;
         }, 1500);//500 seems to be a good fit < 600px width, 1350 is for fullscreen
-
     }
 
     startbutton.addEventListener('click', function(ev){

@@ -10,7 +10,7 @@ autoloader::register();
 $form = new bootstrapForm();
 $form->changeSurr('div class="form-group"', 'div');
 ?>
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" id="header">
 <div class="container-fluid">
     <a class="navbar-brand" href="/Camagru">Home</a>
 
