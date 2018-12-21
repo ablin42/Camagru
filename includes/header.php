@@ -14,10 +14,41 @@ $form->changeSurr('div class="form-group"', 'div');
 <div class="container-fluid">
     <a class="navbar-brand" href="/Camagru">Home</a>
 
-    <!-- PROBABLY SHRINK BUTTON
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>-->
+
+    <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="far fa-user"></i>
+        <div class="dropdown-content">
+            <ul class="nav navbar-nav navbar-right ml-auto">
+                <?php
+                if (isset($_SESSION['logged']) && isset($_SESSION['username'])) {
+                    echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"account\">{$_SESSION['username']}</a></li>";
+                    echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"glorify\">Take pictures !</a></li>";
+                }
+                ?>
+                <form class="form" action="" method="post">
+                    <?php
+                    if (!isset($_SESSION['logged']))
+                    {
+                        echo $form->label('Username', 'username_l', 'lab lab-dropdown');
+                        echo $form->input('username_l', 'username_l-sm', "form-control form-dropdown", "ablin42");
+                        echo $form->label('Password', 'password_l-sm', 'lab lab-dropdown');
+                        echo $form->password('password_l', 'password_l-sm', "form-control form-dropdown", "********");
+                        echo $form->submit('submit_l', 'submit_l-sm', 'btn btn-outline-warning', 'Log in');
+                    }
+                    ?>
+                </form>
+                <?php
+                if (!isset($_SESSION['logged']))
+                {
+                    echo '<li class="nav-item"><a class="nav-link" href="lost_password">Forgot your password?</a></li>';
+                    echo '<li class="nav-item"><a class="nav-link" href="register">Sign up</a></li>';
+                }
+                else
+                    echo '<li class="nav-item"><a class="nav-link" href="utils/logout.php">Logout</a></li>';
+                ?>
+            </ul>
+        </div>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav navbar-right ml-auto">

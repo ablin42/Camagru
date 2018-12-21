@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_
     }
 
     $image_size = getimagesize($_FILES['picture']['tmp_name']);
-    if ($image_size[0] < $image_size[1])
+    if ($image_size[0] != 0 && $image_size[1] != 0 && $image_size[0] < $image_size[1])
     {
         echo alert_bootstrap("danger", "<b>Error:</b> File dimensions aren't valid! <b>(height has to be smaller than width!)</b>", "text-align: center;");
         return ;

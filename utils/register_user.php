@@ -1,8 +1,13 @@
 <?php
+session_start();
 use \ablin42\database;
+use \ablin42\autoloader;
+require ("../class/autoloader.php");
 require_once("functions.php");
+autoloader::register();
+$db = database::getInstance('camagru');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['email']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['email']))
 {
     $username = secure_input($_POST['username']);
     $email = secure_input($_POST['email']);

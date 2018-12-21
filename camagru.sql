@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le :  lun. 17 déc. 2018 à 13:48
--- Version du serveur :  5.7.23
--- Version de PHP :  7.1.22
+-- Client :  127.0.0.1
+-- Généré le :  Ven 21 Décembre 2018 à 14:32
+-- Version du serveur :  5.7.14
+-- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -37,7 +35,7 @@ CREATE TABLE `comment` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `comment`
+-- Contenu de la table `comment`
 --
 
 INSERT INTO `comment` (`id`, `id_img`, `id_user`, `content`, `date`) VALUES
@@ -70,7 +68,14 @@ INSERT INTO `comment` (`id`, `id_img`, `id_user`, `content`, `date`) VALUES
 (28, 71, 43, 'gdfgdfg', '2018-12-10 22:16:19'),
 (29, 81, 58, 'deathbringer commenting', '2018-12-11 21:41:34'),
 (30, 81, 58, 'safasf', '2018-12-11 21:41:57'),
-(31, 87, 43, 'ksavjxvd', '2018-12-14 19:03:42');
+(101, 126, 59, 'it works', '2018-12-20 01:51:31'),
+(88, 126, 59, 'xD', '2018-12-20 01:42:04'),
+(89, 126, 59, 'oof', '2018-12-20 01:42:14'),
+(106, 122, 43, 'wow', '2018-12-21 14:03:41'),
+(105, 122, 43, 'wow', '2018-12-21 14:02:48'),
+(104, 122, 43, 'wtf', '2018-12-20 23:09:31'),
+(103, 122, 43, 'xD', '2018-12-20 23:09:24'),
+(102, 126, 59, 'ok', '2018-12-20 01:51:57');
 
 -- --------------------------------------------------------
 
@@ -88,7 +93,7 @@ CREATE TABLE `image` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `image`
+-- Contenu de la table `image`
 --
 
 INSERT INTO `image` (`id`, `id_user`, `path`, `name`, `date`, `nb_like`) VALUES
@@ -99,13 +104,10 @@ INSERT INTO `image` (`id`, `id_user`, `path`, `name`, `date`, `nb_like`) VALUES
 (26, 43, '/Camagru/images/21.png', 'wtf le drop tutu!!!!!!!!', '2018-11-29 21:39:29', 0),
 (28, 43, '/Camagru/images/28.png', '1 po btw', '2018-11-29 21:48:52', 1),
 (33, 43, '/Camagru/images/29.png', 'putain d\'ougah', '2018-11-30 19:55:23', 0),
-(35, 43, '/Camagru/images/34.png', 'gein', '2018-11-30 20:26:14', 0),
-(36, 43, '/Camagru/images/36.png', 'ben ', '2018-11-30 20:26:25', 0),
 (37, 43, '/Camagru/images/37.png', 'rdv', '2018-11-30 20:26:36', 1),
 (38, 43, '/Camagru/images/38.png', 'ch', '2018-11-30 20:26:43', 0),
 (39, 43, '/Camagru/images/39.png', 'ouga', '2018-11-30 20:26:52', 2),
 (63, 43, '/Camagru/images/40.png', 'this will work fo sure', '2018-12-06 17:29:29', 0),
-(64, 43, '/Camagru/images/64.png', 'it works', '2018-12-06 17:30:36', 0),
 (65, 43, '/Camagru/images/65.png', 'aergaergaerg', '2018-12-06 17:37:17', 0),
 (68, 43, '/Camagru/images/66.png', 'lots of filters at random positions', '2018-12-06 20:43:23', 0),
 (70, 43, '/Camagru/images/69.png', 'now that is autism', '2018-12-06 21:34:18', 0),
@@ -114,13 +116,13 @@ INSERT INTO `image` (`id`, `id_user`, `path`, `name`, `date`, `nb_like`) VALUES
 (110, 58, '/Camagru/images/94.png', 'moon is now glorious', '2018-12-12 23:19:02', 0),
 (93, 58, '/Camagru/images/88.png', 'nobigdeal', '2018-12-12 21:33:54', 1),
 (87, 58, '/Camagru/images/82.png', 'added a solomonk from uploading!', '2018-12-11 23:39:58', 2),
-(123, 43, '/Camagru/images/123.png', '/zxvl', '2018-12-14 19:06:14', 0),
+(133, 43, '/Camagru/images/80.png', 'dqsdqsd', '2018-12-01 00:00:00', 0),
 (80, 43, '/Camagru/images/80.png', 'fullscreen works', '2018-12-11 20:34:05', 3),
 (81, 58, '/Camagru/images/81.png', 'deathbringerposting', '2018-12-11 21:41:25', 1),
 (122, 43, '/Camagru/images/111.png', 'xacacsas', '2018-12-14 19:05:06', 1),
 (124, 51, '/Camagru/images/124.png', 'hophop', '2017-12-14 19:08:19', 0),
 (125, 51, '/Camagru/images/125.png', 'avava', '2017-12-14 19:08:42', 0),
-(126, 51, '/Camagru/images/126.png', 'tout est beau', '2017-12-14 19:09:19', 0);
+(126, 51, '/Camagru/images/126.png', 'tout est beau', '2017-12-14 19:09:19', 1);
 
 -- --------------------------------------------------------
 
@@ -141,7 +143,7 @@ CREATE TABLE `user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `user`
+-- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `password_token`, `mail_token`, `confirmed_token`, `mail_notify`, `infinite_scroll`) VALUES
@@ -150,12 +152,13 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `password_token`, `ma
 (40, 'AUTISMO', 'ac4152b523ec07d4e8c911e1465e1a7630db2c95420d661a8c813eced9d3a81319e18b877cf1580f4267748b3198753ac25e3b2b1d670bd4f3ed69e37a4a28ef', '7cfc0fcb3a7a251c97838723b8dd0d87cf9dfdf67c9046686c3a490d14f3ffec4988ea6a0f36a339251f363b15e4a3f8191f6c725f08fd0a820ddc6b871b5449', NULL, 'lq5ls7iir025mi2f9dp9kcb066ihoywylr81osjisjd3plh52zjwocnb2e642u3t8zvcqkzd7ca2y9oj4b3fwyzobsaeviqxcpvd4fpfr2zyswi9btvgcom90z00mg78', NULL, 1, 1),
 (41, 'ablin43qsdqsd', 'ac4152b523ec07d4e8c911e1465e1a7630db2c95420d661a8c813eced9d3a81319e18b877cf1580f4267748b3198753ac25e3b2b1d670bd4f3ed69e37a4a28ef', '6efaad539576fba0490bab18a246d8bc27c7c269d73f19ea3ccea836e586845dd6b395f950432efb07fa00f30ce048152087da098d9c84c68b144d25c2273eea', NULL, 'fno5hcg8ckvy1o7gra5c1d4bwqzq57bzci2jumz494sfoohl4bzqb56q4hff8amrj33ls39nqsvt88vyjwdhjbi3dkgn7oc7l3319i0nxmf4dkd5wl8omi3m1tdh97fe', NULL, 1, 1),
 (42, 'ablinazeazeazdzad', 'ac4152b523ec07d4e8c911e1465e1a7630db2c95420d661a8c813eced9d3a81319e18b877cf1580f4267748b3198753ac25e3b2b1d670bd4f3ed69e37a4a28ef', 'e07d5373152e87cf13da3067e49a42b5a34aa54b22d4c7d13eef9fbb51d0c2eb0e9150b1e7a00a834922b8cb6e19baab342810438ca099dabf3cb8ec1e8eefc0', NULL, 'j0372hamjes1448xghwbycsndulfh2twkhwvq4yq8cb1z0fonnknddm92zzte9yt7vrtm2rh9va71ypydn0edq1qnwm774v829yfbebioy6wmaueze3fvorjjilyjuy9', NULL, 1, 1),
-(43, 'Fiendish', '72135fa8697eae1c9002bad98bc07d44abc9180794dfa54ed68a1a23d750e505426b9ed67510e16f778e3cecf74770692498d6b7d964856f041b7cc7c1c96a9d', 'ablin42@byom.de', '0dvmzgxwp568y6n0389ies4hld135lu7zacbouj71gj8cvmfy1vqi265241dlh5h6gtykowwpoyj3ceftbz014rw68et91xhjomu0fj6hlasgnweubqdq39zvnd09lrv', 'NULL', '2018-12-10 22:15:31', 1, 1),
+(43, 'Fiendish', '72135fa8697eae1c9002bad98bc07d44abc9180794dfa54ed68a1a23d750e505426b9ed67510e16f778e3cecf74770692498d6b7d964856f041b7cc7c1c96a9d', 'ablin42@byom.de', '0dvmzgxwp568y6n0389ies4hld135lu7zacbouj71gj8cvmfy1vqi265241dlh5h6gtykowwpoyj3ceftbz014rw68et91xhjomu0fj6hlasgnweubqdq39zvnd09lrv', NULL, '2018-12-19 16:00:00', 1, 1),
 (51, 'Christelle', 'cdc55bd87683ed17ee3df6858b216bea11fc10777ce3862481db15bf87baf282f1103edbc007bd729d4b4ff9b207b735476f507e364501cd7ce4eb4eeebbe2d7', 'christelle42@byom.de', NULL, 'NULL', '2018-12-05 19:48:57', 1, 1),
 (58, 'deathbringer', '410c6628072476812f42e4414553bae859ab984667f5250883143ff5380bf8a14552bef191998368eeef1b35e1bb52f05d47301a65c0f620def1d2dd7b6c4de7', 'deathbringer@byom.de', NULL, 'NULL', '2018-12-11 21:40:48', 0, 1),
-(59, 'xaxaxax', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'ablin45@byom.de', NULL, 'NULL', '2018-12-13 00:38:08', 1, 1),
+(59, 'THEFORMTESTER', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'ablin45@byom.de', 'pajmetg6jy6dryoi6duddycwmcqgcv9m3p5l0r5pn1i9cclv4hnda2xqkb9gwvai2n0dxf4h5ouqodx7swfk3c5w5oqt7fiv3hptlmleatnx736arnh50gibxe0jyjie', '8h3pj0xrcvbbq8zlbfjgaj79bytwfaw3d27yupi2n8ufzh2gqfmfufto86gjnsupv4g4rhc7n2pm2m6w112wh7ccqc4xa3sp704fev9i40nf91qapj2slt5rori3ol7f', NULL, 1, 1),
 (60, 'sxsacasc', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'ablin99@byom.de', NULL, '0yydyzdz9g446riu3lm6eg1eyq15zj4lkjlouvmb1rl0rskmerdfpdccug3nfn36nefmf9n4bj9nzrmijwmtybezsmvezz4wekuj3kl5216j20n2jwwcvkuf2mm6aybz', NULL, 1, 1),
-(61, 'antoine', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'antoine@byom.de', NULL, 'j7mn8xnmrnw66jpuodcqpiue3ot18gtuic8fd20z1419l2mdc1fhe6shsste6vl5gv7mz1am08ndxoy91rubjexzi5xudq47013cyiczm55r5im55uj0u2d9xmlxl1qb', NULL, 1, 1);
+(61, 'antoine', '3edfab258eb57293708f1c4b8a89456fd10a3b4f2bcf2df42bbbde790869ccc904a495b94c081fbc62192d2cd1aa812aea2d521fd4977558962affe786924c3f', 'antoine@byom.de', NULL, 'j7mn8xnmrnw66jpuodcqpiue3ot18gtuic8fd20z1419l2mdc1fhe6shsste6vl5gv7mz1am08ndxoy91rubjexzi5xudq47013cyiczm55r5im55uj0u2d9xmlxl1qb', NULL, 1, 1),
+(62, 'zadzadad', 'b4b69e22d686cf423559a72b8fc00477c3ee5e58b435c796df4f769f93efb866130609a3b3ee20c3bec2b76b5d2f91682d970611f7982a7082c2bbf55867497b', 'ablin442@byom.de', NULL, 'e150ni4886uooesolhc58uh8wibpo9k205znnh5xcqnbh56jj2csev5uieefc29klnxme4xotbqrgyogsgyvmtlxkl14q9b9opak9wydsnupvf06shx2k0z605femjyi', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -170,7 +173,7 @@ CREATE TABLE `vote` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `vote`
+-- Contenu de la table `vote`
 --
 
 INSERT INTO `vote` (`id`, `id_img`, `id_user`) VALUES
@@ -198,10 +201,11 @@ INSERT INTO `vote` (`id`, `id_img`, `id_user`) VALUES
 (136, 93, 58),
 (138, 87, 58),
 (139, 87, 43),
-(142, 122, 43);
+(145, 122, 43),
+(143, 126, 59);
 
 --
--- Index pour les tables déchargées
+-- Index pour les tables exportées
 --
 
 --
@@ -231,34 +235,29 @@ ALTER TABLE `vote`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 --
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT pour la table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
-COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

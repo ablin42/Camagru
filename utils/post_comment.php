@@ -1,8 +1,13 @@
 <?php
+session_start();
 use \ablin42\database;
+use \ablin42\autoloader;
+require ("../class/autoloader.php");
 require_once("functions.php");
+autoloader::register();
+$db = database::getInstance('camagru');
 
-if (isset($_POST['submit']) && !empty($_POST['comment']) && !empty($_POST['id_img']))
+if (!empty($_POST['comment']) && !empty($_POST['id_img']))
 {
         if (!check_length($_POST['comment'], 1, 255))
         {
@@ -25,6 +30,6 @@ if (isset($_POST['submit']) && !empty($_POST['comment']) && !empty($_POST['id_im
             echo alert_bootstrap("danger", "<b>User</b> does not exist!", "text-align: center;");
         $req = $db->prepare("INSERT INTO `comment` (`id_img`, `id_user`, `content`, `date`) VALUES (:id_img, :id_user, :content, NOW())", $attributesc);
         mail_on_comment($db, $_POST['id_img']);
-        echo alert_bootstrap("success", "Your comment has been posted!", "text-align: center;");
+        echo alert_bootstrap("success", "Your <b>comment</b> has been <b>posted</b>!", "text-align: center;");
         header ('Refresh: 3;');
 }

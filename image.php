@@ -15,7 +15,7 @@
 require_once("includes/header.php");
 require_once("utils/functions.php");
 use \ablin42\database;
-require_once("utils/post_comment.php");
+//require_once("utils/post_comment.php");
 
 $db = database::getInstance('camagru');
 if (!isset($_GET['id']))
@@ -71,7 +71,7 @@ if (!$req)
         <h1>comment section</h1>
         <div class="col-6 offset-3">
             <?php
-                if (isset($_SESSION['logged']) && isset($_SESSION['username']))
+              /*  if (isset($_SESSION['logged']) && isset($_SESSION['username']))
                 {
                     echo "<form class=\"my-2 my-lg-0\" action=\"image?id={$_GET['id']}\" method=\"post\">";
                     echo $form->textarea('comment', 'comment', "form-control", "3", "50", "Your comment here... Be nice...", 255);
@@ -80,10 +80,22 @@ if (!$req)
                     echo "</form>";
                 }
                 else
+                    echo "<h6>You must be logged in to comment under pictures.</h6>";*/
+                if (isset($_SESSION['logged']) && isset($_SESSION['username']))
+                {
+                    echo "<form onsubmit=\"return submitForm(this, 'post_comment');\" name=\"comment\" class=\"my-2 my-lg-0\" method=\"post\">";
+                    echo $form->textarea('comment', 'comment', "form-control", "3", "50", "Your comment here... Be nice...", 255);
+                    echo $form->hidden('id_img', $attributes['id'], 'id_img');
+                    echo $form->submit('submit_comment', 'submit_comment', 'btn btn-outline-warning btn-sign-in', 'Send');
+                    echo "</form>";
+                }
+                else
                     echo "<h6>You must be logged in to comment under pictures.</h6>";
             ?>
+            <div id="loader"><img src="style/loader.gif" alt="loader" width="50px" height="50" /></div>
         </div>
-        <div class="col-6 offset-3">
+        <div class="col-6 offset-3" id="comments">
+
             <?php require_once("utils/fetch_comments.php");?>
         </div>
     </div>
@@ -118,5 +130,6 @@ if (!$req)
         nb_like.innerText = parseInt(nb_like.innerText) + vote;
     }
 </script>
+<script src="js/ajaxify.js"></script>
 </body>
 </html>

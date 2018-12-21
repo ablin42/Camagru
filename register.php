@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/bootstrap.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </head>
 
@@ -13,8 +14,7 @@
 <?php
 require_once("includes/header.php");
 if (isset($_SESSION['logged']) && $_SESSION['logged'] === 1)
-    header('Location: /Camagru?e=reg');
-require_once("utils/register_user.php");
+    header('Location: /Camagru/?e=reg');
 ?>
 
 <div class="container mt-5 small-page-wrapper">
@@ -22,7 +22,7 @@ require_once("utils/register_user.php");
         <h1>create an account</h1>
         <h5>a confirmation e-mail will be sent to you</h5>
         <div class="container col-8 p-2 mt-3 mb-3">
-            <form name="register" onkeyup="validate();" class="register-form col-10 offset-1 my-2 my-lg-0" action="register.php" method="post">
+            <form onsubmit="return submitForm(this, 'register_user');" name="register" onkeyup="validate();" class="register-form col-10 offset-1 my-2 my-lg-0" action="register.php" method="post">
                 <?php
                 $form->setLabel('Username', 'lab');
                 $form->setInfo('Username must contain between 4 and 30 characters', "i_username", "form-info", "y");
@@ -36,7 +36,7 @@ require_once("utils/register_user.php");
                 $form->setLabel('Confirm your password', 'lab');
                 $form->setInfo('Password has to be the same as the one you just entered', "i_password2","form-info", "y");
                 echo $form->password('password2', 'password2', "form-control", "********", 30);
-                echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in', 'Sign up');
+                echo $form->submit('submit_register', 'submit_register', 'btn btn-outline-warning btn-sign-in', 'Sign up');
                 ?>
             </form>
         </div>
@@ -48,6 +48,7 @@ require_once("utils/register_user.php");
 </div>
 <?php require_once("includes/footer.php");?>
 <script src="js/validate.js"></script>
+<script src="js/ajaxify.js"></script>
 <script src="js/alert.js"></script>
 </body>
 </html>

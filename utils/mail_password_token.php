@@ -1,8 +1,13 @@
 <?php
+session_start();
 use \ablin42\database;
+use \ablin42\autoloader;
+require ("../class/autoloader.php");
 require_once("functions.php");
+autoloader::register();
+$db = database::getInstance('camagru');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_POST['email']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['email']))
 {
     $email = secure_input($_POST['email']);
     $pattern_email = "/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
@@ -23,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_
             $user_id = $item->id;
         if ($user_id === null)
         {
-            echo alert_bootstrap("danger", "<b>Error:</b> Something went wrong, please try again.", "text-align:center;");
+            echo alert_bootstrap("danger", "<b>Error:</b> There is no active account linked to this e-mail!", "text-align:center;");
             return;
         }
         $attributes2['password_token'] = gen_token(128);
@@ -35,5 +40,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_
         echo alert_bootstrap("info", "An <b>e-mail</b> was sent to your adress, please follow the instructions we sent you.", "text-align:center;");
     }
     else
-        echo alert_bootstrap("danger", "<b>Error:</b> Something went wrong, please try again.", "text-align:center;");
+        echo alert_bootstrap("danger", "<b>Error:</b> There is no active account linked to this e-mail!", "text-align:center;");
 }

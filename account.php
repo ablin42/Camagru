@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/bootstrap.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </head>
 
@@ -13,7 +14,7 @@
 <?php
 require_once("includes/header.php");
 if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
-    header('Location: /Camagru?e=acc');
+    header('Location: /Camagru/?e=acc');
 use \ablin42\database;
 $db = database::getInstance('camagru');
 
@@ -24,35 +25,35 @@ $db = database::getInstance('camagru');
         <h1>account settings</h1>
         <div class="gallery-wrapper">
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form onsubmit="return submitForm(this);" name="username" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
+            <form onsubmit="return submitForm(this, 'modify_account');" name="username" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
                 <?php
                     $form->changeSurr('div class="form-group d-inline-block col-8 pl-0"', 'div');
                     $form->setLabel('Username', 'lab');
                     echo $form->input('username', 'username', "form-control forms", "{$_SESSION['username']}", "30");
-                    $form->changeSurr('div class="form-group d-inline-block col-4"', 'div');
+                    $form->changeSurr('div class="form-group d-inline-block col-4 pl-0"', 'div');
                     echo $form->submit('submit_username', 'submit_username', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');
                     echo '<span id="i_username" class="form-info">Username must contain between 4 and 30 characters</span>';
                 ?>
             </form>
         </div>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form onsubmit="return submitForm(this);" name="email" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
+            <form onsubmit="return submitForm(this, 'modify_account');" name="email" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
                 <?php
                     $form->changeSurr('div class="form-group d-inline-block col-8 pl-0"', 'div');
                     $form->setLabel('E-mail', 'lab');
                     echo $form->email('email', 'email', "form-control forms", "E-mail");
-                    $form->changeSurr('div class="form-group d-inline-block col-4"', 'div');
+                    $form->changeSurr('div class="form-group d-inline-block col-4 pl-0"', 'div');
                     echo $form->submit('submit_email', 'submit_email', 'btn btn-outline-warning btn-sign-in mb-1', 'Save');
                     echo '<span id="i_email" class="form-info">E-mail has to be valid</span>';
                 ?>
             </form>
         </div>
         <div class="register-form-wrapper container col-6 p-3 mt-3 mb-3">
-            <form onsubmit="return submitForm(this);" name="password" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
+            <form onsubmit="return submitForm(this, 'modify_account');" name="password" onkeyup="validate();" class="my-2 my-lg-0" action="" method="post">
                 <?php
                     $form->changeSurr('div class="form-group"', 'div');
                     $form->setLabel('Current password', 'lab');
-                    echo $form->password('currpw', 'currpw', "form-control forms", "Current password");
+                    echo $form->password('currpw', 'currpw', "form-control forms currpw", "Current password");
                     $form->setLabel('New password', 'lab');
                     $form->setInfo('Password must contain between 8 and 30 characters and has to be atleast alphanumeric',"i_password", "form-info", "y");
                     echo $form->password('password', 'password', "form-control forms", "New password");

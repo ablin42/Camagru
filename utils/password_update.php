@@ -28,8 +28,8 @@ if (isset($_GET['id']) && isset($_GET['token']))
                         echo alert_bootstrap("success", "<b>Congratulations!</b> Your password has been changed! Please, log in.", "text-align: center;");
                         header('Refresh: 3; /Camagru/');
                     } else {
-                        echo alert_bootstrap("danger", "<b>Invalid token!</b> Please, try again.", "text-align: center");
-                        header('Refresh: 3; /Camagru/password');
+                        echo alert_bootstrap("danger", "<b>Invalid token!</b> Please, click the link we sent at your <b>e-mail</b>.", "text-align: center");
+                        header('Refresh: 3; /Camagru/reset');
                     }
                 }
             }
