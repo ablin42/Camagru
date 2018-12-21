@@ -18,7 +18,7 @@ function getActiveFilter()
         let filterInfo = {
             "id" : i,
             "left" : left,
-            "top" : top,//add width, height of filter  vidInfo =  video.getBoundingClientRect();
+            "top" : top,
             "width" : width,
             "height" : height
         };
