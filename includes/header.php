@@ -4,12 +4,13 @@ use \ablin42\bootstrapForm;
 use \ablin42\autoloader;
 use \ablin42\database;
 
-require ("class/autoloader.php");
-require ("utils/functions.php");
+require_once ("class/autoloader.php");
+require_once ("utils/functions.php");
 autoloader::register();
 $form = new bootstrapForm();
 $form->changeSurr('div class="form-group"', 'div');
 ?>
+<script src="js/ajaxify.js"></script>
 <nav class="navbar navbar-expand-lg" id="header">
 <div class="container-fluid">
     <a class="navbar-brand" href="/Camagru">Home</a>
@@ -25,22 +26,22 @@ $form->changeSurr('div class="form-group"', 'div');
                     echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"glorify\">Take pictures !</a></li>";
                 }
                 ?>
-                <form class="form" action="" method="post">
+                <form name="login_dropdown" class="form" action="" method="post">
                     <?php
                     if (!isset($_SESSION['logged']))
                     {
-                        echo $form->label('Username', 'username_l', 'lab lab-dropdown');
+                        $form->setLabel('Username', 'lab');
                         echo $form->input('username_l', 'username_l-sm', "form-control form-dropdown", "ablin42");
-                        echo $form->label('Password', 'password_l-sm', 'lab lab-dropdown');
+                        $form->setLabel('Password', 'lab');
                         echo $form->password('password_l', 'password_l-sm', "form-control form-dropdown", "********");
-                        echo $form->submit('submit_l', 'submit_l-sm', 'btn btn-outline-warning', 'Log in');
+                        echo $form->submit('submit_login', 'submit_login-sm', 'btn btn-outline-warning', 'Log in');
                     }
                     ?>
                 </form>
                 <?php
                 if (!isset($_SESSION['logged']))
                 {
-                    echo '<li class="nav-item"><a class="nav-link" href="lost_password">Forgot your password?</a></li>';
+                    echo '<li class="nav-item"><a class="nav-link" href="lostpassword">Forgot your password?</a></li>';
                     echo '<li class="nav-item"><a class="nav-link" href="register">Sign up</a></li>';
                 }
                 else
@@ -58,22 +59,22 @@ $form->changeSurr('div class="form-group"', 'div');
                     echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"glorify\">Take pictures !</a></li>";
                 }
             ?>
-            <form class="form-inline my-2 my-lg-0" action="" method="post">
+            <form onsubmit="return submitForm(this, 'login');" name="login" class="form-inline my-2 my-lg-0" action="" method="post">
                 <?php
                     if (!isset($_SESSION['logged']))
                     {
-                        echo $form->label('Username', 'username_l', 'lab mr-2 ml-2');
+                        $form->setLabel('Username', 'lab mr-2 ml-2');
                         echo $form->input('username_l', 'username_l', "form-control", "ablin42");
-                        echo $form->label('Password', 'password_l', 'lab mr-2 ml-2');
+                        $form->setLabel('Password', 'lab mr-2 ml-2');
                         echo $form->password('password_l', 'password_l', "form-control", "********");
-                        echo $form->submit('submit_l', 'submit_l', 'btn btn-outline-warning my-2 my-sm-0 ml-2', 'Log in');
+                        echo $form->submit('submit_login', 'submit_login', 'btn btn-outline-warning my-2 my-sm-0 ml-2', 'Log in');
                     }
                 ?>
             </form>
             <?php
                 if (!isset($_SESSION['logged']))
                 {
-                    echo '<li class="nav-item"><a class="nav-link" href="lost_password">Forgot your password?</a></li>';
+                    echo '<li class="nav-item"><a class="nav-link" href="lostpassword">Forgot your password?</a></li>';
                     echo '<li class="nav-item"><a class="nav-link" href="register">Sign up</a></li>';
                 }
                 else
@@ -83,42 +84,3 @@ $form->changeSurr('div class="form-group"', 'div');
     </div>
 </div>
 </nav>
-<?php
-if (isset($_POST['submit_l']) && !empty($_POST['username_l']) && !empty($_POST['password_l']))
-{
-    $db = database::getInstance('camagru');
-
-    $attributes_h['username'] =  htmlspecialchars(trim($_POST['username_l']));
-    $pwd = hash('whirlpool', $_POST['password_l']);
-    $req = $db->prepare("SELECT * FROM `user` WHERE `username` = :username", $attributes_h);
-    if ($req)
-    {
-        foreach ($req as $elem)
-        {
-            if ($elem->confirmed_token !== NULL)
-            {
-                if ($elem->password === $pwd)
-                {
-                    $_SESSION['username'] = $elem->username;
-                    $_SESSION['logged'] = 1;
-                    $_SESSION['id'] = $elem->id;
-                    echo alert_bootstrap("success", "You've been <b>logged in!</b>", "text-align: center;");
-                    header('Refresh: 1;');
-                }
-                else
-                    echo alert_bootstrap("warning", "Incorrect password!", "text-align: center;");
-            }
-            else
-            {
-                $subject = "Confirm your account at Camagru";
-                $message = "In order to confirm your account, please click this link: \n\nhttp://localhost:8080/Camagru/utils/confirm.php?id=$elem->username&token=$elem->mail_token";
-                mail($elem->email, $subject, $message);
-                echo alert_bootstrap("info", "You did not <b>confirm your account</b> yet, we just sent you another <b>e-mail</b> to confirm your account.", "text-align: center;");
-            }
-
-        }
-    }
-    else
-        echo alert_bootstrap("warning", "This user does not exist!", "text-align: center;");
-}
-?>

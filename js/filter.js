@@ -7,7 +7,6 @@ function applyPreview(filter, id_nb)
     img.setAttribute('class', "applied-filter");
     img.setAttribute('id', id);
     img.setAttribute('alt', filter);
-    //img.setAttribute('ondrag', 'drag(this)');
     img.setAttribute('draggable', 'true');
     img.setAttribute('ondragstart', `drag(event, "${id}")`);
     img.setAttribute('ondblclick', "removeFilter(this)");

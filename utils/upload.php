@@ -1,6 +1,6 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && !empty($_FILES['picture']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_upload']) && !empty($_FILES['picture']))
 {
     $max_file_size = 2000000;
     $id = $_SESSION['id'];

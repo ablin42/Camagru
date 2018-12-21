@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['img_url']) && !empty(
     $i = 0;
     foreach ($filters as $filter) {
         $info = get_filter_position($filters_name[$i]);
-        imagecopy($img_resized, $filter, $decodedInfos[$i]->left, $decodedInfos[$i]->top, 0, 0, $decodedInfos[$i]->width, $decodedInfos[$i]->height);
+        imagecopy($img_resized, $filter, $decodedInfos[$i]->left, $decodedInfos[$i]->top, 0, 0, $decodedInfos[$i]->width, ceil($decodedInfos[$i]->height));
         imagedestroy($filter);
         $i++;
     }

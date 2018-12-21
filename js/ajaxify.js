@@ -8,7 +8,7 @@ function cooldown(input)
     setTimeout(function ()
     {
         input.disabled = false;
-    }, 1000);
+    }, 1500);
 }
 
 function loadComments(idImg)
@@ -19,11 +19,11 @@ function loadComments(idImg)
         loader = document.getElementById("loader"),
         div = document.createElement('div');
 
-    loader.setAttribute("style", "display:block; position: relative; top:0; left: 43.5%; padding: 0;");
+    loader.setAttribute("style", "display:block;");
     if (lastId.length !== 0)
         lastId = lastId[0].getAttribute("id");
     else
-        lastId = 0;
+        lastId = 1;
 
     xhttp.open("POST", "utils/load_comments.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -38,7 +38,7 @@ function loadComments(idImg)
         }
         else
             loader.removeAttribute("style");
-    }, 1000);
+    }, 1500);
 }
 
 function submitCheckbox(checkbox)
@@ -49,7 +49,7 @@ function submitCheckbox(checkbox)
         checked = 0,
         state = "disabled",
         msg = " mail notifications!",
-        alert = document.getElementById("alert"),
+        alertDiv = document.getElementById("alert"),
         where = document.getElementById("header");
 
     if (checkbox.checked) {
@@ -62,9 +62,9 @@ function submitCheckbox(checkbox)
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`form=${target}&state=${checked}`);
     var div = document.createElement('div');
-    div.setAttribute("style", "position:fixed; top:0;z-index:10;width:100%;");
-    if (alert)
-        alert.remove();
+    div.setAttribute("style", "position:fixed; top:5%;z-index:10;width:100%;");
+    if (alertDiv)
+        alertDiv.remove();
 
     div.innerHTML +=    `  <div id=\"alert\" class=\"alert alert-info\" style=\"text-align: center;\" role=\"alert\">You <b>${state}</b> ${msg}\n ` +
                         "     <button type=\"button\" class=\"close\" onclick=\"dismissAlert(this)\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
@@ -85,13 +85,14 @@ function submitForm(form, url)
         inputId = [],
         inputElem = [],
         inputValue = [],
-        alert = document.getElementById("alert"),
+        alertDiv = document.getElementById("alert"),
         where = document.getElementById("header"),
         div = document.createElement('div');
 
     cooldown(document.getElementById(`submit_${formTarget}`));
     for (i = 0; i < childNb; i++) {
-        if (children[i].getElementsByTagName('input').length !== 0 || children[i].getElementsByTagName('textarea').length !== 0) {
+        if (children[i].getElementsByTagName('input').length !== 0 || children[i].getElementsByTagName('textarea').length !== 0)
+        {
             if (children[i].getElementsByTagName('textarea').length !== 0)
                 inputs.push(children[i].getElementsByTagName('textarea'));
             else
@@ -109,15 +110,19 @@ function submitForm(form, url)
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(tosend);
 
-    div.setAttribute("style", "position:fixed; top:0;z-index:10;width:100%;");
+    div.setAttribute("style", "position:fixed; top:5%;z-index:10;width:100%;");
     setTimeout(function (){
-        if (alert)
-            alert.remove();
+        if (alertDiv)
+            alertDiv.remove();
         div.innerHTML += xhttp.responseText;
         insertAfter(div, where);
         if (url === "post_comment")
             loadComments(inputValue[1]);
-    }, 1000);
+        if (xhttp.responseText.search("logged in") !== -1) {
+            setTimeout(function (){window.location.href = "/Camagru/";}, 500);}
+        if (xhttp.responseText.search("Please, log in") !== -1) {
+            setTimeout(function (){window.location.href = "/Camagru/";}, 2000);}
+    }, 1500);
 
     //console.log(inputs); console.log(inputId); console.log(inputElem); console.log(inputValue); console.log(tosend);
     return false;
@@ -126,7 +131,7 @@ function submitForm(form, url)
 function deleteImg(id)
 {
     var xhttp = new XMLHttpRequest(),
-        alert = document.getElementById("alert"),
+        alertDiv = document.getElementById("alert"),
         where = document.getElementById("header"),
         div = document.createElement('div'),
         img = document.getElementById(`img_${id}`);
@@ -135,14 +140,14 @@ function deleteImg(id)
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id=${id}`);
 
-    div.setAttribute("style", "position:fixed; top:0;z-index:10;width:100%;");
+    div.setAttribute("style", "position:fixed; top:5%;z-index:10;width:100%;");
     setTimeout(function (){
         if (img && xhttp.responseText.search("success") !== -1)
             img.remove();
-        if (alert)
-            alert.remove();
+        if (alertDiv)
+            alertDiv.remove();
         div.innerHTML += xhttp.responseText;
         insertAfter(div, where);
-    }, 1000);
+    }, 1500);
    return false;
 }

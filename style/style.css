@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6
     color: #DDDDDD !important;
     font-family: 'Titillium Web', sans-serif;
     font-weight: 500;
+    word-break: break-word;
 }
 
 h1
@@ -464,12 +465,6 @@ input[type='file'] {color: transparent;}
     background-color: #1e2125;
     position: relative;
     display: inline-block;
-}
-
-.lab-dropdown
-{
-    margin: 0;
-    padding: 0;
 }
 
 .form-dropdown

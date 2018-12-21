@@ -12,13 +12,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id_img']) && !empty($
 
     $db = database::getInstance('camagru');
     $req = $db->prepare("SELECT comment.id AS id_com, content, username FROM `comment` LEFT JOIN `user` ON comment.id_user = user.id WHERE comment.id_img = :id_img AND comment.id > :lastid ORDER BY `date` DESC LIMIT 10", $arr);
-    foreach($req as $item)
-    {
-        echo "<div class='comment' id=\"{$item->id_com}\">";
-        echo "<b class='com-username'>{$item->username}</b>";
-        echo "<p class='com-content'>{$item->content}</p>";
-        echo "</div>";
-    }
+    if ($req)
+        foreach($req as $item)
+        {
+            echo "<div class='comment' id=\"{$item->id_com}\">";
+            echo "<b class='com-username'>{$item->username}</b>";
+            echo "<p class='com-content'>{$item->content}</p>";
+            echo "</div>";
+        }
 }
 else
     return ;

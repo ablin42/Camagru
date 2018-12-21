@@ -5,18 +5,17 @@ function getActiveFilter()
     var filter = [];
     for (i = 1; i <= nbFilter; i++)
     {
-        let elem = document.getElementById(`filter_${i}`);
-        let left = elem.style.left;
-        let top = elem.style.top;
-        elemInfo = elem.getBoundingClientRect();
-        let width = elemInfo.width;
-        let height = elemInfo.height;
+        let elem = document.getElementById(`filter_${i}`),
+            left = elem.style.left,
+            top = elem.style.top,
+            elemInfo = elem.getBoundingClientRect(),
+            width = elemInfo.width,
+            height = elemInfo.height;
         if (left === "")
             left = 0;
         if (top === "")
             top = 0;
         let filterInfo = {
-
             "id" : i,
             "left" : left,
             "top" : top,//add width, height of filter  vidInfo =  video.getBoundingClientRect();
@@ -26,7 +25,6 @@ function getActiveFilter()
         FILTERS_INFO.push(filterInfo);
         filter.push(elem.getAttribute('alt'));
     }
-    console.log(FILTERS_INFO);
     return (filter);
 }
 
@@ -41,37 +39,54 @@ function getActiveFilter()
         height = 0,
         vidInfo =  video.getBoundingClientRect();
 
-        if (video.getAttribute('src') === null) {
+        if (video.getAttribute('src') === null)
+        {
             width = vidInfo.width;
 
             navigator.getMedia = (navigator.getUserMedia ||
-                navigator.webkitGetUserMedia ||
-                navigator.mozGetUserMedia ||
-                navigator.msGetUserMedia);
+                                navigator.webkitGetUserMedia ||
+                                navigator.mediaDevices.getUserMedia||
+                                navigator.msGetUserMedia);
 
-        navigator.getMedia(
-        {
-            video: true,
-            audio: false
-        },
-        function(stream) {
-            if (navigator.mozGetUserMedia) {
-                video.mozSrcObject = stream;
-            } else {
-                video.srcObject = stream;
-            }
-            video.play();
-        },
-        function(err) {
-            console.log("An error occured! " + err);
-        }
-    )};
+                if (navigator.mediaDevices.getUserMedia)
+                {
+                    navigator.mediaDevices.getUserMedia(
+                        {
+                            video: true,
+                            audio: false
+                        }).then(function(mediaStream) {
+                        var video = document.querySelector('video');
+                        video.srcObject = mediaStream;
+                        video.onloadedmetadata = function(e) {
+                            video.play();
+                        };
+                    })
+                        .catch(function(err) { console.log(err.name + ": " + err.message); });
+
+                }
+                else
+                {
+                    navigator.getMedia(
+                    {
+                        video: true,
+                        audio: false
+                    },
+                        function(stream) {
+                            if (navigator.mozGetUserMedia) {
+                                video.mozSrcObject = stream;
+                            } else {
+                                video.srcObject = stream;
+                            }
+                            video.play();
+                        },
+                    function(err) {
+                        console.log("An error occured! " + err);
+                    })}
+        };
 
     video.addEventListener('canplay', function(ev){
         if (!streaming) {
             height = video.videoHeight / (video.videoWidth/width);
-            //video.setAttribute('width', width);
-            //video.setAttribute('height', height);
             canvas.setAttribute('width', width);
             canvas.setAttribute('height', height);
             streaming = true;
@@ -85,7 +100,7 @@ function getActiveFilter()
         canvas.height = height;
         if (video.getAttribute('src') === null) {
             canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-            data = canvas.toDataURL('image/png');
+            data = encodeURIComponent(canvas.toDataURL('image/png'));
         }
         else
             data = video.getAttribute('src');
@@ -109,7 +124,7 @@ function getActiveFilter()
             var where = document.getElementById("img_url").parentElement;
             where.appendChild(img);
             document.getElementById('img_url').value = xhttp.responseText;//data;
-        }, 1500);//500 seems to be a good fit < 600px width, 1350 is for fullscreen
+        }, 2000);//500 seems to be a good fit < 600px width, 1350 is for fullscreen
     }
 
     startbutton.addEventListener('click', function(ev){

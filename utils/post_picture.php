@@ -1,10 +1,17 @@
 <?php
+session_start();
 use \ablin42\database;
+use \ablin42\autoloader;
+require ("../class/autoloader.php");
+require_once("functions.php");
+autoloader::register();
+$db = database::getInstance('camagru');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_cam']) && !empty($_POST['img_url']) && !empty($_SESSION['id']) && !empty($_POST['img_name']))
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['img_url']) && !empty($_SESSION['id']) && !empty($_POST['img_name']))
 {
+    $img_url = "../{$_POST['img_url']}";
     $img_name = secure_input($_POST['img_name']);
-    $img_url = secure_input($_POST['img_url']);
+    $img_url = secure_input($img_url);
     $user_id = secure_input($_SESSION['id']);
     if (!check_length($img_name, 1, 64))
     {
@@ -16,12 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_cam']) && !empt
     $req = $db->query( "SELECT MAX(id) as last_id FROM `image`");
     foreach($req as $item)
         $id_img = $item->last_id + 1;
-    $path = "images/{$id_img}.png";
+    $path = "../images/{$id_img}.png";
 
     $photo = imagecreatefrompng($img_url);
     imagepng($photo, $path);
     imagedestroy($photo);
-    unlink("{$_POST['tmp_img']}");
+    unlink($img_url);
 
     $path = "/Camagru/images/{$id_img}.png";
     $attributes['id_user'] = htmlspecialchars(trim($user_id));

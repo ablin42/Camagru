@@ -21,22 +21,26 @@ function drag(ev, item) {
 }
 
 function drop(ev) {
+    let filterSize = document.getElementById(CURR_FILTER).getBoundingClientRect(),
+        halfFilterWidth = filterSize.width / 2,
+        halfFilterHeight = filterSize.height / 2;
+
     if (CURR_FILTER === undefined)
         return;
     ev.preventDefault();
-    let pos = getCursorPosition(event);
+    let pos = getCursorPosition(ev);
     let left = pos[0];
     let top = pos[1];
     if (left < 0)
         left = 0;
     else if (left > pos[2])
-        left = left - 100;//half...
+        left = left - halfFilterWidth;
     if (top < 0)
         top = 0;
     else if (top > pos[3])
-        top = top - 100;//half...
+        top = top - halfFilterHeight;
 
-    left = left - 100;//half of the filter's width
-    top = top - 100;//half of the filter's height
+    left = left - halfFilterWidth;
+    top = top - halfFilterHeight;
     document.getElementById(CURR_FILTER).setAttribute("style", `left: ${left}px; top: ${top}px;`);
 }

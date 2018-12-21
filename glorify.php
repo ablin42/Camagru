@@ -13,7 +13,6 @@
 <body onresize="resizePreview()">
 <?php
 require_once("includes/header.php");
-require_once("utils/post_picture.php");
 if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
     header('Location: /Camagru/?e=take');
 ?>
@@ -74,22 +73,22 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <div class="register-form-wrapper col-10 offset-1 p-2 mt-3 mb-4">
             <h2>pick a title and upload your photo!</h2>
             <h5>...once you're done taking it</h5>
-            <form action="" method="post" enctype="multipart/form-data" style="text-align: center;">
+            <form onsubmit="return submitForm(this, 'post_picture');" name="post_picture" action="" method="post" enctype="multipart/form-data" style="text-align: center;">
                 <?php
                     echo $form->input("img_name", "img_name", "form-control", "Your title", 64);
                     echo $form->hidden("img_url", "", "img_url");
-                    echo $form->submit('submit_cam', 'submit_cam', 'btn btn-outline-warning btn-sign-in', 'Upload');
+                    echo $form->submit('submit_post_picture', 'submit_post_picture', 'btn btn-outline-warning btn-sign-in', 'Upload');
                 ?>
             </form>
         </div>
         <hr>
         <div class="register-form-wrapper col-10 offset-1 p-2 mb-3 mt-4">
             <h2>upload your photo if you don't have a webcam</h2>
-            <form action="" method="post" enctype="multipart/form-data" class="text-center">
+            <form name="upload" action="" method="post" enctype="multipart/form-data" class="text-center">
                 <?php
                     $form->setLabel("pick a file", "lab file-lab");
                     echo $form->file("picture", "picture", "inputfile");
-                    echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in', 'Upload');
+                    echo $form->submit('submit_upload', 'submit_upload', 'btn btn-outline-warning btn-sign-in', 'Upload');
                 ?>
             </form>
         </div>

@@ -13,22 +13,25 @@
 <body>
 <?php
 require_once("includes/header.php");
-require_once("utils/password_update.php");
+if (!isset($_GET['id']) && !isset($_GET['token']))
+    header('Location: /Camagru?e=reset');
 ?>
 <div class="container mt-5 small-page-wrapper">
     <div class="wrapper col-8 offset-2 p-2">
         <h1>reset your password</h1>
         <h5>you will need to log in after changing your password</h5>
         <div class="container col-8 p-3 mt-3 mb-3">
-            <form name="reset_password" onkeyup="validate();" class="register-form col-10 offset-1 my-2 my-lg-0" action="reset.php?id=<?php echo "{$_GET['id']}&token={$_GET['token']}";?>" method="post">
+            <form  onsubmit="return submitForm(this, 'password_update');" name="password_update" onkeyup="validate();" class="register-form col-10 offset-1 my-2 my-lg-0" action="" method="post">
                 <?php
                 $form->setLabel('Password', 'lab');
                 $form->setInfo('Password must contain between 8 and 30 characters and has to be atleast alphanumeric',"i_password", "form-info", "y");
                 echo $form->password('password', 'password', "form-control", "********");
                 $form->setLabel('Confirm your password', 'lab');
                 $form->setInfo('Password has to be the same as the one you just entered', "i_password2","form-info", "y");
+                echo $form->hidden("id", $_GET['id'], "id_user");
+                echo $form->hidden("token", $_GET['token'], "token");
                 echo $form->password('password2', 'password2', "form-control", "********");
-                echo $form->submit('submit', 'submit', 'btn btn-outline-warning btn-sign-in mb-1', 'Set new password');
+                echo $form->submit('submit_password_update', 'submit_password_update', 'btn btn-outline-warning btn-sign-in mb-1', 'Set new password');
                 ?>
             </form>
         </div>
@@ -39,6 +42,7 @@ require_once("utils/password_update.php");
 </div>
 <script src="js/validate.js"></script>
 <script src="js/alert.js"></script>
+<script src="js/ajaxify.js"></script>
 <?php require_once("includes/footer.php");?>
 </body>
 </html>

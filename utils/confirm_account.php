@@ -1,8 +1,8 @@
 <?php
 use \ablin42\database;
 use \ablin42\autoloader;
-
 require ("../class/autoloader.php");
+require ("functions.php");
 autoloader::register();
 
 if (!empty($_GET['id']) && !empty($_GET['token']))
@@ -11,6 +11,7 @@ if (!empty($_GET['id']) && !empty($_GET['token']))
 
     $db = database::getInstance('camagru');
     $req = $db->prepare("SELECT `mail_token` FROM `user` WHERE `id` = :user_id", $attributes);
+
     if ($req) {
         foreach ($req as $item) {
             if ($item->mail_token === secure_input($_GET['token']))
