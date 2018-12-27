@@ -17,29 +17,33 @@ function applyPreview(filter, id_nb)
 
 function countFilters(amount)
 {
-    if (typeof countFilters.counter === 'undefined' ) {
-        countFilters.counter = 0;
-    }
-    countFilters.counter += amount;
-    return countFilters.counter;
+    let arr = [];
+    if (typeof countFilters.nbCall === 'undefined' ) {
+        countFilters.nbCall = 0;}
+    if (typeof countFilters.nbFilter === 'undefined' ) {
+        countFilters.nbFilter = 0;}
+    countFilters.nbFilter += amount;
+    countFilters.nbCall++;
+    arr.push(countFilters.nbCall);
+    arr.push(countFilters.nbFilter);
+    return (arr);
 }
 
 function applyFilter(filter)
 {
     var count = countFilters(1);
-
-    if (count > 0)
+    if (count[1] > 0)
         document.getElementById('startbutton').removeAttribute('disabled');
     else
         document.getElementById('startbutton').setAttribute('disabled', '');
 
-    applyPreview(filter, count);
+    applyPreview(filter, count[0]);
 }
 
 function removeFilter(filter)
 {
-    var count = countFilters(-1);
-    if (count > 0)
+    let count = countFilters(-1);
+    if (count[1] > 0)
         document.getElementById('startbutton').removeAttribute('disabled');
     else
         document.getElementById('startbutton').setAttribute('disabled', '');
@@ -65,8 +69,8 @@ function hoverFilter(filter, state)
     let sizing = 10;
     if (state === "out")
         sizing = -10;
-    width = filter.width + sizing;
-    height = filter.height + sizing;
+    let width = filter.width + sizing,
+        height = filter.height + sizing;
 
     filter.setAttribute("style", `width: ${width}px; height: ${height}px;`);
 }

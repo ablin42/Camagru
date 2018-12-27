@@ -58,10 +58,6 @@ try {
                                                 (133, 43, '/Camagru/images/80.png', 'dqsdqsd', '2018-12-01 00:00:00', 0),
                                                 (80, 43, '/Camagru/images/80.png', 'fullscreen works', '2018-12-11 20:34:05', 3),
                                                 (81, 58, '/Camagru/images/81.png', 'deathbringerposting', '2018-12-11 21:41:25', 1),
-                                                (122, 43, '/Camagru/images/111.png', 'xacacsas', '2018-12-14 19:05:06', 1),
-                                                (124, 51, '/Camagru/images/124.png', 'hophop', '2018-12-14 19:08:19', 0),
-                                                (125, 51, '/Camagru/images/125.png', 'avava', '2018-12-14 19:08:42', 1),
-                                                (126, 51, '/Camagru/images/126.png', 'tout est beau', '2018-12-14 19:09:19', 1),
                                                 (140, 43, '/Camagru/images/134.png', 'ajaxified', '2018-12-21 18:18:01', 0),
                                                 (155, 64, '/Camagru/images/141.png', 'nique ta mere firefox', '2018-12-21 20:21:17', 0);");
     echo "Successfully POPULATED 'IMAGE' table" . PHP_EOL;

@@ -21,10 +21,14 @@ function drag(ev, item) {
 }
 
 function drop(ev) {
-    let filterSize = document.getElementById(CURR_FILTER).getBoundingClientRect(),
+    let filter = document.getElementById(CURR_FILTER);
+    if (filter === null)
+        return ;
+    let filterSize = filter.getBoundingClientRect(),
         halfFilterWidth = filterSize.width / 2,
         halfFilterHeight = filterSize.height / 2;
 
+   ;
     if (CURR_FILTER === undefined)
         return;
     ev.preventDefault();

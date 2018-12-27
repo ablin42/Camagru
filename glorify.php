@@ -24,43 +24,43 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         <div class="container container-filters col-10 offset-1 p-3">
             <div class="row">
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('emeraude.png')" alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('emeraude.png')" alt="dofus emeraude" src="filters/emeraude.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('turquoise.png')" alt="dofus turquoise" src="filters/turquoise.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('turquoise.png')" alt="dofus turquoise" src="filters/turquoise.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('pourpre.png')" alt="dofus pourpre" src="filters/pourpre.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('pourpre.png')" alt="dofus pourpre" src="filters/pourpre.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ocre.png')" alt="dofus ocre" src="filters/ocre.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ocre.png')" alt="dofus ocre" src="filters/ocre.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ivoire.png')" alt="dofus ivoire" src="filters/ivoire.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ivoire.png')" alt="dofus ivoire" src="filters/ivoire.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ebene.png')" alt="dofus ebene" src="filters/ebene.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ebene.png')" alt="dofus ebene" src="filters/ebene.png" class="filter"/>
                 </div>
             </div>
 
             <div class="row">
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('gein.png')" alt="chapeau de gein" src="filters/gein.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('gein.png')" alt="chapeau de gein" src="filters/gein.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ouga.png')" alt="coiffe de l'ougah" src="filters/ouga.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ouga.png')" alt="coiffe de l'ougah" src="filters/ouga.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ben.png')" alt="coiffe de ben le ripate" src="filters/ben.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('ben.png')" alt="coiffe de ben le ripate" src="filters/ben.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('solomonk.png')" alt="solomonk" src="filters/solomonk.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('solomonk.png')" alt="solomonk" src="filters/solomonk.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('rdv.png')" alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('rdv.png')" alt="coiffe reine des voleurs" src="filters/rdv.png" class="filter"/>
                 </div>
                 <div class="item col">
-                    <img onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('comte.png')" alt="coiffe du comte harebourg" src="filters/comte.png" class="filter" style="width:75px"/>
+                    <img draggable="false" onmouseout="hoverFilter(this, 'out');" onmouseover="hoverFilter(this, 'in');" onclick="applyFilter('comte.png')" alt="coiffe du comte harebourg" src="filters/comte.png" class="filter" style="width:75px"/>
                 </div>
             </div>
         </div>

@@ -1,11 +1,13 @@
 function getActiveFilter()
 {
     FILTERS_INFO = [];
-    var nbFilter = countFilters(0);
+    var domFilter = document.getElementsByClassName("applied-filter");
+    var nbFilter = document.getElementsByClassName("applied-filter").length;
     var filter = [];
-    for (i = 1; i <= nbFilter; i++)
+    for (i = 0; i < nbFilter; i++)
     {
-        let elem = document.getElementById(`filter_${i}`),
+        let filterId = domFilter[i].getAttribute("id").substr(7),
+            elem = document.getElementById(`filter_${filterId}`),
             left = elem.style.left,
             top = elem.style.top,
             elemInfo = elem.getBoundingClientRect(),
