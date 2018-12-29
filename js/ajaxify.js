@@ -41,6 +41,36 @@ function loadComments(idImg)
     }, 1500);
 }
 
+function loadPictures()
+{
+    var xhttp = new XMLHttpRequest(),
+        lastId = document.querySelectorAll('.your-img'),
+        where = document.getElementById("your_pictures"),//where to insert
+        loader = document.getElementById("loader"),//loader
+        div = document.createElement('div');
+
+    loader.setAttribute("style", "display:block; top:0");
+    if (lastId.length !== 0)
+        lastId = lastId[0].getAttribute("id").substring(4);
+    else
+        lastId = 1;
+
+    xhttp.open("POST", "utils/load_pictures.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(`lastid=${lastId}`);
+
+    setTimeout(function (){
+        if (xhttp.responseText)//on success
+        {
+            div.innerHTML += xhttp.responseText;
+            insertAfter(div, where);
+            loader.removeAttribute("style");
+        }
+        else
+            loader.removeAttribute("style");
+    }, 1500);
+}
+
 function submitCheckbox(checkbox)
 {
     cooldown(checkbox);
@@ -118,6 +148,8 @@ function submitForm(form, url)
         insertAfter(div, where);
         if (url === "post_comment")
             loadComments(inputValue[1]);
+        if (url === "post_picture")
+            loadPictures();
         if (xhttp.responseText.search("logged in") !== -1) {
             setTimeout(function (){window.location.href = "/Camagru/";}, 500);}
         if (xhttp.responseText.search("Please, log in") !== -1) {

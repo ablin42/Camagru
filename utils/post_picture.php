@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['img_url']) && !empty(
     $photo = imagecreatefrompng($img_url);
     imagepng($photo, $path);
     imagedestroy($photo);
-    unlink($img_url);
+    //unlink($img_url);
 
     $path = "/Camagru/images/{$id_img}.png";
     $attributes['id_user'] = htmlspecialchars(trim($user_id));

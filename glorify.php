@@ -94,7 +94,8 @@ if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== 1)
         </div>
     </div>
     <div class="wrapper your-pictures col-2 p-2">
-        <h1>your pictures</h1>
+        <h1 id="your_pictures">your pictures</h1>
+        <div id="loader"><img src="style/loader.gif" alt="loader" width="50px" height="50" /></div>
         <?php require_once("utils/your_pictures.php"); ?>
     </div>
 </div>
